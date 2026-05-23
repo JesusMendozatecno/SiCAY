@@ -55,4 +55,5 @@ return [
     'enviar_reset'          => 'app/Controllers/enviar_reset.php',
     'api_profile'           => 'app/Controllers/api_profile.php',
     'api_notifications'     => 'app/Controllers/api_notifications.php',
+    'api_historial'         => 'app/Controllers/api_historial.php',
 ];

@@ -110,6 +110,14 @@ function verificar_sesion() {
     }
 }
 
+function verificar_sesion_json() {
+    if (!isset($_SESSION['usuario'])) {
+        header('Content-Type: application/json');
+        echo json_encode(['ok' => false, 'error' => 'Sesión no iniciada']);
+        exit;
+    }
+}
+
 function __($key, $lang = null) {
     if ($lang === null) {
         global $current_lang;
@@ -128,15 +136,42 @@ function __($key, $lang = null) {
     return $translations[$lang][$key] ?? $key;
 }
 
-function log_activity($user_id, $action, $details = null) {
+function log_activity($user_id, $action, $details = null, $tipo_accion = null, $modulo = null) {
     global $con;
     if (!$con) return false;
     $ip = $_SERVER['REMOTE_ADDR'] ?? '127.0.0.1';
+
+    // Backward compat: write to activity_log
     $stmt = $con->prepare("INSERT INTO activity_log (user_id, action, details, ip_address) VALUES (?, ?, ?, ?)");
     if ($stmt) {
         $stmt->bind_param("isss", $user_id, $action, $details, $ip);
         $stmt->execute();
         $stmt->close();
+    }
+
+    // Auto-detect type/module if not provided
+    if ($tipo_accion === null) {
+        $lower = mb_strtolower($action);
+        if (strpos($lower, 'inició') !== false || strpos($lower, 'inicio') !== false) $tipo_accion = 'login';
+        elseif (strpos($lower, 'cerró') !== false || strpos($lower, 'cerro') !== false) $tipo_accion = 'logout';
+        elseif (strpos($lower, 'elimin') !== false) $tipo_accion = 'delete';
+        elseif (strpos($lower, 'actualiz') !== false || strpos($lower, 'cambió') !== false || strpos($lower, 'cambio') !== false) $tipo_accion = 'update';
+        elseif (strpos($lower, 'cre') !== false || strpos($lower, 'registr') !== false) $tipo_accion = 'create';
+        elseif (strpos($lower, 'export') !== false || strpos($lower, 'pdf') !== false) $tipo_accion = 'export';
+        elseif (strpos($lower, 'config') !== false) $tipo_accion = 'config';
+        elseif (strpos($lower, 'seguridad') !== false || strpos($lower, 'contrase') !== false || strpos($lower, '2fa') !== false) $tipo_accion = 'security';
+        elseif (strpos($lower, 'notific') !== false) $tipo_accion = 'notification';
+        else $tipo_accion = 'system';
+    }
+
+    // Write to unified historial table
+    $usuario = $_SESSION['usuario'] ?? 'Sistema';
+    $stmt2 = $con->prepare("INSERT INTO historial (id_usuario, usuario, accion, tipo_accion, modulo, descripcion, ip_address, fecha) VALUES (?, ?, ?, ?, ?, ?, ?, NOW())");
+    if ($stmt2) {
+        $desc = $details ?? $action;
+        $stmt2->bind_param("issssss", $user_id, $usuario, $action, $tipo_accion, $modulo, $desc, $ip);
+        $stmt2->execute();
+        $stmt2->close();
     }
 }
 

@@ -144,29 +144,38 @@ switch ($action) {
         if (!isset($_FILES['avatar']) || $_FILES['avatar']['error'] !== UPLOAD_ERR_OK) {
             json_error('Error al subir archivo');
         }
+        if ($_FILES['avatar']['size'] > 5 * 1024 * 1024) {
+            json_error('La imagen no debe superar los 5MB');
+        }
         $allowedMime = ['image/jpeg', 'image/png', 'image/gif', 'image/webp'];
         $finfo = finfo_open(FILEINFO_MIME_TYPE);
+        if (!$finfo) json_error('Error al procesar la imagen');
         $mime = finfo_file($finfo, $_FILES['avatar']['tmp_name']);
         finfo_close($finfo);
-        if (!in_array($mime, $allowedMime)) json_error('Formato no permitido (jpg, png, gif, webp)');
+        if (!$mime || !in_array($mime, $allowedMime)) json_error('Formato no permitido (jpg, png, gif, webp)');
         $extMap = ['image/jpeg'=>'jpg','image/png'=>'png','image/gif'=>'gif','image/webp'=>'webp'];
         $ext = $extMap[$mime];
         $name = 'user_' . $uid . '_' . time() . '.' . $ext;
-        $dest = BASE_PATH . 'public/assets/img/avatars/' . $name;
+        $avatarDir = BASE_PATH . 'public/assets/img/avatars/';
+        if (!is_dir($avatarDir)) {
+            mkdir($avatarDir, 0775, true);
+        }
+        $dest = $avatarDir . $name;
         if (move_uploaded_file($_FILES['avatar']['tmp_name'], $dest)) {
-            // Delete old avatar
             $stmt = $con->prepare("SELECT avatar FROM usuario WHERE id = ?");
             $stmt->bind_param("i", $uid); $stmt->execute();
             $old = $stmt->get_result()->fetch_assoc()['avatar']; $stmt->close();
             if ($old && $old !== $name) {
-                $oldFile = BASE_PATH . 'public/assets/img/avatars/' . $old;
+                $oldFile = $avatarDir . $old;
                 if (file_exists($oldFile)) unlink($oldFile);
             }
             $stmt = $con->prepare("UPDATE usuario SET avatar = ? WHERE id = ?");
             $stmt->bind_param("si", $name, $uid);
-            $stmt->execute();
-            log_activity($uid, 'Cambió su foto de perfil');
-            json_success(['message' => 'Foto actualizada', 'avatar' => $name]);
+            if ($stmt->execute()) {
+                log_activity($uid, 'Cambió su foto de perfil');
+                json_success(['message' => 'Foto actualizada', 'avatar' => $name]);
+            }
+            json_error('Error al actualizar la base de datos');
         }
         json_error('Error al guardar archivo');
 

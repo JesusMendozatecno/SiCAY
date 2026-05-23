@@ -12,6 +12,7 @@ $stmt2 = $con->prepare("SELECT COUNT(*) as c FROM activity_log WHERE user_id = ?
 $stmt2->bind_param("i", $uid); $stmt2->execute();
 $stats = $stmt2->get_result()->fetch_assoc();
 $total_activities = $stats['c']; $stmt2->close();
+//comentario
 ?>
 <!DOCTYPE html>
 <html lang="<?php echo hsc($current_lang); ?>">

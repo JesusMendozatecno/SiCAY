@@ -1,0 +1,300 @@
+:root {
+    --primary: #123C69;
+    --secondary: #1F6AE1;
+    --dark: #0B1C2D;
+    --glass: rgba(18, 60, 105, 0.95);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+
+body {
+    background: linear-gradient(rgba(11, 28, 45, 0.7), rgba(11, 28, 45, 0.7)),
+                url('../../img/Aguas_de_Yaracuy_fachada.png');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    position: relative;
+    padding-top: 60px;
+}
+
+.navbar {
+    background: var(--glass);
+    height: 60px;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 15px rgba(0,0,0,0.2);
+    backdrop-filter: blur(10px);
+}
+
+.nav-container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav-brand { display: flex; align-items: center; gap: 12px; }
+.logo-img { height: 38px; filter: brightness(1.2); }
+.brand-text { font-family: 'Montserrat'; font-weight: 700; color: white; font-size: 1rem; }
+
+.btn-volver {
+    text-decoration: none;
+    color: white;
+    background: rgba(255,255,255,0.1);
+    padding: 8px 18px;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    transition: 0.3s;
+    border: 1px solid rgba(255,255,255,0.2);
+}
+
+.btn-volver:hover { background: var(--secondary); }
+
+.main-content {
+    flex: 1;
+    z-index: 1;
+}
+
+.recovery-card {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 5;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(5px);
+    width: 90%;
+    max-width: 360px;
+    padding: 24px 28px;
+    border-radius: 18px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+    border-bottom: 5px solid var(--secondary);
+    text-align: center;
+}
+
+.icon-header {
+    font-size: 2rem;
+    color: var(--secondary);
+    margin-bottom: 6px;
+}
+
+.recovery-card h2 {
+    color: var(--primary);
+    font-family: 'Montserrat';
+    margin-bottom: 4px;
+    font-size: 1.2rem;
+}
+
+.recovery-card p {
+    color: #666;
+    font-size: 0.75rem;
+    margin-bottom: 14px;
+    line-height: 1.4;
+}
+
+.alerta {
+    padding: 8px 10px;
+    border-radius: 8px;
+    margin-bottom: 12px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    animation: fadeIn 0.4s ease;
+}
+
+.alerta.exito {
+    background: rgba(46, 204, 113, 0.15);
+    border: 1px solid #2ecc71;
+    color: #27ae60;
+}
+
+.alerta.error {
+    background: rgba(255, 118, 117, 0.15);
+    border: 1px solid #ff7675;
+    color: #d63031;
+}
+
+.alerta i { margin-right: 6px; }
+
+.debug-link {
+    margin-top: -8px;
+    margin-bottom: 12px;
+    font-size: 0.7rem;
+    word-break: break-all;
+    background: rgba(0,0,0,0.05);
+    padding: 8px;
+    border-radius: 6px;
+}
+
+.debug-link a { color: var(--secondary); }
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-5px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.form-group {
+    margin-bottom: 10px;
+    text-align: left;
+}
+
+.form-group label {
+    display: block;
+    font-size: 0.78rem;
+    font-weight: 600;
+    margin-bottom: 3px;
+    color: var(--primary);
+}
+
+.form-group input {
+    width: 100%;
+    padding: 9px 12px;
+    border-radius: 8px;
+    border: 1px solid #ced4da;
+    background: #f8f9fa;
+    outline: none;
+    font-size: 0.82rem;
+    transition: 0.3s;
+}
+
+.form-group input:focus {
+    border-color: var(--secondary);
+    background: white;
+    box-shadow: 0 0 0 3px rgba(31, 106, 225, 0.1);
+}
+
+.btn-submit {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 8px;
+    background: var(--primary);
+    color: white;
+    font-weight: 600;
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: 0.3s;
+    margin-top: 4px;
+}
+
+.btn-submit:hover {
+    background: var(--secondary);
+    transform: translateY(-2px);
+}
+
+.back-to-login {
+    margin-top: 14px;
+    font-size: 0.78rem;
+}
+
+.back-to-login a {
+    color: var(--secondary);
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.input-group {
+    position: relative;
+}
+
+.input-group input {
+    padding-right: 42px;
+    width: 100%;
+}
+
+.toggle-pass {
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    width: 40px;
+    z-index: 2;
+    background: #f8f9fa;
+    border: none;
+    border-left: 1px solid #e0e0e0;
+    color: #888;
+    cursor: pointer;
+    border-radius: 0 8px 8px 0;
+    font-size: 1rem;
+    transition: 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.toggle-pass:hover { color: var(--secondary); background: #eef3fc; }
+
+.pass-requirements {
+    list-style: none;
+    margin-top: 6px;
+    font-size: 0.72rem;
+    padding: 8px 10px;
+    background: rgba(0,0,0,0.03);
+    border-radius: 8px;
+}
+
+.pass-requirements li {
+    color: #e74c3c;
+    opacity: 0.6;
+    margin-bottom: 2px;
+    transition: 0.3s;
+}
+
+.pass-requirements li::before {
+    content: '\f00d';
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
+    margin-right: 6px;
+    font-size: 0.6rem;
+}
+
+.pass-requirements li.met::before {
+    content: '\f00c';
+}
+
+.pass-requirements li.met {
+    color: #2ecc71;
+    opacity: 1;
+}
+
+footer {
+    text-align: center;
+    padding: 10px;
+    font-size: 0.75rem;
+    color: white;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: 1;
+}
+
+@media (max-width: 575.98px) {
+    body { padding-top: 46px; }
+    .navbar { height: 46px; }
+    .navbar .brand-text { font-size: 0.8rem; }
+    .logo-img { height: 26px; }
+    .btn-volver { padding: 4px 10px; font-size: 0.7rem; }
+    .main-content { padding: 0; }
+    .recovery-card { padding: 16px 16px; max-width: 290px; }
+    .recovery-card h2 { font-size: 1rem; }
+    .recovery-card p { font-size: 0.7rem; margin-bottom: 10px; }
+    .icon-header { font-size: 1.6rem; margin-bottom: 4px; }
+    .form-group { margin-bottom: 8px; }
+    .form-group label { font-size: 0.72rem; }
+    .form-group input { padding: 8px 10px; font-size: 0.78rem; }
+    .btn-submit { padding: 9px; font-size: 0.8rem; }
+    .alerta { padding: 6px 8px; font-size: 0.7rem; margin-bottom: 8px; }
+    .back-to-login { margin-top: 10px; font-size: 0.72rem; }
+    .input-group input { padding-right: 40px; }
+    .toggle-pass { width: 36px; font-size: 0.85rem; }
+    footer { padding: 6px; font-size: 0.6rem; }
+}

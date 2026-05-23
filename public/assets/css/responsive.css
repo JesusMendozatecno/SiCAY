@@ -1,0 +1,302 @@
+/* Responsive: < 576px */
+@media (max-width: 575.98px) {
+    .contenedor, .container, .recovery-card, .hero-card {
+        padding: 20px !important;
+        max-width: 95% !important;
+    }
+
+    .grid-planillas {
+        grid-template-columns: 1fr !important;
+    }
+
+    .grid-stats {
+        grid-template-columns: 1fr !important;
+    }
+
+    .form-add, .form-grid {
+        flex-direction: column !important;
+        grid-template-columns: 1fr !important;
+    }
+
+    .form-group {
+        min-width: 100% !important;
+    }
+
+    .back-link, .btn-back {
+        font-size: 0.8rem !important;
+        padding: 8px 14px !important;
+    }
+
+    .bubble { display: none; }
+
+    .header-section h1 {
+        font-size: 1.5rem !important;
+    }
+
+    .header-section p {
+        font-size: 0.9rem !important;
+    }
+
+    .sidebar {
+        width: 100% !important;
+        height: auto !important;
+        position: relative !important;
+        padding: 10px 15px !important;
+        flex-direction: row !important;
+        flex-wrap: wrap !important;
+        overflow-x: auto !important;
+    }
+
+    .sidebar .brand {
+        padding-bottom: 0 !important;
+        border-bottom: none !important;
+        margin-bottom: 0 !important;
+    }
+
+    .sidebar .brand span {
+        display: none;
+    }
+
+    .sidebar .menu-nav {
+        display: flex !important;
+        flex-direction: row !important;
+        overflow-x: auto !important;
+        gap: 5px !important;
+    }
+
+    .sidebar .menu-nav button {
+        white-space: nowrap !important;
+        padding: 8px 12px !important;
+        font-size: 0.75rem !important;
+        margin-bottom: 0 !important;
+    }
+
+    .btn-logout {
+        margin-top: 0 !important;
+    }
+
+    .main-content {
+        padding: 15px !important;
+    }
+
+    .top-bar {
+        flex-direction: column !important;
+        gap: 10px !important;
+        text-align: center !important;
+    }
+
+    .top-bar h2 {
+        font-size: 1.1rem !important;
+    }
+
+    .card {
+        padding: 18px !important;
+    }
+
+    .card-body .number {
+        font-size: 1.8rem !important;
+    }
+
+    .modal-content {
+        width: 90% !important;
+        margin: 15vh auto !important;
+        padding: 25px !important;
+    }
+
+    .table-container {
+        overflow-x: auto !important;
+    }
+
+    table {
+        font-size: 0.75rem !important;
+    }
+
+    th, td {
+        padding: 10px 8px !important;
+    }
+
+    .navbar {
+        height: 60px !important;
+    }
+
+    .brand-text .main-name {
+        font-size: 0.9rem !important;
+    }
+
+    .brand-text .sub-name {
+        display: none;
+    }
+
+    .hero {
+        height: 70vh !important;
+    }
+
+    .hero-card h1 {
+        font-size: 1.3rem !important;
+    }
+
+    .hero-card {
+        padding: 25px !important;
+    }
+
+    .info-section {
+        padding: 30px 15px !important;
+    }
+
+    .info-card {
+        width: 100% !important;
+        max-width: 300px !important;
+    }
+
+    .nav-btn {
+        padding: 8px 16px !important;
+        font-size: 0.8rem !important;
+    }
+
+    h2 i {
+        font-size: 1.2rem !important;
+    }
+
+    .user-info {
+        font-size: 0.8rem !important;
+        padding: 6px 14px !important;
+    }
+
+    select, input, .btn, .btn-add, button#btn_txt {
+        font-size: 0.85rem !important;
+        padding: 10px !important;
+    }
+
+    .recovery-card h2 {
+        font-size: 1.2rem !important;
+    }
+}
+
+/* Responsive: 576px - 767px (tablets small) */
+@media (min-width: 576px) and (max-width: 767.98px) {
+    .contenedor, .container {
+        padding: 30px !important;
+        max-width: 90% !important;
+    }
+
+    .grid-planillas {
+        grid-template-columns: repeat(2, 1fr) !important;
+    }
+
+    .grid-stats {
+        grid-template-columns: repeat(2, 1fr) !important;
+    }
+
+    .form-add, .form-grid {
+        flex-direction: column !important;
+    }
+
+    .sidebar {
+        width: 220px !important;
+        padding: 15px !important;
+    }
+
+    .sidebar .brand span {
+        font-size: 0.9rem !important;
+    }
+
+    .sidebar .menu-nav button {
+        padding: 10px 12px !important;
+        font-size: 0.8rem !important;
+    }
+
+    .main-content {
+        padding: 20px !important;
+    }
+
+    .top-bar h2 {
+        font-size: 1.2rem !important;
+    }
+
+    .card-body .number {
+        font-size: 2rem !important;
+    }
+
+    .hero-card h1 {
+        font-size: 1.6rem !important;
+    }
+
+    .modal-content {
+        width: 80% !important;
+    }
+
+    .bubble { display: none; }
+}
+
+/* Responsive: 768px - 1023px (tablets large / small laptop) */
+@media (min-width: 768px) and (max-width: 1023.98px) {
+    .grid-planillas {
+        grid-template-columns: repeat(3, 1fr) !important;
+    }
+
+    .grid-stats {
+        grid-template-columns: repeat(2, 1fr) !important;
+    }
+
+    .sidebar {
+        width: 240px !important;
+    }
+
+    .modal-content {
+        width: 60% !important;
+    }
+}
+
+/* Responsive: 1024px - 1279px */
+@media (min-width: 1024px) and (max-width: 1279.98px) {
+    .grid-planillas {
+        grid-template-columns: repeat(4, 1fr) !important;
+    }
+
+    .grid-stats {
+        grid-template-columns: repeat(3, 1fr) !important;
+    }
+
+    .modal-content {
+        width: 50% !important;
+    }
+}
+
+/* Responsive: 1280px+ */
+@media (min-width: 1280px) {
+    .grid-planillas {
+        grid-template-columns: repeat(5, 1fr) !important;
+    }
+
+    .grid-stats {
+        grid-template-columns: repeat(3, 1fr) !important;
+    }
+
+    .modal-content {
+        width: 40% !important;
+    }
+}
+
+/* Global responsive fixes */
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+.table-container {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+table {
+    min-width: 600px;
+}
+
+.sidebar .menu-nav::-webkit-scrollbar {
+    height: 3px;
+}
+
+.sidebar .menu-nav::-webkit-scrollbar-thumb {
+    background: rgba(255,255,255,0.3);
+    border-radius: 10px;
+}

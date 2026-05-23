@@ -1,0 +1,147 @@
+:root { 
+    --primary: #123C69; 
+    --accent: #00cec9; 
+    --danger: #ff7675; 
+    --success: #2ecc71; 
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+
+body {
+    background: linear-gradient(rgba(11, 28, 45, 0.9), rgba(11, 28, 45, 0.9)), url('../../img/Aguas_de_Yaracuy_fachada.png');
+    background-size: cover; background-attachment: fixed;
+    min-height: 100vh; padding: 40px 20px; color: white;
+    overflow-x: hidden;
+}
+
+.bubble { position: fixed; bottom: -100px; background: rgba(255,255,255,0.1); border-radius: 50%; animation: moveUp 10s linear infinite; z-index: -1; }
+@keyframes moveUp { 0% { transform: translateY(0); opacity: 0; } 10% { opacity: 0.3; } 100% { transform: translateY(-110vh); opacity: 0; } }
+
+.container { max-width: 1200px; margin: auto; }
+
+header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.header-titulo h1 {
+    font-size: 2.2rem;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+}
+
+.header-titulo h1 i { color: var(--accent); }
+
+.usuario-pill {
+    display: inline-block;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 5px 20px;
+    border-radius: 20px;
+    margin-top: 10px;
+    font-size: 0.9rem;
+    border: 1px solid rgba(255,255,255,0.2);
+}
+
+.section-header-title {
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 1.2rem;
+    opacity: 0.9;
+    letter-spacing: 1px;
+}
+
+.settings-wrapper {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
+}
+
+.settings-card {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(15px);
+    padding: 30px;
+    border-radius: 25px;
+    border: 1px solid rgba(255,255,255,0.2);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.settings-card:hover {
+    transform: translateY(-10px);
+    background: rgba(255, 255, 255, 0.15);
+    border-color: var(--accent);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+}
+
+.settings-card h3 { 
+    color: #fff; 
+    margin-bottom: 15px; 
+    display: flex; 
+    align-items: center; 
+    gap: 12px;
+    font-size: 1.1rem;
+}
+
+.settings-card h3 i { color: var(--accent); font-size: 1.4rem; }
+
+.settings-card p { 
+    color: rgba(255,255,255,0.7); 
+    font-size: 14px; 
+    line-height: 1.6; 
+    margin-bottom: 25px;
+}
+
+.btn-action {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 14px;
+    background: var(--accent);
+    color: #123C69;
+    text-decoration: none;
+    border-radius: 12px;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn-action:hover { background: #fff; transform: scale(1.02); }
+
+.btn-danger { 
+    background: rgba(255, 118, 117, 0.2); 
+    color: var(--danger);
+    border: 1px solid var(--danger);
+}
+.btn-danger:hover { background: var(--danger); color: white; }
+
+.info-list { list-style: none; margin-bottom: 20px; }
+.info-list li {
+    display: flex;
+    justify-content: space-between;
+    padding: 12px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    font-size: 14px;
+}
+
+.status-pill {
+    background: var(--success);
+    color: #fff;
+    padding: 2px 12px;
+    border-radius: 20px;
+    font-weight: 600;
+    font-size: 11px;
+    box-shadow: 0 0 10px rgba(46, 204, 113, 0.4);
+}
+
+.btn-volver {
+    background: rgba(255,255,255,0.1);
+    color: white;
+    border: 1px solid rgba(255,255,255,0.2);
+}

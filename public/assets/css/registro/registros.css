@@ -1,0 +1,155 @@
+:root {
+    --primary: #123C69;
+    --secondary: #1F6AE1;
+    --accent: #74b9ff;
+    --glass: rgba(255, 255, 255, 0.1);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+
+body {
+    background: linear-gradient(rgba(11, 28, 45, 0.9), rgba(11, 28, 45, 0.9)), 
+                url('../../img/Aguas_de_Yaracuy_fachada.png');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    min-height: 100vh;
+    color: white;
+    overflow-x: hidden;
+    padding-bottom: 50px;
+}
+
+.bubble {
+    position: fixed; bottom: -100px; background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 50%; pointer-events: none; z-index: -1;
+    animation: moveUp 10s linear infinite;
+}
+@keyframes moveUp {
+    0% { transform: translateY(0); opacity: 0; }
+    10% { opacity: 0.3; }
+    100% { transform: translateY(-110vh); opacity: 0; }
+}
+
+.main-container {
+    max-width: 1300px;
+    margin: auto;
+    padding: 40px 20px;
+}
+
+.header-section {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.header-section h1 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+    letter-spacing: -1px;
+}
+
+.header-section p {
+    font-weight: 300;
+    opacity: 0.8;
+    font-size: 1.1rem;
+}
+
+.grid-planillas {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 25px;
+}
+
+.card-planilla {
+    background: var(--glass);
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 20px;
+    padding: 25px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    text-decoration: none;
+    color: white;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    position: relative;
+    overflow: hidden;
+}
+
+.card-planilla::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; width: 5px; height: 100%;
+    background: var(--secondary);
+    transition: 0.3s;
+}
+
+.card-planilla:hover {
+    transform: translateY(-10px);
+    background: rgba(255, 255, 255, 0.2);
+    border-color: var(--secondary);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+}
+
+.card-planilla:hover::before {
+    width: 10px;
+    background: #00cec9;
+}
+
+.icon-box {
+    font-size: 2rem;
+    color: var(--accent);
+    background: rgba(255, 255, 255, 0.05);
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 15px;
+    transition: 0.3s;
+}
+
+.card-planilla:hover .icon-box {
+    transform: scale(1.1) rotate(10deg);
+    color: white;
+    background: var(--secondary);
+}
+
+.info-box h3 {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 4px;
+    color: #fff;
+}
+
+.info-box p {
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.back-nav {
+    margin-bottom: 30px;
+}
+
+.btn-back {
+    text-decoration: none;
+    color: white;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.9rem;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 10px 20px;
+    border-radius: 50px;
+    transition: 0.3s;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.btn-back:hover {
+    background: var(--secondary);
+    transform: translateX(-5px);
+}
+
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--secondary); border-radius: 10px; }

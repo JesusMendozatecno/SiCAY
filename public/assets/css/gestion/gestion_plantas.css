@@ -1,0 +1,103 @@
+:root { --primary: #123C69; --accent: #00cec9; --success: #2ecc71; --danger: #ff7675; --warning: #f1c40f; }
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+
+body {
+    background: linear-gradient(rgba(11, 28, 45, 0.9), rgba(11, 28, 45, 0.9)), url('../../img/Aguas_de_Yaracuy_fachada.png');
+    background-size: cover; background-attachment: fixed;
+    min-height: 100vh; padding: 30px 20px; color: white; overflow-x: hidden;
+}
+
+.bubble { position: fixed; bottom: -100px; background: rgba(255,255,255,0.1); border-radius: 50%; animation: moveUp 10s linear infinite; z-index: -1; }
+@keyframes moveUp { 0% { transform: translateY(0); opacity: 0; } 10% { opacity: 0.3; } 100% { transform: translateY(-110vh); opacity: 0; } }
+
+.container {
+    background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(15px);
+    max-width: 1100px; margin: auto; padding: 35px; border-radius: 25px;
+    border: 1px solid rgba(255,255,255,0.2); box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+}
+
+h2 { color: #fff; margin-bottom: 5px; font-weight: 600; display: flex; align-items: center; gap: 15px; }
+.back-link { text-decoration: none; color: rgba(255,255,255,0.6); font-size: 0.85rem; transition: 0.3s; display: inline-block; margin-bottom: 20px; }
+.back-link:hover { color: var(--accent); transform: translateX(-5px); }
+
+.alerta-exito {
+    background: rgba(46, 204, 113, 0.2);
+    border: 1px solid var(--success);
+    color: var(--success);
+    padding: 12px;
+    border-radius: 12px;
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    animation: fadeInDown 0.5s ease;
+}
+
+.alerta-error {
+    background: rgba(255, 118, 117, 0.2);
+    border: 1px solid var(--danger);
+    color: var(--danger);
+    padding: 12px;
+    border-radius: 12px;
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+@keyframes fadeInDown {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.form-add { 
+    display: flex; gap: 15px; margin: 20px 0 30px 0; 
+    background: rgba(255, 255, 255, 0.05); padding: 25px; 
+    border-radius: 20px; align-items: flex-end; flex-wrap: wrap;
+    border: 1px solid rgba(255,255,255,0.1);
+}
+.form-group { flex: 1; min-width: 220px; }
+.form-group label { display: block; font-size: 0.8rem; margin-bottom: 8px; opacity: 0.8; font-weight: 400; }
+input, select { 
+    width: 100%; padding: 12px; background: rgba(255,255,255,0.9); 
+    border: none; border-radius: 12px; color: #333; outline: none; font-size: 0.9rem;
+}
+
+.btn-add { 
+    background: var(--success); color: white; border: none; padding: 0 30px; 
+    border-radius: 12px; cursor: pointer; font-weight: 600; height: 45px; 
+    transition: 0.3s; display: flex; align-items: center; gap: 10px;
+}
+.btn-add:hover { background: #27ae60; transform: translateY(-3px); box-shadow: 0 8px 20px rgba(46, 204, 113, 0.4); }
+
+.table-container { overflow-x: auto; margin-top: 10px; border-radius: 15px; }
+table { width: 100%; border-collapse: collapse; background: rgba(0,0,0,0.2); }
+th { background: rgba(255,255,255,0.1); color: var(--accent); padding: 18px; text-align: left; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; }
+td { padding: 15px 18px; border-bottom: 1px solid rgba(255,255,255,0.05); vertical-align: middle; font-size: 0.9rem; }
+tr:hover td { background: rgba(255,255,255,0.03); }
+
+.badge-tipo { 
+    display: inline-block; padding: 6px 14px; border-radius: 30px; 
+    font-size: 10px; color: #fff; font-weight: 600; text-transform: uppercase;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+.btn-del { color: var(--danger); font-size: 1.2rem; cursor: pointer; border:none; background:none; transition: 0.3s; margin-left: 10px; }
+.btn-edit { color: var(--warning); font-size: 1.2rem; cursor: pointer; border:none; background:none; transition: 0.3s; }
+.btn-del:hover, .btn-edit:hover { transform: scale(1.25); filter: brightness(1.2); }
+
+#modalEdit { 
+    display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
+    background: rgba(11, 28, 45, 0.8); backdrop-filter: blur(8px); z-index: 1000; 
+}
+.modal-content { 
+    background: #fff; width: 420px; margin: 12vh auto; 
+    padding: 35px; border-radius: 25px; color: #333; 
+    box-shadow: 0 25px 60px rgba(0,0,0,0.5);
+}
+.modal-content h3 { margin-bottom: 25px; color: var(--primary); font-weight: 600; display: flex; align-items: center; gap: 10px; }
+.modal-content .form-group { margin-bottom: 18px; }
+
+.btn-save-modal { background: var(--primary); width: 100%; padding: 12px; border-radius: 12px; color: white; border: none; font-weight: 600; cursor: pointer; transition: 0.3s; margin-top: 10px; }
+.btn-save-modal:hover { background: #1a528d; }
+.btn-cancel { width: 100%; margin-top: 10px; background: #eee; color: #777; border: none; padding: 12px; border-radius: 12px; cursor: pointer; font-weight: 600; }

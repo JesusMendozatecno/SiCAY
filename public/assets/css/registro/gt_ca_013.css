@@ -1,0 +1,41 @@
+        :root { --primary: #123C69; --secondary: #1F6AE1; --success: #2ecc71; }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+        body {
+            background: linear-gradient(rgba(11, 28, 45, 0.9), rgba(11, 28, 45, 0.9)), url('../../img/Aguas_de_Yaracuy_fachada.png');
+            background-size: cover; background-attachment: fixed;
+            height: 100vh; display: flex; align-items: center; justify-content: center; overflow: hidden;
+        }
+        .bubble { position: fixed; bottom: -100px; background: rgba(255,255,255,0.1); border-radius: 50%; animation: moveUp 10s linear infinite; z-index: -1; }
+        @keyframes moveUp { 0% { transform: translateY(0); opacity: 0; } 10% { opacity: 0.3; } 100% { transform: translateY(-110vh); opacity: 0; } }
+        
+        .contenedor {
+            background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(15px);
+            padding: 30px 40px; border-radius: 25px; border: 1px solid rgba(255,255,255,0.2);
+            width: 100%; max-width: 500px; color: white; box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+        }
+        h2 { text-align: center; margin-bottom: 20px; font-weight: 600; color: #fff; }
+        label { display: block; margin-top: 10px; font-size: 0.85rem; opacity: 0.9; }
+        select, input { width: 100%; padding: 10px; margin-top: 5px; background: rgba(255,255,255,0.9); border: none; border-radius: 12px; color: #333; outline: none; }
+        .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+        .btn { background: var(--secondary); color: white; border: none; padding: 15px; width: 100%; border-radius: 12px; cursor: pointer; margin-top: 25px; font-weight: 600; transition: 0.3s; }
+        .btn:hover { background: #00cec9; transform: translateY(-3px); }
+        .back { display: block; text-align: center; margin-top: 15px; color: #fff; text-decoration: none; font-size: 0.8rem; opacity: 0.7; }
+
+        /* Estilo para el aviso de éxito elegante */
+        .alerta-exito {
+            background: rgba(46, 204, 113, 0.2);
+            border: 1px solid var(--success);
+            color: var(--success);
+            padding: 10px;
+            border-radius: 12px;
+            text-align: center;
+            margin-bottom: 15px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            animation: fadeInDown 0.5s ease;
+        }
+
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-15px); }
+            to { opacity: 1; transform: translateY(0); }
+        }

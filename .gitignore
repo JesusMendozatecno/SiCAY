@@ -1,0 +1,12 @@
+# OS files
+Thumbs.db
+.DS_Store
+desktop.ini
+
+# PHP
+*.log
+
+# Project specific
+db/phpmailer/
+vendor/
+*.sql

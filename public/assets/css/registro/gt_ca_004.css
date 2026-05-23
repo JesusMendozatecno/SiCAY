@@ -1,0 +1,38 @@
+        :root { --accent: #ff7675; --success: #2ecc71; }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+        body {
+            background: linear-gradient(rgba(11, 28, 45, 0.9), rgba(11, 28, 45, 0.9)), url('../../img/Aguas_de_Yaracuy_fachada.png');
+            background-size: cover; background-attachment: fixed; min-height: 100vh; display: flex; align-items: center; justify-content: center; overflow: hidden;
+        }
+        .bubble { position: fixed; bottom: -100px; background: rgba(255,255,255,0.1); border-radius: 50%; animation: moveUp 10s linear infinite; z-index: -1; }
+        @keyframes moveUp { 0% { transform: translateY(0); opacity: 0; } 10% { opacity: 0.3; } 100% { transform: translateY(-110vh); opacity: 0; } }
+        
+        .contenedor {
+            background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(15px); padding: 40px; border-radius: 25px; border: 1px solid rgba(255,255,255,0.2);
+            width: 100%; max-width: 480px; color: white; box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+        }
+        h2 { text-align: center; margin-bottom: 20px; font-weight: 600; }
+        label { display: block; margin-top: 15px; font-size: 0.85rem; opacity: 0.8; }
+        select, input { width: 100%; padding: 12px; margin-top: 5px; border-radius: 10px; border: none; outline: none; background: rgba(255,255,255,0.9); color: #333; }
+        .btn { background: var(--accent); color: white; border: none; padding: 15px; width: 100%; border-radius: 12px; cursor: pointer; margin-top: 25px; font-weight: 600; transition: 0.3s; }
+        .btn:hover { background: #d63031; transform: translateY(-3px); }
+        .back { display: block; text-align: center; margin-top: 15px; color: white; text-decoration: none; font-size: 0.8rem; opacity: 0.6; }
+
+        /* Estilo para el aviso elegante */
+        .alerta-exito {
+            background: rgba(46, 204, 113, 0.2);
+            border: 1px solid var(--success);
+            color: var(--success);
+            padding: 12px;
+            border-radius: 12px;
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            animation: slideDown 0.5s ease;
+        }
+
+        @keyframes slideDown {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }

@@ -1,0 +1,47 @@
+ACTUALIZACIÓN - Migración a Arquitectura MVC
+==============================================
+Fecha: Mayo 2026
+
+El proyecto ha sido migrado de una estructura plana a una
+arquitectura MVC (Modelo-Vista-Controlador).
+
+NUEVA ESTRUCTURA:
+-----------------
+/
+├── app/
+│   ├── Controllers/    Lógica de negocio (login, registro, etc.)
+│   ├── Models/         Modelos de datos (pendiente)
+│   ├── views/          Vistas (páginas del sistema)
+│   └── helpers.php     Funciones auxiliares
+│
+├── config/
+│   └── database.php    Configuración de base de datos
+│
+├── public/
+│   ├── assets/
+│   │   ├── css/        Archivos CSS
+│   │   ├── img/        Imágenes
+│   │   └── js/         Archivos JavaScript
+│   ├── index.php       Controlador frontal principal
+│   └── index2.php      Controlador frontal alternativo
+│
+├── routes/
+│   └── web.php         Definición de rutas
+│
+├── db/                 (Backup - archivos originales)
+├── css/                (Backup - CSS original)
+├── img/                (Backup - imágenes originales)
+└── *.php               (Backup - archivos PHP originales)
+
+CÓMO ACCEDER:
+-------------
+http://localhost/aguas/public/index.php
+
+CAMBIOS REALIZADOS:
+-------------------
+1. SQL Injection: Todos los queries ahora usan prepared statements
+2. MD5 → bcrypt: Contraseñas ahora usan password_hash/verify
+3. XSS: Todo output usa htmlspecialchars()
+4. CSRF: Todos los formularios tienen token CSRF
+5. Session: Hardening con httponly, samesite, regenerate_id
+6. Validación: Server-side validation en todos los formularios

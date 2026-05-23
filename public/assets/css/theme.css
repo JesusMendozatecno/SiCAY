@@ -1,0 +1,262 @@
+/* Theme CSS Variables */
+:root, .light-mode {
+    --bg-page: #f0f4f8;
+    --bg-card: #ffffff;
+    --bg-glass: rgba(255, 255, 255, 0.9);
+    --bg-glass-08: rgba(255, 255, 255, 0.08);
+    --bg-glass-10: rgba(255, 255, 255, 0.1);
+    --bg-glass-15: rgba(255, 255, 255, 0.15);
+    --bg-overlay: rgba(255, 255, 255, 0.06);
+    --text-primary: #000000;
+    --text-secondary: #1a1a1a;
+    --text-muted: #555555;
+    --text-light: #333333;
+    --border-color: rgba(0, 0, 0, 0.12);
+    --border-light: rgba(0, 0, 0, 0.06);
+    --input-bg: #ffffff;
+    --input-text: #000000;
+    --input-border: #ccc;
+    --shadow-sm: 0 2px 8px rgba(0,0,0,0.08);
+    --shadow-md: 0 10px 30px rgba(0,0,0,0.12);
+    --shadow-lg: 0 20px 50px rgba(0,0,0,0.15);
+    --hover-bg: rgba(0,0,0,0.04);
+    --table-stripe: rgba(0,0,0,0.02);
+    --badge-bg: #e8f0fe;
+    --scrollbar-thumb: rgba(0,0,0,0.15);
+    --toggle-off: rgba(0,0,0,0.15);
+}
+
+body.dark-mode {
+    --bg-page: #0B1C2D;
+    --bg-card: #1a2d3e;
+    --bg-glass: rgba(255, 255, 255, 0.08);
+    --bg-glass-08: rgba(255, 255, 255, 0.06);
+    --bg-glass-10: rgba(255, 255, 255, 0.1);
+    --bg-glass-15: rgba(255, 255, 255, 0.12);
+    --bg-overlay: rgba(255, 255, 255, 0.04);
+    --text-primary: #ffffff;
+    --text-secondary: #e0e0e0;
+    --text-muted: rgba(255,255,255,0.55);
+    --text-light: rgba(255,255,255,0.7);
+    --border-color: rgba(255, 255, 255, 0.1);
+    --border-light: rgba(255, 255, 255, 0.05);
+    --input-bg: rgba(255,255,255,0.9);
+    --input-text: #333;
+    --input-border: transparent;
+    --shadow-sm: 0 2px 8px rgba(0,0,0,0.2);
+    --shadow-md: 0 10px 30px rgba(0,0,0,0.3);
+    --shadow-lg: 0 20px 50px rgba(0,0,0,0.4);
+    --hover-bg: rgba(255,255,255,0.06);
+    --table-stripe: rgba(255,255,255,0.02);
+    --badge-bg: rgba(31,106,225,0.15);
+    --scrollbar-thumb: rgba(255,255,255,0.15);
+    --toggle-off: rgba(255,255,255,0.2);
+}
+
+/* Input override */
+.form-input { background: var(--input-bg); color: var(--input-text); }
+
+/* ============================= */
+/*        LIGHT MODE             */
+/* ============================= */
+body.admin-page:not(.dark-mode) {
+    color: var(--text-primary);
+}
+
+/* Admin pages: light background in light mode */
+body.admin-page:not(.dark-mode) { background: var(--bg-page) !important; }
+
+/* Glass containers → solid white in light mode */
+body.admin-page:not(.dark-mode) .container,
+body.admin-page:not(.dark-mode) .contenedor-principal,
+body.admin-page:not(.dark-mode) .wrapper,
+body.admin-page:not(.dark-mode) .main-container,
+body.admin-page:not(.dark-mode) .card,
+body.admin-page:not(.dark-mode) .glass-card,
+body.admin-page:not(.dark-mode) .soporte-card,
+body.admin-page:not(.dark-mode) .settings-card,
+body.admin-page:not(.dark-mode) .card-planilla,
+body.admin-page:not(.dark-mode) .form-glass,
+body.admin-page:not(.dark-mode) .form-add {
+    background: var(--bg-card) !important;
+    box-shadow: var(--shadow-sm);
+    color: var(--text-primary);
+}
+
+/* Profile pages */
+body.admin-page:not(.dark-mode) .profile-wrapper,
+body.admin-page:not(.dark-mode) .profile-card,
+body.admin-page:not(.dark-mode) .profile-content,
+body.admin-page:not(.dark-mode) .profile-nav,
+body.admin-page:not(.dark-mode) .notif-panel {
+    background: var(--bg-card) !important;
+}
+
+/* Tables */
+body.admin-page:not(.dark-mode) table,
+body.admin-page:not(.dark-mode) .table-contenido {
+    background: var(--bg-card) !important;
+}
+body.admin-page:not(.dark-mode) th,
+body.admin-page:not(.dark-mode) thead th,
+body.admin-page:not(.dark-mode) .glass-table th {
+    background: rgba(31, 106, 225, 0.08) !important;
+    color: var(--text-primary) !important;
+}
+body.admin-page:not(.dark-mode) td,
+body.admin-page:not(.dark-mode) .glass-table td {
+    background: transparent !important;
+    border-bottom: 1px solid var(--border-color);
+}
+body.admin-page:not(.dark-mode) tr:nth-child(even) td {
+    background: var(--table-stripe) !important;
+}
+body.admin-page:not(.dark-mode) tr:hover td {
+    background: var(--hover-bg) !important;
+}
+
+/* Headings */
+body.admin-page:not(.dark-mode) h1, body.admin-page:not(.dark-mode) h2,
+body.admin-page:not(.dark-mode) h3, body.admin-page:not(.dark-mode) h4,
+body.admin-page:not(.dark-mode) header h1, body.admin-page:not(.dark-mode) header h2,
+body.admin-page:not(.dark-mode) .header-titulo h1,
+body.admin-page:not(.dark-mode) .info-box h3,
+body.admin-page:not(.dark-mode) .tab-title, body.admin-page:not(.dark-mode) .section-title,
+body.admin-page:not(.dark-mode) .toggle-label, body.admin-page:not(.dark-mode) .profile-name,
+body.admin-page:not(.dark-mode) .notif-item-title {
+    color: var(--text-primary) !important;
+}
+
+/* Paragraphs, muted, secondary text */
+body.admin-page:not(.dark-mode) p,
+body.admin-page:not(.dark-mode) .info-box p,
+body.admin-page:not(.dark-mode) .soporte-card p,
+body.admin-page:not(.dark-mode) .settings-card p,
+body.admin-page:not(.dark-mode) .notif-item-msg,
+body.admin-page:not(.dark-mode) .text-muted,
+body.admin-page:not(.dark-mode) .tab-subtitle,
+body.admin-page:not(.dark-mode) .toggle-desc,
+body.admin-page:not(.dark-mode) .profile-email,
+body.admin-page:not(.dark-mode) strong,
+body.admin-page:not(.dark-mode) .back-link,
+body.admin-page:not(.dark-mode) .btn-volver,
+body.admin-page:not(.dark-mode) .volver {
+    color: var(--text-secondary) !important;
+}
+
+/* Back buttons in light mode */
+body.admin-page:not(.dark-mode) .btn-volver,
+body.admin-page:not(.dark-mode) .btn-back,
+body.admin-page:not(.dark-mode) .back-link,
+body.admin-page:not(.dark-mode) .volver {
+    background: var(--hover-bg) !important;
+    color: var(--text-primary) !important;
+}
+
+/* Navbar - keep dark */
+body.admin-page:not(.dark-mode) .navbar {
+    background: rgba(11, 28, 45, 0.95) !important;
+}
+body.admin-page:not(.dark-mode) .navbar .brand-text,
+body.admin-page:not(.dark-mode) .navbar a,
+body.admin-page:not(.dark-mode) .navbar .nav-link { color: white !important; }
+
+/* Sidebar - always dark */
+body.admin-page:not(.dark-mode) .sidebar {
+    background: rgba(11, 28, 45, 0.95) !important;
+}
+body.admin-page:not(.dark-mode) .sidebar button { color: #d1d1d1 !important; }
+body.admin-page:not(.dark-mode) .sidebar button:hover { background: #1F6AE1 !important; color: white !important; }
+
+body.admin-page:not(.dark-mode) .top-bar h2 { color: white !important; }
+body.admin-page:not(.dark-mode) footer { color: rgba(255,255,255,0.6) !important; }
+
+/* Header always dark */
+body.admin-page:not(.dark-mode) .global-header { background: rgba(11, 28, 45, 0.97) !important; }
+
+/* Modal overlays */
+body.admin-page:not(.dark-mode) #modalEdit,
+body.admin-page:not(.dark-mode) .modal-soporte {
+    background: rgba(11, 28, 45, 0.8) !important;
+}
+body.admin-page:not(.dark-mode) .modal-content {
+    background: var(--bg-card) !important;
+}
+
+/* Info boxes, ticket boxes, etc. */
+body.admin-page:not(.dark-mode) .icon-box,
+body.admin-page:not(.dark-mode) .info-box {
+    background: var(--hover-bg) !important;
+}
+body.admin-page:not(.dark-mode) .ticket-box {
+    background: rgba(230, 126, 34, 0.1) !important;
+}
+body.admin-page:not(.dark-mode) .aviso-seguridad {
+    background: rgba(230, 126, 34, 0.08) !important;
+}
+body.admin-page:not(.dark-mode) .pass-requirements {
+    background: var(--hover-bg) !important;
+}
+
+/* Alerts */
+body.admin-page:not(.dark-mode) .alerta-exito { background: rgba(46, 204, 113, 0.1) !important; }
+body.admin-page:not(.dark-mode) .alerta-error { background: rgba(255, 118, 117, 0.1) !important; }
+
+/* Info list for settings */
+body.admin-page:not(.dark-mode) .info-list li {
+    border-bottom: 1px solid var(--border-color) !important;
+}
+
+/* Dashboard cards */
+body.admin-page:not(.dark-mode) .main-content .card {
+    background: var(--bg-card);
+    box-shadow: var(--shadow-sm);
+}
+
+/* Select inputs in light mode */
+body.admin-page:not(.dark-mode) select,
+body.admin-page:not(.dark-mode) .form-select {
+    background: var(--input-bg) !important;
+    color: var(--input-text) !important;
+}
+
+/* ============================= */
+/*        DARK MODE              */
+/* ============================= */
+body.dark-mode {
+    color: var(--text-primary);
+}
+
+body.dark-mode .container,
+body.dark-mode .profile-wrapper,
+body.dark-mode .contenedor-principal { color: white; }
+
+body.dark-mode h1, body.dark-mode h2, body.dark-mode h3, body.dark-mode h4,
+body.dark-mode .tab-title, body.dark-mode .section-title,
+body.dark-mode .toggle-label, body.dark-mode .profile-name,
+body.dark-mode .notif-item-title { color: white; }
+
+body.dark-mode .text-muted, body.dark-mode .tab-subtitle,
+body.dark-mode .toggle-desc, body.dark-mode .profile-email { color: rgba(255,255,255,0.55); }
+
+body.dark-mode .notif-item-msg { color: rgba(255,255,255,0.55); }
+
+body.dark-mode .btn-secondary {
+    background: rgba(255,255,255,0.1);
+    color: white;
+    border-color: rgba(255,255,255,0.15);
+}
+
+body.dark-mode .btn-outline {
+    color: rgba(255,255,255,0.7);
+    border-color: rgba(255,255,255,0.2);
+}
+
+body.dark-mode .profile-role.role-operador { background: #64748b; color: white; }
+body.dark-mode .profile-role.role-admin { background: #1F6AE1; color: white; }
+
+body.dark-mode ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.15); }
+body.dark-mode ::-webkit-scrollbar-track { background: transparent; }
+
+body.admin-page:not(.dark-mode) ::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.15); }
+body.admin-page:not(.dark-mode) ::-webkit-scrollbar-track { background: transparent; }

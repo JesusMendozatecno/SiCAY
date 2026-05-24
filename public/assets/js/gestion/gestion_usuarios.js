@@ -97,9 +97,11 @@ window.onAvatarSelect=function(e){
     reader.onload=function(ev){
         document.getElementById('cropModal').classList.add('show');
         var cc=document.getElementById('cropContainer');
-        cc.innerHTML='<img id="cropImage" src="'+ev.target.result+'" style="max-width:100%;">';
+        cc.innerHTML='';
         if(cropper){cropper.destroy();cropper=null;}
-        var img=document.getElementById('cropImage');
+        var img=document.createElement('img');
+        img.id='cropImage';
+        img.style.maxWidth='100%';
         img.onload=function(){
             cropper=new Cropper(img,{
                 aspectRatio:1/1,
@@ -110,6 +112,8 @@ window.onAvatarSelect=function(e){
                 rotatable:false
             });
         };
+        img.src=ev.target.result;
+        cc.appendChild(img);
     };
     reader.readAsDataURL(file);
 };
@@ -129,8 +133,20 @@ function confirmarCrop(){
             showToast(r.message||'Foto actualizada','success');
             cerrarCrop();
             if(r.avatar){
-                document.getElementById('profileAvatarImg').src='assets/img/avatars/'+r.avatar+'?t='+Date.now();
-                document.getElementById('profileAvatarImg').style.display='block';
+                var img=document.getElementById('profileAvatarImg');
+                var wrap=document.querySelector('.avatar-wrap');
+                if(!img&&wrap){
+                    var plc=document.getElementById('profileAvatarPlaceholder');
+                    if(plc)plc.remove();
+                    img=document.createElement('img');
+                    img.id='profileAvatarImg';
+                    img.alt='Avatar';
+                    wrap.insertBefore(img,wrap.querySelector('.avatar-overlay')||null);
+                }
+                if(img){
+                    img.src='assets/img/avatars/'+r.avatar+'?t='+Date.now();
+                    img.style.display='block';
+                }
                 var plc=document.getElementById('profileAvatarPlaceholder');
                 if(plc)plc.style.display='none';
             }
@@ -142,8 +158,19 @@ function eliminarAvatar(){
     var fd=new FormData();fd.append('action','delete_avatar');fd.append('csrf_token',document.querySelector('#formProfile [name=csrf_token]').value);
     apiCall(fd,function(r){
         showToast(r.message||'Foto eliminada','success');
-        document.getElementById('profileAvatarImg').style.display='none';
-        document.getElementById('profileAvatarPlaceholder').style.display='block';
+        var img=document.getElementById('profileAvatarImg');
+        if(img)img.style.display='none';
+        var plc=document.getElementById('profileAvatarPlaceholder');
+        if(!plc){
+            var wrap=document.querySelector('.avatar-wrap');
+            if(wrap){
+                plc=document.createElement('i');
+                plc.className='fas fa-user fa-3x avatar-placeholder';
+                plc.id='profileAvatarPlaceholder';
+                wrap.insertBefore(plc,wrap.querySelector('.avatar-overlay')||null);
+            }
+        }
+        if(plc)plc.style.display='block';
     });
 }
 

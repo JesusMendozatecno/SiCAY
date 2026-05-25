@@ -82,7 +82,7 @@
                 <p class="contact-role">Desarrolladora del Sistema</p>
                 <p class="contact-desc">Analista y desarrolladora principal encargada del diseño, implementación y puesta en marcha del sistema SICAY.</p>
                 <div class="contact-links">
-                    <a href="mailto:paola.inojosa@hidrovenyaracuy.gob.ve" title="Correo"><i class="fas fa-envelope"></i></a>
+                    <a href="mailto:paola.inojosa@aguasdeyaracuy.gob.ve" title="Correo"><i class="fas fa-envelope"></i></a>
                     <a href="#" title="Teléfono"><i class="fas fa-phone"></i></a>
                 </div>
             </div>
@@ -92,7 +92,7 @@
                 <p class="contact-role">Desarrolladora del Sistema</p>
                 <p class="contact-desc">Creadora y desarrolladora del sistema, encargada de la arquitectura, base de datos y funcionalidades del sistema.</p>
                 <div class="contact-links">
-                    <a href="mailto:zoivett.aponte@hidrovenyaracuy.gob.ve" title="Correo"><i class="fas fa-envelope"></i></a>
+                    <a href="mailto:zoivett.aponte@aguasdeyaracuy.gob.ve" title="Correo"><i class="fas fa-envelope"></i></a>
                     <a href="#" title="Teléfono"><i class="fas fa-phone"></i></a>
                 </div>
             </div>
@@ -102,7 +102,7 @@
                 <p class="contact-role">Entidad Propietaria</p>
                 <p class="contact-desc">Hidrológica del estado Yaracuy, comprometida con la calidad del agua y el servicio público de potabilización.</p>
                 <div class="contact-links">
-                    <a href="mailto:info@hidrovenyaracuy.gob.ve" title="Correo"><i class="fas fa-envelope"></i></a>
+                    <a href="mailto:info@aguasdeyaracuy.gob.ve" title="Correo"><i class="fas fa-envelope"></i></a>
                     <a href="#" title="Ubicación"><i class="fas fa-map-marker-alt"></i></a>
                 </div>
             </div>
@@ -121,7 +121,7 @@
         </div>
         <div class="footer-contact">
             <p><i class="fas fa-map-marker-alt"></i> San Felipe, Estado Yaracuy, Venezuela</p>
-            <p><i class="fas fa-envelope"></i> calidad@hidrovenyaracuy.gob.ve</p>
+            <p><i class="fas fa-envelope"></i> calidad@aguasdeyaracuy.gob.ve</p>
         </div>
         <div class="footer-bottom">
             <p>&copy; 2026 Aguas de Yaracuy — Todos los derechos reservados</p>

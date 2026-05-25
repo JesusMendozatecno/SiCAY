@@ -10,24 +10,7 @@ body {
 @keyframes moveUp { 0% { transform: translateY(0); opacity: 0; } 10% { opacity: 0.3; } 100% { transform: translateY(-110vh); opacity: 0; } }
 
 .profile-wrapper { max-width: 1100px; margin: 80px auto 30px; padding: 0 20px; position: relative; z-index: 1; }
-
-.profile-header {
-    display: flex; justify-content: space-between; align-items: center;
-    margin-bottom: 25px; flex-wrap: wrap; gap: 10px;
-}
-.profile-header h1 { font-size: 1.6rem; font-weight: 700; }
 .text-muted { color: rgba(255,255,255,0.55); font-size: 0.82rem; }
-.flex-center { display: flex; align-items: center; }
-.gap-3 { gap: 15px; }
-.gap-2 { gap: 10px; }
-.gap-4 { gap: 20px; }
-.btn-back {
-    background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.15);
-    color: white; width: 40px; height: 40px; border-radius: 12px;
-    display: flex; align-items: center; justify-content: center;
-    text-decoration: none; transition: 0.3s; font-size: 1rem;
-}
-.btn-back:hover { background: var(--accent); border-color: var(--accent); transform: translateX(-2px); }
 
 .profile-layout { display: grid; grid-template-columns: 280px 1fr; gap: 25px; }
 
@@ -35,7 +18,24 @@ body {
 .profile-card {
     background: rgba(255,255,255,0.08); backdrop-filter: blur(15px);
     border: 1px solid rgba(255,255,255,0.12); border-radius: 20px;
-    padding: 30px 25px; text-align: center;
+    padding: 25px; text-align: center;
+}
+.profile-card-header {
+    display: flex; align-items: center; gap: 10px;
+    margin-bottom: 20px; text-align: left;
+}
+.profile-card-header h1 {
+    font-size: 1.3rem; font-weight: 700; margin: 0;
+}
+.profile-card-header .btn-back {
+    background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.15);
+    color: white; width: 36px; height: 36px; border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    text-decoration: none; transition: 0.3s; font-size: 0.9rem; flex-shrink: 0;
+}
+.profile-card-header .btn-back:hover { background: var(--accent); border-color: var(--accent); transform: translateX(-2px); }
+.profile-last-access {
+    display: block; margin-top: 15px; font-size: 0.72rem;
 }
 .avatar-wrap {
     width: 100px; height: 100px; border-radius: 50%; margin: 0 auto 15px;
@@ -241,5 +241,4 @@ body {
     .profile-wrapper { margin-top: 70px; }
     .grid-2 { grid-template-columns: 1fr; }
     .grid-3 { grid-template-columns: 1fr; }
-    .profile-header { flex-direction: column; align-items: flex-start; }
 }

@@ -28,22 +28,16 @@ $total_activities = $stats['c']; $stmt2->close();
 <div id="bubbles"></div>
 
 <div class="profile-wrapper">
-    <div class="profile-header">
-        <div class="flex-center gap-3">
-            <a href="index.php?route=dashboard" class="btn-back" title="<?php echo __('back'); ?>">
-                <i class="fas fa-arrow-left"></i>
-            </a>
-            <h1><?php echo __('profile'); ?></h1>
-        </div>
-        <span class="text-muted">
-            <?php echo __('last_access'); ?>: <?php echo $user['last_login_at'] ? date("d/m/Y H:i", strtotime($user['last_login_at'])) : __('loading'); ?>
-        </span>
-    </div>
-
     <div class="profile-layout">
         <!-- SIDEBAR -->
         <div class="profile-sidebar">
             <div class="profile-card">
+                <div class="profile-card-header">
+                    <a href="index.php?route=dashboard" class="btn-back" title="<?php echo __('back'); ?>">
+                        <i class="fas fa-arrow-left"></i>
+                    </a>
+                    <h1><?php echo __('profile'); ?></h1>
+                </div>
                 <div class="avatar-wrap" onclick="document.getElementById('avatarInput').click()">
                     <?php if($user['avatar']): ?>
                         <img id="profileAvatarImg" src="assets/img/avatars/<?php echo hsc($user['avatar']); ?>" alt="Avatar">
@@ -56,6 +50,9 @@ $total_activities = $stats['c']; $stmt2->close();
                 <h2 class="profile-name"><?php echo hsc($user['nombre']); ?></h2>
                 <p class="profile-email"><?php echo hsc($user['correo']); ?></p>
                 <span class="profile-role role-<?php echo strtolower($user['rol']); ?>"><?php echo hsc($user['rol']); ?></span>
+                <span class="text-muted profile-last-access">
+                    <?php echo __('last_access'); ?>: <?php echo $user['last_login_at'] ? date("d/m/Y H:i", strtotime($user['last_login_at'])) : __('loading'); ?>
+                </span>
             </div>
             <nav class="profile-nav">
                 <button class="profile-nav-item active" data-tab="tab-perfil"><i class="fas fa-user"></i> <?php echo __('profile'); ?></button>

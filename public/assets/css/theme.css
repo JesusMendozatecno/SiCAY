@@ -59,54 +59,113 @@ body.dark-mode {
 /* ============================= */
 /*        LIGHT MODE             */
 /* ============================= */
+
+/* Body: keep original background (building image) */
 body.admin-page:not(.dark-mode) {
-    color: var(--text-primary);
+    color: var(--text-primary) !important;
 }
 
-/* Admin pages: light background in light mode */
-body.admin-page:not(.dark-mode) { background: var(--bg-page) !important; }
-
-/* Glass containers → solid white in light mode */
+/* All card/container wrappers → white bg */
 body.admin-page:not(.dark-mode) .container,
+body.admin-page:not(.dark-mode) .contenedor,
 body.admin-page:not(.dark-mode) .contenedor-principal,
 body.admin-page:not(.dark-mode) .wrapper,
 body.admin-page:not(.dark-mode) .main-container,
+body.admin-page:not(.dark-mode) .main-content,
 body.admin-page:not(.dark-mode) .card,
 body.admin-page:not(.dark-mode) .glass-card,
 body.admin-page:not(.dark-mode) .soporte-card,
 body.admin-page:not(.dark-mode) .settings-card,
 body.admin-page:not(.dark-mode) .card-planilla,
 body.admin-page:not(.dark-mode) .form-glass,
-body.admin-page:not(.dark-mode) .form-add {
+body.admin-page:not(.dark-mode) .form-add,
+body.admin-page:not(.dark-mode) .login-card,
+body.admin-page:not(.dark-mode) .register-card,
+body.admin-page:not(.dark-mode) .recovery-card,
+body.admin-page:not(.dark-mode) .notif-panel,
+body.admin-page:not(.dark-mode) .soporte-container,
+body.admin-page:not(.dark-mode) .settings-wrapper,
+body.admin-page:not(.dark-mode) .search-box,
+body.admin-page:not(.dark-mode) .table-container {
     background: var(--bg-card) !important;
     box-shadow: var(--shadow-sm);
-    color: var(--text-primary);
+    color: var(--text-primary) !important;
 }
 
-/* Profile pages */
-body.admin-page:not(.dark-mode) .profile-wrapper,
-body.admin-page:not(.dark-mode) .profile-card,
-body.admin-page:not(.dark-mode) .profile-content,
-body.admin-page:not(.dark-mode) .profile-nav,
-body.admin-page:not(.dark-mode) .notif-panel {
-    background: var(--bg-card) !important;
+/* All text: dark in light mode */
+body.admin-page:not(.dark-mode),
+body.admin-page:not(.dark-mode) p,
+body.admin-page:not(.dark-mode) span,
+body.admin-page:not(.dark-mode) div,
+body.admin-page:not(.dark-mode) label,
+body.admin-page:not(.dark-mode) li,
+body.admin-page:not(.dark-mode) .tab-subtitle,
+body.admin-page:not(.dark-mode) .toggle-desc,
+body.admin-page:not(.dark-mode) .profile-email,
+body.admin-page:not(.dark-mode) .text-muted,
+body.admin-page:not(.dark-mode) .act-date,
+body.admin-page:not(.dark-mode) .act-details,
+body.admin-page:not(.dark-mode) .profile-nav-section-label,
+body.admin-page:not(.dark-mode) .stat-card-mini p,
+body.admin-page:not(.dark-mode) .theme-option,
+body.admin-page:not(.dark-mode) .dropdown-arrow,
+body.admin-page:not(.dark-mode) .notif-item-msg,
+body.admin-page:not(.dark-mode) .notif-item-date,
+body.admin-page:not(.dark-mode) .notif-empty,
+body.admin-page:not(.dark-mode) .soporte-card p,
+body.admin-page:not(.dark-mode) .settings-card p,
+body.admin-page:not(.dark-mode) .card-body p,
+body.admin-page:not(.dark-mode) .info-box p,
+body.admin-page:not(.dark-mode) .info-box h3,
+body.admin-page:not(.dark-mode) .perfil-info h3,
+body.admin-page:not(.dark-mode) .form-group label,
+body.admin-page:not(.dark-mode) label,
+body.admin-page:not(.dark-mode) strong,
+body.admin-page:not(.dark-mode) .act-action,
+body.admin-page:not(.dark-mode) .profile-nav-item,
+body.admin-page:not(.dark-mode) .action-btn {
+    color: var(--text-secondary) !important;
 }
 
-/* Tables */
+/* Headings (h1-h6) */
+body.admin-page:not(.dark-mode) h1,
+body.admin-page:not(.dark-mode) h2,
+body.admin-page:not(.dark-mode) h3,
+body.admin-page:not(.dark-mode) h4,
+body.admin-page:not(.dark-mode) h5,
+body.admin-page:not(.dark-mode) h6,
+body.admin-page:not(.dark-mode) .tab-title,
+body.admin-page:not(.dark-mode) .section-title,
+body.admin-page:not(.dark-mode) .toggle-label,
+body.admin-page:not(.dark-mode) .profile-name,
+body.admin-page:not(.dark-mode) .notif-item-title,
+body.admin-page:not(.dark-mode) .card-header h4,
+body.admin-page:not(.dark-mode) .header-titulo h1,
+body.admin-page:not(.dark-mode) .stat-card-mini h4,
+body.admin-page:not(.dark-mode) .profile-card-header h1 {
+    color: var(--text-primary) !important;
+}
+
+/* Tables in light mode */
 body.admin-page:not(.dark-mode) table,
+body.admin-page:not(.dark-mode) .admin-table,
 body.admin-page:not(.dark-mode) .table-contenido {
     background: var(--bg-card) !important;
+    color: var(--text-primary) !important;
 }
 body.admin-page:not(.dark-mode) th,
 body.admin-page:not(.dark-mode) thead th,
-body.admin-page:not(.dark-mode) .glass-table th {
-    background: rgba(31, 106, 225, 0.08) !important;
+body.admin-page:not(.dark-mode) .glass-table th,
+body.admin-page:not(.dark-mode) .admin-table th {
+    background: var(--badge-bg) !important;
     color: var(--text-primary) !important;
 }
 body.admin-page:not(.dark-mode) td,
-body.admin-page:not(.dark-mode) .glass-table td {
+body.admin-page:not(.dark-mode) .glass-table td,
+body.admin-page:not(.dark-mode) .admin-table td {
     background: transparent !important;
-    border-bottom: 1px solid var(--border-color);
+    border-bottom: 1px solid var(--border-color) !important;
+    color: var(--text-secondary) !important;
 }
 body.admin-page:not(.dark-mode) tr:nth-child(even) td {
     background: var(--table-stripe) !important;
@@ -115,148 +174,522 @@ body.admin-page:not(.dark-mode) tr:hover td {
     background: var(--hover-bg) !important;
 }
 
-/* Headings */
-body.admin-page:not(.dark-mode) h1, body.admin-page:not(.dark-mode) h2,
-body.admin-page:not(.dark-mode) h3, body.admin-page:not(.dark-mode) h4,
-body.admin-page:not(.dark-mode) header h1, body.admin-page:not(.dark-mode) header h2,
-body.admin-page:not(.dark-mode) .header-titulo h1,
-body.admin-page:not(.dark-mode) .info-box h3,
-body.admin-page:not(.dark-mode) .tab-title, body.admin-page:not(.dark-mode) .section-title,
-body.admin-page:not(.dark-mode) .toggle-label, body.admin-page:not(.dark-mode) .profile-name,
-body.admin-page:not(.dark-mode) .notif-item-title {
+/* Profile-specific overrides — glass style over background */
+body.admin-page:not(.dark-mode) .profile-card {
+    background: rgba(255,255,255,0.85) !important;
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(0,0,0,0.1);
+}
+body.admin-page:not(.dark-mode) .profile-card-header h1 {
     color: var(--text-primary) !important;
 }
-
-/* Paragraphs, muted, secondary text */
-body.admin-page:not(.dark-mode) p,
-body.admin-page:not(.dark-mode) .info-box p,
-body.admin-page:not(.dark-mode) .soporte-card p,
-body.admin-page:not(.dark-mode) .settings-card p,
-body.admin-page:not(.dark-mode) .notif-item-msg,
-body.admin-page:not(.dark-mode) .text-muted,
-body.admin-page:not(.dark-mode) .tab-subtitle,
-body.admin-page:not(.dark-mode) .toggle-desc,
-body.admin-page:not(.dark-mode) .profile-email,
-body.admin-page:not(.dark-mode) strong,
-body.admin-page:not(.dark-mode) .back-link,
-body.admin-page:not(.dark-mode) .btn-volver,
-body.admin-page:not(.dark-mode) .volver {
+body.admin-page:not(.dark-mode) .profile-card-header .btn-back {
+    background: var(--hover-bg) !important;
+    border: 1px solid var(--border-color);
+    color: var(--text-primary) !important;
+}
+body.admin-page:not(.dark-mode) .profile-card-header .btn-back:hover {
+    background: var(--accent, #1F6AE1) !important;
+    border-color: var(--accent, #1F6AE1);
+    color: white !important;
+}
+body.admin-page:not(.dark-mode) .avatar-placeholder {
+    color: var(--text-muted) !important;
+}
+body.admin-page:not(.dark-mode) .avatar-wrap {
+    background: rgba(0,0,0,0.04) !important;
+    border-color: var(--accent, #1F6AE1);
+}
+body.admin-page:not(.dark-mode) .profile-nav {
+    background: rgba(255,255,255,0.85) !important;
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(0,0,0,0.1);
+}
+body.admin-page:not(.dark-mode) .profile-nav-item {
     color: var(--text-secondary) !important;
 }
-
-/* Back buttons in light mode */
-body.admin-page:not(.dark-mode) .btn-volver,
-body.admin-page:not(.dark-mode) .btn-back,
-body.admin-page:not(.dark-mode) .back-link,
-body.admin-page:not(.dark-mode) .volver {
-    background: var(--hover-bg) !important;
+body.admin-page:not(.dark-mode) .profile-nav-item:hover {
+    background: rgba(0,0,0,0.04) !important;
     color: var(--text-primary) !important;
 }
+body.admin-page:not(.dark-mode) .profile-nav-item.active {
+    background: var(--accent, #1F6AE1) !important;
+    color: white !important;
+}
+body.admin-page:not(.dark-mode) .profile-nav-divider {
+    background: var(--border-color) !important;
+}
+body.admin-page:not(.dark-mode) .profile-nav-section-label {
+    color: var(--text-muted) !important;
+}
+body.admin-page:not(.dark-mode) .profile-content {
+    background: rgba(255,255,255,0.85) !important;
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(0,0,0,0.1);
+}
+body.admin-page:not(.dark-mode) .divider {
+    border-color: var(--border-color) !important;
+}
+body.admin-page:not(.dark-mode) .activity-item {
+    background: var(--hover-bg) !important;
+    border-left-color: var(--accent, #1F6AE1);
+}
+body.admin-page:not(.dark-mode) .stat-card-mini {
+    background: var(--hover-bg) !important;
+}
+body.admin-page:not(.dark-mode) .theme-option {
+    background: var(--hover-bg) !important;
+    color: var(--text-secondary) !important;
+}
+body.admin-page:not(.dark-mode) .theme-option.selected {
+    background: var(--badge-bg) !important;
+    border-color: var(--accent, #1F6AE1) !important;
+    color: var(--text-primary) !important;
+}
+body.admin-page:not(.dark-mode) .theme-option:hover {
+    background: var(--border-color) !important;
+}
+body.admin-page:not(.dark-mode) .toggle-switch {
+    background: var(--toggle-off) !important;
+}
+body.admin-page:not(.dark-mode) .modal-box {
+    background: var(--bg-card) !important;
+    border-color: var(--border-color);
+    box-shadow: var(--shadow-lg);
+}
+body.admin-page:not(.dark-mode) .modal-box h3 {
+    color: var(--text-primary) !important;
+}
+body.admin-page:not(.dark-mode) .modal-overlay {
+    background: rgba(0,0,0,0.5) !important;
+}
 
-/* Navbar - keep dark */
-body.admin-page:not(.dark-mode) .navbar {
+/* Navbar / Sidebar → keep dark always */
+body.admin-page:not(.dark-mode) .navbar,
+body.admin-page:not(.dark-mode) .sidebar {
     background: rgba(11, 28, 45, 0.95) !important;
 }
 body.admin-page:not(.dark-mode) .navbar .brand-text,
 body.admin-page:not(.dark-mode) .navbar a,
-body.admin-page:not(.dark-mode) .navbar .nav-link { color: white !important; }
-
-/* Sidebar - always dark */
-body.admin-page:not(.dark-mode) .sidebar {
-    background: rgba(11, 28, 45, 0.95) !important;
+body.admin-page:not(.dark-mode) .navbar .nav-link,
+body.admin-page:not(.dark-mode) .brand span,
+body.admin-page:not(.dark-mode) .brand-text {
+    color: white !important;
 }
-body.admin-page:not(.dark-mode) .sidebar button { color: #d1d1d1 !important; }
-body.admin-page:not(.dark-mode) .sidebar button:hover { background: #1F6AE1 !important; color: white !important; }
-
-body.admin-page:not(.dark-mode) .top-bar h2 { color: white !important; }
-body.admin-page:not(.dark-mode) footer { color: rgba(255,255,255,0.6) !important; }
-
-/* Header always dark */
-body.admin-page:not(.dark-mode) .global-header { background: rgba(11, 28, 45, 0.97) !important; }
-
-/* Modal overlays */
-body.admin-page:not(.dark-mode) #modalEdit,
-body.admin-page:not(.dark-mode) .modal-soporte {
-    background: rgba(11, 28, 45, 0.8) !important;
+body.admin-page:not(.dark-mode) .sidebar button,
+body.admin-page:not(.dark-mode) .menu-nav button {
+    color: #d1d1d1 !important;
 }
-body.admin-page:not(.dark-mode) .modal-content {
+body.admin-page:not(.dark-mode) .sidebar button:hover,
+body.admin-page:not(.dark-mode) .menu-nav button:hover {
+    background: var(--secondary, #1F6AE1) !important;
+    color: white !important;
+}
+body.admin-page:not(.dark-mode) .top-bar h2,
+body.admin-page:not(.dark-mode) .top-bar {
+    color: white !important;
+}
+body.admin-page:not(.dark-mode) footer {
+    color: rgba(255,255,255,0.6) !important;
+}
+
+/* Header adapts to theme */
+body.admin-page:not(.dark-mode) .global-header {
+    background: var(--bg-card) !important;
+    border-bottom: 1px solid var(--border-color);
+}
+body.admin-page:not(.dark-mode) .header-brand {
+    color: var(--text-primary) !important;
+}
+body.admin-page:not(.dark-mode) .notif-btn {
+    color: var(--text-secondary) !important;
+}
+body.admin-page:not(.dark-mode) .notif-btn:hover {
+    color: var(--text-primary) !important;
+    background: var(--hover-bg) !important;
+}
+body.admin-page:not(.dark-mode) .user-btn {
+    background: var(--hover-bg) !important;
+    border-color: var(--border-color);
+    color: var(--text-primary) !important;
+}
+body.admin-page:not(.dark-mode) .user-btn:hover {
+    background: var(--border-color) !important;
+}
+body.admin-page:not(.dark-mode) .user-avatar-icon {
+    color: var(--text-muted) !important;
+}
+body.admin-page:not(.dark-mode) .dropdown-arrow {
+    color: var(--text-muted) !important;
+}
+body.admin-page:not(.dark-mode) .notif-dot,
+body.admin-page:not(.dark-mode) .notif-badge {
+    border-color: var(--bg-card);
+}
+
+/* Header dropdowns in light mode */
+body.admin-page:not(.dark-mode) .dropdown-menu,
+body.admin-page:not(.dark-mode) .notif-panel {
     background: var(--bg-card) !important;
 }
-
-/* Info boxes, ticket boxes, etc. */
-body.admin-page:not(.dark-mode) .icon-box,
-body.admin-page:not(.dark-mode) .info-box {
+body.admin-page:not(.dark-mode) .dropdown-user-info {
     background: var(--hover-bg) !important;
 }
-body.admin-page:not(.dark-mode) .ticket-box {
-    background: rgba(230, 126, 34, 0.1) !important;
+body.admin-page:not(.dark-mode) .dropdown-user-name,
+body.admin-page:not(.dark-mode) .notif-item-title {
+    color: var(--text-primary) !important;
 }
-body.admin-page:not(.dark-mode) .aviso-seguridad {
-    background: rgba(230, 126, 34, 0.08) !important;
+body.admin-page:not(.dark-mode) .notif-panel-header {
+    color: var(--text-primary) !important;
+    border-color: var(--border-color) !important;
 }
+
+/* Back buttons */
+body.admin-page:not(.dark-mode) .btn-volver,
+body.admin-page:not(.dark-mode) .btn-back,
+body.admin-page:not(.dark-mode) .back-link,
+body.admin-page:not(.dark-mode) .volver,
+body.admin-page:not(.dark-mode) .back,
+body.admin-page:not(.dark-mode) .btn-back {
+    background: var(--hover-bg) !important;
+    color: var(--text-primary) !important;
+    border: 1px solid var(--border-color);
+}
+
+/* Info boxes, alerts */
+body.admin-page:not(.dark-mode) .icon-box,
+body.admin-page:not(.dark-mode) .info-box,
+body.admin-page:not(.dark-mode) .aviso-seguridad,
 body.admin-page:not(.dark-mode) .pass-requirements {
     background: var(--hover-bg) !important;
+    color: var(--text-secondary) !important;
+}
+body.admin-page:not(.dark-mode) .ticket-box {
+    background: rgba(230, 126, 34, 0.08) !important;
+}
+body.admin-page:not(.dark-mode) .alerta-exito {
+    background: rgba(46, 204, 113, 0.08) !important;
+    color: #27ae60 !important;
+}
+body.admin-page:not(.dark-mode) .alerta-error {
+    background: rgba(231, 76, 60, 0.08) !important;
+    color: #c0392b !important;
 }
 
-/* Alerts */
-body.admin-page:not(.dark-mode) .alerta-exito { background: rgba(46, 204, 113, 0.1) !important; }
-body.admin-page:not(.dark-mode) .alerta-error { background: rgba(255, 118, 117, 0.1) !important; }
-
-/* Info list for settings */
-body.admin-page:not(.dark-mode) .info-list li {
-    border-bottom: 1px solid var(--border-color) !important;
-}
-
-/* Dashboard cards */
-body.admin-page:not(.dark-mode) .main-content .card {
-    background: var(--bg-card);
-    box-shadow: var(--shadow-sm);
-}
-
-/* Select inputs in light mode */
+/* Select/option inputs */
 body.admin-page:not(.dark-mode) select,
 body.admin-page:not(.dark-mode) .form-select {
     background: var(--input-bg) !important;
     color: var(--input-text) !important;
+    border: 1px solid var(--input-border);
+}
+
+/* Badges */
+body.admin-page:not(.dark-mode) .badge,
+body.admin-page:not(.dark-mode) .badge-tipo,
+body.admin-page:not(.dark-mode) .badge-param,
+body.admin-page:not(.dark-mode) .profile-role.role-admin,
+body.admin-page:not(.dark-mode) .profile-role.role-operador,
+body.admin-page:not(.dark-mode) .status-pill {
+    color: white !important;
+}
+
+/* Card tablas */
+body.admin-page:not(.dark-mode) .card-tabla {
+    background: var(--bg-card) !important;
+    color: var(--text-primary) !important;
+    border: 1px solid var(--border-color);
+    box-shadow: var(--shadow-sm);
+}
+body.admin-page:not(.dark-mode) .card-tabla:hover {
+    border-color: var(--accent, #1F6AE1);
+    box-shadow: var(--shadow-md);
+}
+
+/* Grid stats cards (dashboard) */
+body.admin-page:not(.dark-mode) .card .number {
+    color: var(--text-primary) !important;
+}
+body.admin-page:not(.dark-mode) .sub-stats {
+    border-top-color: var(--border-color) !important;
+}
+
+/* Scrollbar */
+body.admin-page:not(.dark-mode) ::-webkit-scrollbar-thumb {
+    background: var(--scrollbar-thumb);
+}
+body.admin-page:not(.dark-mode) ::-webkit-scrollbar-track {
+    background: transparent;
 }
 
 /* ============================= */
 /*        DARK MODE              */
 /* ============================= */
+
 body.dark-mode {
     color: var(--text-primary);
 }
 
+/* All containers dark */
 body.dark-mode .container,
-body.dark-mode .profile-wrapper,
-body.dark-mode .contenedor-principal { color: white; }
+body.dark-mode .contenedor,
+body.dark-mode .contenedor-principal,
+body.dark-mode .wrapper,
+body.dark-mode .main-container,
+body.dark-mode .main-content,
+body.dark-mode .card,
+body.dark-mode .glass-card,
+body.dark-mode .soporte-card,
+body.dark-mode .settings-card,
+body.dark-mode .card-planilla,
+body.dark-mode .form-glass,
+body.dark-mode .form-add,
+body.dark-mode .login-card,
+body.dark-mode .register-card,
+body.dark-mode .recovery-card,
+body.dark-mode .notif-panel,
+body.dark-mode .soporte-container,
+body.dark-mode .settings-wrapper,
+body.dark-mode .search-box,
+body.dark-mode .table-container,
+body.dark-mode .card-tabla,
+body.dark-mode .modal-box {
+    background: var(--bg-card) !important;
+    color: var(--text-primary) !important;
+}
 
-body.dark-mode h1, body.dark-mode h2, body.dark-mode h3, body.dark-mode h4,
-body.dark-mode .tab-title, body.dark-mode .section-title,
-body.dark-mode .toggle-label, body.dark-mode .profile-name,
-body.dark-mode .notif-item-title { color: white; }
+/* All text white in dark mode */
+body.dark-mode,
+body.dark-mode p,
+body.dark-mode span,
+body.dark-mode div,
+body.dark-mode label,
+body.dark-mode li,
+body.dark-mode strong,
+body.dark-mode .tab-title,
+body.dark-mode .section-title,
+body.dark-mode .toggle-label,
+body.dark-mode .profile-name,
+body.dark-mode .notif-item-title,
+body.dark-mode .card-header h4,
+body.dark-mode .header-titulo h1,
+body.dark-mode .stat-card-mini h4,
+body.dark-mode .profile-card-header h1,
+body.dark-mode .profile-nav-item,
+body.dark-mode .act-action,
+body.dark-mode .theme-option {
+    color: var(--text-primary) !important;
+}
 
-body.dark-mode .text-muted, body.dark-mode .tab-subtitle,
-body.dark-mode .toggle-desc, body.dark-mode .profile-email { color: rgba(255,255,255,0.55); }
+/* Muted / secondary text */
+body.dark-mode .text-muted,
+body.dark-mode .tab-subtitle,
+body.dark-mode .toggle-desc,
+body.dark-mode .profile-email,
+body.dark-mode .act-date,
+body.dark-mode .act-details,
+body.dark-mode .profile-nav-section-label,
+body.dark-mode .stat-card-mini p,
+body.dark-mode .notif-item-msg,
+body.dark-mode .notif-item-date,
+body.dark-mode .notif-empty,
+body.dark-mode .soporte-card p,
+body.dark-mode .settings-card p,
+body.dark-mode .card-body p,
+body.dark-mode .info-box p,
+body.dark-mode .form-group label,
+body.dark-mode label,
+body.dark-mode .action-btn,
+body.dark-mode .perfil-info h3 {
+    color: var(--text-muted) !important;
+}
 
-body.dark-mode .notif-item-msg { color: rgba(255,255,255,0.55); }
+/* Dark mode profile specific */
+body.dark-mode .profile-card {
+    border: 1px solid var(--border-color);
+}
+body.dark-mode .profile-card-header h1 {
+    color: var(--text-primary) !important;
+}
+body.dark-mode .profile-card-header .btn-back {
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.15);
+    color: white;
+}
+body.dark-mode .profile-card-header .btn-back:hover {
+    background: var(--accent, #1F6AE1);
+    border-color: var(--accent, #1F6AE1);
+}
+body.dark-mode .avatar-wrap {
+    background: var(--bg-overlay);
+    border-color: var(--accent, #1F6AE1);
+}
+body.dark-mode .avatar-placeholder {
+    color: var(--text-muted) !important;
+}
+body.dark-mode .profile-nav {
+    border-color: var(--border-color);
+}
+body.dark-mode .profile-nav-item:hover {
+    background: var(--hover-bg) !important;
+}
+body.dark-mode .profile-nav-item.active {
+    background: var(--accent, #1F6AE1) !important;
+    color: white !important;
+}
+body.dark-mode .profile-nav-divider {
+    background: var(--border-color) !important;
+}
+body.dark-mode .profile-content {
+    border: 1px solid var(--border-color);
+}
+body.dark-mode .divider {
+    border-color: var(--border-color) !important;
+}
+body.dark-mode .activity-item {
+    background: var(--bg-overlay) !important;
+    border-left-color: var(--accent, #1F6AE1);
+}
+body.dark-mode .stat-card-mini {
+    background: var(--bg-overlay) !important;
+}
+body.dark-mode .theme-option {
+    background: var(--bg-overlay) !important;
+}
+body.dark-mode .theme-option.selected {
+    background: var(--badge-bg) !important;
+    border-color: var(--accent, #1F6AE1) !important;
+}
+body.dark-mode .theme-option:hover {
+    background: var(--border-color) !important;
+}
+body.dark-mode .toggle-switch {
+    background: var(--toggle-off) !important;
+}
+body.dark-mode .modal-box {
+    border-color: var(--border-color);
+    box-shadow: var(--shadow-lg);
+}
+body.dark-mode .modal-overlay {
+    background: rgba(0,0,0,0.7) !important;
+}
 
+/* Tables in dark mode */
+body.dark-mode table,
+body.dark-mode .admin-table,
+body.dark-mode .table-contenido {
+    background: var(--bg-card) !important;
+    color: var(--text-primary) !important;
+}
+body.dark-mode th,
+body.dark-mode thead th,
+body.dark-mode .admin-table th {
+    background: var(--badge-bg) !important;
+    color: var(--text-primary) !important;
+}
+body.dark-mode td,
+body.dark-mode .admin-table td {
+    background: transparent !important;
+    border-bottom: 1px solid var(--border-color) !important;
+    color: var(--text-secondary) !important;
+}
+body.dark-mode tr:nth-child(even) td {
+    background: var(--table-stripe) !important;
+}
+body.dark-mode tr:hover td {
+    background: var(--hover-bg) !important;
+}
+
+/* Buttons in dark mode */
 body.dark-mode .btn-secondary {
     background: rgba(255,255,255,0.1);
     color: white;
     border-color: rgba(255,255,255,0.15);
 }
-
 body.dark-mode .btn-outline {
     color: rgba(255,255,255,0.7);
     border-color: rgba(255,255,255,0.2);
 }
+body.dark-mode .btn-outline-danger {
+    color: var(--danger, #e74c3c);
+    border-color: var(--danger, #e74c3c);
+}
+body.dark-mode .btn-outline-danger:hover {
+    background: var(--danger, #e74c3c);
+    color: white;
+}
 
+/* Role badges */
 body.dark-mode .profile-role.role-operador { background: #64748b; color: white; }
 body.dark-mode .profile-role.role-admin { background: #1F6AE1; color: white; }
 
-body.dark-mode ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.15); }
-body.dark-mode ::-webkit-scrollbar-track { background: transparent; }
+/* Info boxes, alerts */
+body.dark-mode .info-box,
+body.dark-mode .icon-box,
+body.dark-mode .aviso-seguridad,
+body.dark-mode .pass-requirements {
+    background: var(--bg-overlay) !important;
+}
+body.dark-mode .ticket-box {
+    background: rgba(230, 126, 34, 0.1) !important;
+}
+body.dark-mode .alerta-exito {
+    background: rgba(46, 204, 113, 0.1) !important;
+    color: #2ecc71 !important;
+}
+body.dark-mode .alerta-error {
+    background: rgba(231, 76, 60, 0.1) !important;
+    color: #ff7675 !important;
+}
 
-body.admin-page:not(.dark-mode) ::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.15); }
-body.admin-page:not(.dark-mode) ::-webkit-scrollbar-track { background: transparent; }
+/* Badges */
+body.dark-mode .badge,
+body.dark-mode .badge-tipo,
+body.dark-mode .badge-param,
+body.dark-mode .status-pill {
+    color: white !important;
+}
+
+/* Dashboard cards in dark mode */
+body.dark-mode .main-content .card {
+    background: var(--bg-card);
+    box-shadow: var(--shadow-sm);
+}
+body.dark-mode .card .number {
+    color: var(--text-primary) !important;
+}
+body.dark-mode .sub-stats {
+    border-top-color: var(--border-color) !important;
+}
+
+/* Header dropdowns in dark mode */
+body.dark-mode .dropdown-menu {
+    background: var(--bg-card) !important;
+}
+body.dark-mode .dropdown-user-info {
+    background: var(--hover-bg) !important;
+}
+body.dark-mode .dropdown-user-name {
+    color: var(--text-primary) !important;
+}
+body.dark-mode .notif-panel-header {
+    color: var(--text-primary) !important;
+    border-color: var(--border-color) !important;
+}
+
+/* Back buttons in dark mode */
+body.dark-mode .btn-volver,
+body.dark-mode .btn-back,
+body.dark-mode .back-link,
+body.dark-mode .volver,
+body.dark-mode .back {
+    color: var(--text-muted) !important;
+}
+
+/* Scrollbar */
+body.dark-mode ::-webkit-scrollbar-thumb {
+    background: var(--scrollbar-thumb);
+}
+body.dark-mode ::-webkit-scrollbar-track {
+    background: transparent;
+}

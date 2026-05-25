@@ -63,7 +63,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $insSess->bind_param("isss", $user['id'], $sessId, $ip, $ua); $insSess->execute(); $insSess->close();
 
             // Log activity
-            log_activity($user['id'], 'Inició sesión');
+            log_activity($user['id'], 'Inició sesión', null, 'login', 'Sistema');
 
             echo "<script>
                 Swal.fire({

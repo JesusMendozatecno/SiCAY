@@ -7,7 +7,7 @@ if (isset($_SESSION['id_usuario'])) {
         $stmt->bind_param("s", $sid); $stmt->execute(); $stmt->close();
         $stmt2 = $con->prepare("DELETE FROM user_sessions WHERE user_id = ? AND is_current = 0 AND last_activity < DATE_SUB(NOW(), INTERVAL 24 HOUR)");
         $stmt2->bind_param("i", $_SESSION['id_usuario']); $stmt2->execute(); $stmt2->close();
-        log_activity($_SESSION['id_usuario'], 'Cerró sesión');
+        log_activity($_SESSION['id_usuario'], 'Cerró sesión', null, 'logout', 'Sistema');
     }
 }
 $_SESSION = [];

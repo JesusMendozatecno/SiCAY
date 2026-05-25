@@ -180,7 +180,7 @@ document.getElementById('formPassword').addEventListener('submit',function(e){
     var pwd=this.querySelector('[name=new_password]').value;
     var conf=this.querySelector('[name=confirm_password]').value;
     if(pwd!==conf){showToast('Las contraseñas no coinciden','error');return;}
-    if(pwd.length<6){showToast('La contraseña debe tener al menos 6 caracteres','error');return;}
+    if(pwd.length<8){showToast('La contraseña debe tener al menos 8 caracteres','error');return;}
     var fd=new FormData(this);
     apiCall(fd,function(r){showToast(r.message||'Contraseña actualizada','success');e.target.reset();});
 });
@@ -246,6 +246,10 @@ function cambiarIdioma(lang){
 }
 function cambiarColor(color){
     document.querySelectorAll('.color-preset').forEach(function(el){el.classList.toggle('selected',el.dataset.color===color);});
+    document.documentElement.style.setProperty('--profile-accent', color);
+    document.querySelectorAll('.color-preset').forEach(function(el){
+        el.style.setProperty('--accent', color, 'important');
+    });
     var fd=new FormData();fd.append('action','update_config');fd.append('accent_color',color);fd.append('csrf_token',document.querySelector('#formProfile [name=csrf_token]').value);
     apiCall(fd,function(r){showToast(r.message||'Color actualizado','success');});
 }
@@ -381,6 +385,9 @@ document.getElementById('formEnviarNotificacion').addEventListener('submit',func
         showToast(r.message||'Notificación enviada','success');
         cerrarModalNotificacion();
         e.target.reset();
+        if (r.notification && r.notification.is_self && window.notificacionRecibida) {
+            window.notificacionRecibida(r.notification.id, r.notification.title);
+        }
     });
 });
 
@@ -408,6 +415,18 @@ document.getElementById('formGlobalConfig').addEventListener('submit',function(e
     var fd=new FormData(this);
     apiCall(fd,function(r){showToast(r.message||'Configuración guardada','success');});
 });
+document.getElementById('formGlobalSpecs').addEventListener('submit',function(e){
+    e.preventDefault();
+    var fd=new FormData(this);
+    apiCall(fd,function(r){showToast(r.message||'Configuración guardada','success');});
+});
+
+function cambiarConfigSub(tab){
+    document.querySelectorAll('.config-subnav-btn').forEach(function(b){b.classList.remove('active');});
+    document.querySelector('.config-subnav-btn[data-config="'+tab+'"]').classList.add('active');
+    document.querySelectorAll('.config-sub-panel').forEach(function(p){p.style.display='none';});
+    document.getElementById('config-'+tab).style.display='block';
+}
 
 // Load data on tab activation
 document.querySelector('.profile-nav-item[data-tab="tab-seguridad"]').addEventListener('click',function(){
@@ -419,3 +438,31 @@ document.querySelector('.profile-nav-item[data-tab="tab-actividad"]').addEventLi
 document.querySelector('.profile-nav-item[data-tab="tab-admin"]').addEventListener('click',function(){
     setTimeout(function(){cargarAdminUsuarios();},100);
 });
+
+// ── Config submenu ──
+function toggleConfigMenu(){
+    var el=document.querySelector('.profile-nav-item.has-submenu');
+    if(el)el.classList.toggle('open');
+    var sub=document.getElementById('configSubmenu');
+    if(sub)sub.classList.toggle('open');
+}
+// Close config submenu on outside click
+document.addEventListener('click',function(e){
+    var sub=document.getElementById('configSubmenu');
+    var btn=document.querySelector('.profile-nav-item.has-submenu');
+    if(sub&&sub.classList.contains('open')&&btn&&!btn.contains(e.target)&&!sub.contains(e.target)){
+        btn.classList.remove('open');
+        sub.classList.remove('open');
+    }
+});
+function irAConfig(tab){
+    var adminBtn=document.querySelector('.profile-nav-item[data-tab="tab-admin"]');
+    if(adminBtn)adminBtn.click();
+    setTimeout(function(){
+        var configBtn=document.querySelector('.admin-tab-btn[data-admin-tab="admin-config"]');
+        if(configBtn)configBtn.click();
+        setTimeout(function(){
+            cambiarConfigSub(tab);
+        },100);
+    },100);
+}

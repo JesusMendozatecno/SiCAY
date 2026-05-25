@@ -138,6 +138,7 @@ function mostrarDetalle(d) {
     var fecha = formatearFecha(d.fecha);
     var tipo = d.tipo_accion || 'system';
     var desc = d.descripcion ? esc(d.descripcion) : '<em style="opacity:0.4;">Sin descripción</em>';
+    var url = d.url ? esc(d.url) : '';
 
     body.innerHTML =
     '<div class="detail-grid">' +
@@ -147,6 +148,7 @@ function mostrarDetalle(d) {
         '<div class="detail-field"><div class="df-label">Tipo de Acción</div><div class="df-value"><span class="tipo-badge tipo-' + tipo + '">' + tipo + '</span></div></div>' +
         '<div class="detail-field"><div class="df-label">Módulo</div><div class="df-value">' + esc(d.modulo || '-') + '</div></div>' +
         '<div class="detail-field"><div class="df-label">Dirección IP</div><div class="df-value"><code>' + esc(d.ip_address || '-') + '</code></div></div>' +
+        (url ? '<div class="detail-field detail-field-full"><div class="df-label">URL</div><div class="df-value" style="font-size:0.75rem;word-break:break-all;"><code>' + url + '</code></div></div>' : '') +
         '<div class="detail-field detail-field-full"><div class="df-label">Descripción</div><div class="df-value">' + desc + '</div></div>' +
     '</div>';
 
@@ -175,12 +177,14 @@ function exportarPDF() {
         .then(function(r) { return r.json(); })
         .then(function(res) {
             if (!res.ok) { alert(res.error); return; }
-            // Open PDF in new window
-            var win = window.open('', '_blank');
-            win.document.write(res.html);
-            win.document.close();
-            win.focus();
-            win.print();
+            var blob = new Blob([res.html], { type: 'text/html' });
+            var url = URL.createObjectURL(blob);
+            var win = window.open(url, '_blank');
+            if (win) {
+                var printTimer = setTimeout(function() { win.print(); }, 2000);
+                win.onload = function() { clearTimeout(printTimer); win.print(); };
+            }
+            setTimeout(function() { URL.revokeObjectURL(url); }, 60000);
         })
         .catch(function(e) { alert('Error al exportar: ' + e.message); });
 }

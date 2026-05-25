@@ -64,7 +64,11 @@ $total_activities = $stats['c']; $stmt2->close();
                 <div class="profile-nav-divider"></div>
                 <div class="profile-nav-section-label"><?php echo __('admin_panel'); ?></div>
                 <button class="profile-nav-item" data-tab="tab-admin"><i class="fas fa-user-shield"></i> <?php echo __('administration'); ?></button>
+                <a href="index.php?route=seguridad_documentacion" class="profile-nav-item" style="text-decoration:none;display:flex;">
+                    <i class="fas fa-shield-alt"></i> Documentación de Seguridad
+                </a>
                 <?php endif; ?>
+               
                 <div class="profile-nav-divider"></div>
                 <a href="index.php?route=salir" class="profile-nav-item" style="color:#dc2626;text-decoration:none;display:flex;">
                     <i class="fas fa-sign-out-alt"></i> <?php echo __('close_session'); ?>
@@ -125,7 +129,7 @@ $total_activities = $stats['c']; $stmt2->close();
                     <div class="grid-2">
                         <div class="form-group">
                             <label><?php echo __('new_password'); ?></label>
-                            <input type="password" class="form-input" name="new_password" minlength="6" required>
+                            <input type="password" class="form-input" name="new_password" minlength="8" required>
                         </div>
                         <div class="form-group">
                             <label><?php echo __('confirm_password'); ?></label>
@@ -261,34 +265,77 @@ $total_activities = $stats['c']; $stmt2->close();
                 </div>
 
                 <div class="admin-subtab" id="admin-config" style="display:none;">
-                    <form id="formGlobalConfig">
-                        <input type="hidden" name="action" value="save_global_config">
-                        <input type="hidden" name="csrf_token" value="<?php echo csrf_token(); ?>">
-                        <div class="form-group">
-                            <label><?php echo __('system_name'); ?></label>
-                            <input type="text" class="form-input" name="app_name" value="<?php echo hsc(get_system_config('app_name', 'SICAY')); ?>">
-                        </div>
-                        <div class="form-group">
-                            <label><?php echo __('default_theme'); ?></label>
-                            <select class="form-input form-input-auto" name="default_theme">
-                                <option value="light" <?php echo get_system_config('default_theme','light') === 'light' ? 'selected' : ''; ?>><?php echo __('light'); ?></option>
-                                <option value="dark" <?php echo get_system_config('default_theme','') === 'dark' ? 'selected' : ''; ?>><?php echo __('dark'); ?></option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label><?php echo __('security_level'); ?></label>
-                            <select class="form-input form-input-auto" name="security_level">
-                                <option value="low" <?php echo get_system_config('security_level','medium') === 'low' ? 'selected' : ''; ?>><?php echo __('low'); ?></option>
-                                <option value="medium" <?php echo get_system_config('security_level','medium') === 'medium' ? 'selected' : ''; ?>><?php echo __('medium'); ?></option>
-                                <option value="high" <?php echo get_system_config('security_level','') === 'high' ? 'selected' : ''; ?>><?php echo __('high'); ?></option>
-                            </select>
-                        </div>
-                        <div class="toggle-row">
-                            <div><div class="toggle-label"><?php echo __('maintenance_mode'); ?></div><div class="toggle-desc"><?php echo __('maintenance_desc'); ?></div></div>
-                            <input type="checkbox" name="maintenance_mode" value="1" <?php echo is_maintenance_mode() ? 'checked' : ''; ?> style="width:20px;height:20px;">
-                        </div>
-                        <button type="submit" class="btn btn-primary mt-3"><?php echo __('save_global_config'); ?></button>
-                    </form>
+
+                    <!-- Sub-navigation -->
+                    <div class="config-subnav">
+                        <button class="config-subnav-btn active" data-config="backup" onclick="cambiarConfigSub('backup')">
+                            <i class="fas fa-database"></i> Copia de Seguridad
+                        </button>
+                        <button class="config-subnav-btn" data-config="maintenance" onclick="cambiarConfigSub('maintenance')">
+                            <i class="fas fa-tools"></i> Mantenimiento
+                        </button>
+                        <button class="config-subnav-btn" data-config="specs" onclick="cambiarConfigSub('specs')">
+                            <i class="fas fa-info-circle"></i> Especificaciones
+                        </button>
+                    </div>
+
+                    <!-- Backup -->
+                    <div class="config-sub-panel active" id="config-backup">
+                        <h4 class="section-title"><i class="fas fa-database"></i> Copia de Seguridad</h4>
+                        <p class="text-muted" style="margin-bottom:16px;">Genera y descarga respaldos de la base de datos del sistema.</p>
+                        <a href="index.php?route=respaldo" class="btn btn-primary" style="text-decoration:none;">
+                            <i class="fas fa-download"></i> Ir a Copia de Seguridad
+                        </a>
+                    </div>
+
+                    <!-- Maintenance -->
+                    <div class="config-sub-panel" id="config-maintenance" style="display:none;">
+                        <h4 class="section-title"><i class="fas fa-tools"></i> Mantenimiento</h4>
+                        <p class="text-muted" style="margin-bottom:16px;">Activa o desactiva el modo mantenimiento del sistema.</p>
+                        <form id="formGlobalConfig">
+                            <input type="hidden" name="action" value="save_global_config">
+                            <input type="hidden" name="csrf_token" value="<?php echo csrf_token(); ?>">
+                            <div class="toggle-row">
+                                <div>
+                                    <div class="toggle-label"><?php echo __('maintenance_mode'); ?></div>
+                                    <div class="toggle-desc"><?php echo __('maintenance_desc'); ?></div>
+                                </div>
+                                <input type="checkbox" name="maintenance_mode" value="1" <?php echo is_maintenance_mode() ? 'checked' : ''; ?> style="width:22px;height:22px;cursor:pointer;">
+                            </div>
+                            <button type="submit" class="btn btn-primary mt-3"><?php echo __('save_global_config'); ?></button>
+                        </form>
+                    </div>
+
+                    <!-- Specs -->
+                    <div class="config-sub-panel" id="config-specs" style="display:none;">
+                        <h4 class="section-title"><i class="fas fa-info-circle"></i> Especificaciones del Sistema</h4>
+                        <p class="text-muted" style="margin-bottom:16px;">Configuración general del sistema SICAY.</p>
+                        <form id="formGlobalSpecs">
+                            <input type="hidden" name="action" value="save_global_config">
+                            <input type="hidden" name="csrf_token" value="<?php echo csrf_token(); ?>">
+                            <div class="form-group">
+                                <label><?php echo __('system_name'); ?></label>
+                                <input type="text" class="form-input" name="app_name" value="<?php echo hsc(get_system_config('app_name', 'SICAY')); ?>">
+                            </div>
+                            <div class="form-group">
+                                <label><?php echo __('default_theme'); ?></label>
+                                <select class="form-input form-input-auto" name="default_theme">
+                                    <option value="light" <?php echo get_system_config('default_theme','light') === 'light' ? 'selected' : ''; ?>><?php echo __('light'); ?></option>
+                                    <option value="dark" <?php echo get_system_config('default_theme','') === 'dark' ? 'selected' : ''; ?>><?php echo __('dark'); ?></option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label><?php echo __('security_level'); ?></label>
+                                <select class="form-input form-input-auto" name="security_level">
+                                    <option value="low" <?php echo get_system_config('security_level','medium') === 'low' ? 'selected' : ''; ?>><?php echo __('low'); ?></option>
+                                    <option value="medium" <?php echo get_system_config('security_level','medium') === 'medium' ? 'selected' : ''; ?>><?php echo __('medium'); ?></option>
+                                    <option value="high" <?php echo get_system_config('security_level','') === 'high' ? 'selected' : ''; ?>><?php echo __('high'); ?></option>
+                                </select>
+                            </div>
+                            <button type="submit" class="btn btn-primary mt-3"><?php echo __('save_global_config'); ?></button>
+                        </form>
+                    </div>
+
                 </div>
             </div>
             <?php endif; ?>

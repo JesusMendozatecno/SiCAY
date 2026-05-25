@@ -24,14 +24,19 @@ $avatarUrl = $userAvatar ? 'assets/img/avatars/' . hsc($userAvatar) : null;
 <header class="global-header">
     <div class="header-inner">
         <div class="header-left">
-            <img src="assets/img/EUhOGzfWAAAHZC4-removebg-preview.png" alt="Aguas de Yaracuy" class="header-logo">
-            <span class="header-brand">Aguas de Yaracuy</span>
+            <div class="nav-brand">
+                <img src="assets/img/EUhOGzfWAAAHZC4-removebg-preview.png" alt="Hidroven Yaracuy" class="header-logo">
+                <div class="brand-text">
+                    <span class="main-name">Hidroven Yaracuy</span>
+                    <span class="sub-name">Departamento de Calidad</span>
+                </div>
+            </div>
         </div>
         <div class="header-right">
             <div class="notif-dropdown">
                 <button class="notif-btn" title="Notificaciones" onclick="toggleNotifPanel()">
                     <i class="fas fa-bell"></i>
-                    <span class="notif-badge" id="notifBadgeHeader"><?php echo $notifCount > 0 ? ($notifCount > 99 ? '99+' : $notifCount) : ''; ?></span>
+                    <span class="notif-badge" id="notifBadgeHeader"<?php echo $notifCount < 1 ? ' style="display:none"' : ''; ?>><?php echo $notifCount > 0 ? ($notifCount > 99 ? '99+' : $notifCount) : ''; ?></span>
                 </button>
                 <div class="notif-panel" id="notifPanel">
                     <div class="notif-panel-header">
@@ -74,4 +79,18 @@ $avatarUrl = $userAvatar ? 'assets/img/avatars/' . hsc($userAvatar) : null;
         </div>
     </div>
 </header>
+
+<!-- Notification Detail Modal -->
+<div id="notifDetailOverlay" class="notif-detail-overlay">
+    <div class="notif-detail-card">
+        <div class="nd-top">
+            <h4><i class="fas fa-bell"></i> Detalle de notificación</h4>
+            <button class="nd-close" onclick="cerrarDetalleNotificacion()">&times;</button>
+        </div>
+        <div class="notif-detail-body" id="notifDetailBody">
+            <div class="detail-loading">Cargando...</div>
+        </div>
+    </div>
+</div>
+
 <script>var headerNotifCount=<?php echo $notifCount; ?>;</script>

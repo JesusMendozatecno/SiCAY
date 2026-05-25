@@ -8,6 +8,7 @@ return [
     'olvide_pass'           => 'app/views/inicio/olvide_pass.php',
     'dashboard'             => 'app/views/dashboard/dashboard.php',
     'seguridad'             => 'app/views/seguridad/seguridad.php',
+    'seguridad_documentacion' => 'app/views/seguridad/documentacion_seguridad.php',
     'historial'             => 'app/views/reportes/historial.php',
     'registros'             => 'app/views/registro/registros.php',
     'tablas_maestras'       => 'app/views/gestion/tablas_maestras.php',

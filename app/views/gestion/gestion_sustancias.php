@@ -69,8 +69,10 @@ $resultado = mysqli_query($con, "SELECT * FROM sustancia_quimica ORDER BY nombre
 <div id="bubbles"></div>
 
 <div class="container">
-    <a href="index.php?route=tablas_maestras" class="btn-volver"><i class="fa fa-arrow-left"></i> ← Volver a Tablas Maestras</a>
-    <h2><i class="fa fa-flask"></i> Gestión de Sustancias Químicas</h2>
+    <div class="page-header">
+        <a href="index.php?route=tablas_maestras" class="btn-back"><i class="fas fa-chevron-left"></i> Volver</a>
+        <h1 class="page-title"><i class="fa fa-flask"></i> Gestión de Sustancias Químicas</h1>
+    </div>
 
     <?php if(isset($_SESSION['msg'])): ?>
         <div class="alerta-exito">

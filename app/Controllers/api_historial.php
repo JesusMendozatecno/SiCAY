@@ -32,6 +32,7 @@ if (!$GLOBALS['_historial_migrated']) {
     if (!in_array('descripcion', $cols)) $con->query("ALTER TABLE historial ADD COLUMN descripcion TEXT DEFAULT NULL AFTER modulo");
     if (!in_array('ip_address', $cols)) $con->query("ALTER TABLE historial ADD COLUMN ip_address VARCHAR(45) DEFAULT NULL AFTER descripcion");
     if (!in_array('usuario', $cols)) $con->query("ALTER TABLE historial ADD COLUMN usuario VARCHAR(100) DEFAULT NULL AFTER id_usuario");
+    if (!in_array('url', $cols)) $con->query("ALTER TABLE historial ADD COLUMN url VARCHAR(500) DEFAULT NULL AFTER ip_address");
 
     // Migrate activity_log data (once)
     $check = $con->query("SELECT COUNT(*) as c FROM historial WHERE tipo_accion = 'system'");
@@ -46,7 +47,7 @@ if (!$GLOBALS['_historial_migrated']) {
 // ---------- LIST ----------
 if ($action === 'list') {
     $page = max(1, intval($_GET['page'] ?? 1));
-    $limit = 30;
+    $limit = 10;
     $offset = ($page - 1) * $limit;
 
     $where = [];

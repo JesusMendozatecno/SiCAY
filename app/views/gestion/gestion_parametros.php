@@ -63,8 +63,10 @@ $resultado = mysqli_query($con, "SELECT * FROM parametro ORDER BY id DESC");
 <div id="bubbles"></div>
 
 <div class="container">
-    <a href="index.php?route=tablas_maestras" class="btn-volver"><i class="fa fa-arrow-left"></i> ← Volver a Tablas Maestras</a>
-    <h2 id="titulo_display"><i class="fa fa-vial"></i> Gestión de Parámetros</h2>
+    <div class="page-header">
+        <a href="index.php?route=tablas_maestras" class="btn-back"><i class="fas fa-chevron-left"></i> Volver</a>
+        <h1 class="page-title" id="titulo_display"><i class="fa fa-vial"></i> Gestión de Parámetros</h1>
+    </div>
 
     <?php if(isset($_SESSION['msg'])): ?>
         <div class="alerta-exito">

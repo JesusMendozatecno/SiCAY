@@ -10,6 +10,23 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         exit();
     }
 
+    // Verificar bloqueo por fuerza bruta
+    if (check_login_lockout($userInput)) {
+        registrar_intento_login($userInput, false);
+        echo "<!DOCTYPE html><html lang='es'><head><meta charset='UTF-8'>
+        <script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script></head><body>
+        <script>
+            Swal.fire({
+                title: 'Cuenta Bloqueada',
+                text: 'Demasiados intentos fallidos. Espera 15 minutos antes de intentar de nuevo.',
+                icon: 'warning',
+                confirmButtonColor: '#e74c3c',
+                confirmButtonText: 'Entendido'
+            }).then(() => { window.location.href = 'index.php?route=login'; });
+        </script></body></html>";
+        exit();
+    }
+
     $stmt = $conexion->prepare("SELECT id, nombre, usuario, correo, contraseña FROM usuario WHERE usuario = ?");
     $stmt->bind_param("s", $userInput);
     $stmt->execute();
@@ -31,6 +48,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $user = $result->fetch_assoc();
 
         if (verificar_pass($passInput, $user['contraseña'])) {
+            registrar_intento_login($userInput, true);
             if (strlen($user['contraseña']) === 32 && ctype_xdigit($user['contraseña'])) {
                 $nuevo_hash = hash_pass($passInput);
                 $upd = $conexion->prepare("UPDATE usuario SET contraseña = ? WHERE id = ?");
@@ -59,6 +77,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             // Record session
             $ua = $_SERVER['HTTP_USER_AGENT'] ?? '';
             $sessId = session_id();
+            // Set all previous sessions as not current
+            $conexion->query("UPDATE user_sessions SET is_current = 0 WHERE user_id = " . intval($user['id']));
             $insSess = $conexion->prepare("INSERT INTO user_sessions (user_id, session_id, ip_address, user_agent, is_current) VALUES (?, ?, ?, ?, 1)");
             $insSess->bind_param("isss", $user['id'], $sessId, $ip, $ua); $insSess->execute(); $insSess->close();
 
@@ -81,6 +101,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 });
             </script>";
         } else {
+            registrar_intento_login($userInput, false);
             echo "<script>
                 Swal.fire({
                     title: 'Error de Seguridad',
@@ -94,6 +115,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </script>";
         }
     } else {
+        registrar_intento_login($userInput, false);
         echo "<script>
             Swal.fire({
                 title: 'Usuario no encontrado',

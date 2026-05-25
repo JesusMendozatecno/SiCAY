@@ -6,6 +6,8 @@ function showLoading(msg) {
     overlay.querySelector('.loading-icon').innerHTML = '<i class="fas fa-spinner fa-spin"></i>';
     overlay.querySelector('.loading-text').textContent = msg || 'Procesando...';
     overlay.classList.add('active');
+    var header = document.querySelector('.global-header');
+    if (header) header.style.visibility = 'hidden';
 }
 
 function showResult(tipo, msg) {
@@ -26,6 +28,8 @@ function hideLoading() {
     setTimeout(function() {
         overlay.classList.remove('active');
         card.classList.remove('fade-out');
+        var header = document.querySelector('.global-header');
+        if (header) header.style.visibility = '';
     }, 350);
 }
 

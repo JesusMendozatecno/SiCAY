@@ -16,12 +16,14 @@ verificar_sesion();
 <div id="bubbles"></div>
 
 <div class="contenedor-principal">
-    <header>
-        <h1><i class="fa fa-database"></i> Tablas Maestras</h1>
-        <p>Configuración y gestión de los pilares del sistema SICAY</p>
-    </header>
+    <div class="page-header">
+        <a href="index.php?route=dashboard" class="btn-back"><i class="fas fa-chevron-left"></i> Volver</a>
+        <h1 class="page-title"><i class="fa fa-database"></i> Tablas Maestras</h1>
+    </div>
+    <p class="page-subtitle">Configuración y gestión de los pilares del sistema SICAY</p>
 
     <div class="grid-tablas">
+
         <a href="index.php?route=gestion_plantas" class="card-tabla">
             <i class="fa fa-industry"></i>
             <h3>Plantas</h3>
@@ -40,8 +42,9 @@ verificar_sesion();
             <p>Catálogo de químicos y materiales de dosificación.</p>
         </a>
     </div>
+</div>
 
-    <a href="index.php?route=dashboard" class="btn-volver">← Volver al Dashboard Principal</a>
+    <a href="index.php?route=dashboard" class="btn-volver">← Volver</a>
 </div>
 
 <script src="assets/js/gestion/tablas_maestras.js"></script>

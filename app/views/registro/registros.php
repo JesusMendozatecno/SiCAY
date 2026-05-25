@@ -18,16 +18,11 @@ verificar_sesion();
 <div id="bubble-container"></div>
 
 <div class="main-container">
-    <nav class="back-nav">
-        <a href="index.php?route=dashboard" class="btn-back">
-            <i class="fas fa-chevron-left"></i> Volver al Dashboard
-        </a>
-    </nav>
-
-    <header class="header-section">
-        <h1><i class="fas fa-file-signature"></i> Gestión de Registros</h1>
-        <p>Seleccione el formato de calidad para ingresar nuevos datos al sistema SICAY.</p>
-    </header>
+    <div class="page-header">
+        <a href="index.php?route=dashboard" class="btn-back"><i class="fas fa-chevron-left"></i> Volver</a>
+        <h1 class="page-title"><i class="fas fa-file-signature"></i> Gestión de Registros</h1>
+    </div>
+    <p class="page-subtitle">Seleccione el formato de calidad para ingresar nuevos datos al sistema SICAY.</p>
 
     <div class="grid-planillas">
         

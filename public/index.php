@@ -8,7 +8,19 @@ include BASE_PATH . 'app/helpers.php';
 
 session_init();
 
+// Security Headers
+header('X-Frame-Options: DENY');
+header('X-Content-Type-Options: nosniff');
+header('X-XSS-Protection: 1; mode=block');
+header('Referrer-Policy: strict-origin-when-cross-origin');
+header("Permissions-Policy: camera=(), microphone=(), geolocation=()");
+
 $con = conexion_db();
+
+// Periodic session cleanup (1% chance per request)
+if (mt_rand(1, 100) === 1) {
+    limpiar_sesiones_expiradas();
+}
 
 $routes = include BASE_PATH . 'routes/web.php';
 
@@ -69,9 +81,13 @@ $html = ob_get_clean();
 $v = '?v=' . date('YmdHi');
 
 $viewport = '<meta name="viewport" content="width=device-width, initial-scale=1.0">';
+$favicon = "\n" . '    <link rel="icon" href="assets/img/EUhOGzfWAAAHZC4-removebg-preview.png" type="image/png">';
+$favicon .= "\n" . '    <link rel="shortcut icon" href="assets/img/EUhOGzfWAAAHZC4-removebg-preview.png" type="image/png">';
+$favicon .= "\n" . '    <link rel="apple-touch-icon" href="assets/img/EUhOGzfWAAAHZC4-removebg-preview.png">';
+
 $responsive_link = '<link rel="stylesheet" href="assets/css/responsive.css' . $v . '">';
 
-$inject = "\n    " . $responsive_link . "\n";
+$inject = "\n    " . $favicon . "\n    " . $responsive_link . "\n";
 
 if (strpos($html, 'name="viewport"') === false && strpos($html, "name='viewport'") === false) {
     $inject = "\n    " . $viewport . "\n    " . $responsive_link . "\n";
@@ -110,8 +126,9 @@ if (isset($_SESSION['usuario'])) {
     ob_start();
     include BASE_PATH . 'app/views/partials/header.php';
     $header_html = ob_get_clean();
-    $body_classes = trim('admin-page' . $theme_class);
-    $body_attrs = 'class="' . $body_classes . '" style="padding-top:60px;"';
+    $route_suffix = ($route === 'dashboard') ? ' route-dashboard' : '';
+    $body_classes = trim('admin-page' . $theme_class . $route_suffix);
+    $body_attrs = 'class="' . $body_classes . '" style="padding-top:85px;"';
     $html = str_replace('<body>', '<body ' . $body_attrs . '>' . "\n" . $header_html, $html);
 }
 $html = str_replace('</head>', $header_css_link . "\n" . '</head>', $html);

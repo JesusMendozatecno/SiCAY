@@ -6,7 +6,7 @@ body {
     min-height: 100vh; color: #e0e0e0; padding: 30px 20px;
 }
 
-.historial-container { max-width: 1300px; margin: 0 auto; }
+.historial-container { max-width: 1300px; margin: 0 auto; padding: 35px; }
 
 /* Header */
 .historial-header {

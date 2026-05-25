@@ -87,8 +87,10 @@ $resultado = mysqli_query($con, "SELECT * FROM instalacion WHERE estado = 'Activ
 <div id="bubbles"></div>
 
 <div class="container">
-    <h2><i class="fa fa-industry"></i> Gestión de Plantas e Instalaciones</h2>
-    <a href="index.php?route=tablas_maestras" class="back-link">← Volver a Tablas Maestras</a>
+    <div class="page-header">
+        <a href="index.php?route=tablas_maestras" class="btn-back"><i class="fas fa-chevron-left"></i> Volver</a>
+        <h1 class="page-title"><i class="fa fa-industry"></i> Gestión de Plantas e Instalaciones</h1>
+    </div>
 
     <?php if(isset($_SESSION['msg'])): ?>
         <div class="alerta-exito">

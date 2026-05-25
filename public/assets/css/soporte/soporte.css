@@ -16,7 +16,7 @@ body {
 .bubble { position: fixed; bottom: -100px; background: rgba(255,255,255,0.1); border-radius: 50%; animation: moveUp 10s linear infinite; z-index: -1; }
 @keyframes moveUp { 0% { transform: translateY(0); opacity: 0; } 10% { opacity: 0.3; } 100% { transform: translateY(-110vh); opacity: 0; } }
 
-.container { max-width: 1200px; margin: auto; }
+.container { max-width: 1200px; margin: auto; padding: 35px; }
 
 header { text-align: center; margin-bottom: 40px; }
 header h1 { font-size: 2.5rem; color: #fff; text-shadow: 0 4px 10px rgba(0,0,0,0.3); }

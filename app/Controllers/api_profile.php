@@ -70,7 +70,10 @@ switch ($action) {
         $new_pwd = $_POST['new_password'] ?? '';
         $confirm = $_POST['confirm_password'] ?? '';
         if ($new_pwd !== $confirm) json_error('Las contraseñas no coinciden');
-        if (strlen($new_pwd) < 6) json_error('La contraseña debe tener al menos 6 caracteres');
+        $passErrors = validar_politica_pass($new_pwd);
+        if (!empty($passErrors)) {
+            json_error('La contraseña no cumple: ' . implode(', ', $passErrors));
+        }
         $stmt = $con->prepare("SELECT contraseña FROM usuario WHERE id = ?");
         $stmt->bind_param("i", $uid); $stmt->execute();
         $row = $stmt->get_result()->fetch_assoc(); $stmt->close();
@@ -285,8 +288,17 @@ switch ($action) {
         $stmt = $con->prepare("INSERT INTO notifications (from_user_id, to_user_id, title, message) VALUES (?, ?, ?, ?)");
         $stmt->bind_param("iiss", $uid, $target_id, $title, $message);
         if ($stmt->execute()) {
+            $notif_id = $stmt->insert_id;
             log_activity($uid, "Envió notificación al usuario #$target_id");
-            json_success(['message' => 'Notificación enviada']);
+            $is_self = ($target_id === $uid);
+            json_success([
+                'message' => 'Notificación enviada',
+                'notification' => [
+                    'id' => $notif_id,
+                    'title' => $title,
+                    'is_self' => $is_self
+                ]
+            ]);
         }
         json_error('Error al enviar notificación');
 

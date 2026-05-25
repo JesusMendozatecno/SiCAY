@@ -16,10 +16,11 @@ verificar_sesion();
 <div id="bubbles"></div>
 
 <div class="container">
-    <header>
-        <h1><i class="fas fa-headset"></i> Centro de Soporte </h1>
-        <p style="opacity: 0.8; margin-top: 10px;">Soluciones rápidas para el personal </p>
-    </header>
+    <div class="page-header">
+        <a href="index.php?route=dashboard" class="btn-back"><i class="fas fa-chevron-left"></i> Volver</a>
+        <h1 class="page-title"><i class="fas fa-headset"></i> Centro de Soporte</h1>
+    </div>
+    <p class="page-subtitle">Soluciones rápidas para el personal</p>
 
     <div class="soporte-container">
         <div class="soporte-card" onclick="abrirSoporte('accesos')">
@@ -59,12 +60,6 @@ verificar_sesion();
             <p style="margin: 8px 0 0 0; color: rgba(255,255,255,0.8);">Envía un ticket directo al equipo de desarrollo de Yaracuy.</p>
         </div>
         <a href="mailto:soporte@aguasdeyaracuy.com" class="btn-ticket">Enviar Reporte <i class="fas fa-paper-plane"></i></a>
-    </div>
-
-    <div style="text-align: left;">
-        <a href="index.php?route=dashboard" class="btn-volver">
-            <i class="fas fa-arrow-left"></i> Volver al Dashboard Principal
-        </a>
     </div>
 </div>
 

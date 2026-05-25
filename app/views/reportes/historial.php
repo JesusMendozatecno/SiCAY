@@ -1,4 +1,10 @@
-<?php verificar_sesion(); $rol = $_SESSION['rol'] ?? 'Operador'; ?>
+<?php
+verificar_sesion();
+$rol = $_SESSION['rol'] ?? 'Operador';
+// Track page view with full URL
+$current_url = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
+log_activity($_SESSION['id_usuario'], 'Consultó el historial del sistema', "URL: $current_url", 'view', 'Historial');
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -17,11 +23,11 @@
         <!-- Header -->
         <div class="historial-header">
             <div class="header-left">
-                <a href="index.php?route=dashboard" class="btn-back" title="Volver al Dashboard">
+                <a href="index.php?route=dashboard" class="btn-back" title="V">
                     <i class="fas fa-arrow-left"></i>
                 </a>
                 <div>
-                    <h1><i class="fas fa-history"></i> Caja Negra del Sistema</h1>
+                    <h1><i class="fas fa-history"></i> Historial</h1>
                     <p class="header-subtitle">Registro completo de todas las actividades del sistema SICAY</p>
                 </div>
             </div>

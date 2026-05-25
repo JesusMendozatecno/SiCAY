@@ -92,11 +92,13 @@ function flash_error($msg) {
 
 function session_init() {
     if (session_status() === PHP_SESSION_NONE) {
+        $is_https = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off')
+            || (isset($_SERVER['SERVER_PORT']) && $_SERVER['SERVER_PORT'] == 443);
         session_set_cookie_params([
             'lifetime' => 0,
             'path' => '/',
             'domain' => '',
-            'secure' => false,
+            'secure' => $is_https,
             'httponly' => true,
             'samesite' => 'Strict'
         ]);
@@ -108,6 +110,7 @@ function verificar_sesion() {
     if (!isset($_SESSION['usuario'])) {
         redirigir('login');
     }
+    verificar_tiempo_sesion();
 }
 
 function verificar_sesion_json() {
@@ -141,6 +144,18 @@ function log_activity($user_id, $action, $details = null, $tipo_accion = null, $
     if (!$con) return false;
     $ip = $_SERVER['REMOTE_ADDR'] ?? '127.0.0.1';
 
+    // Ensure url column exists (auto-migration)
+    static $url_col_checked = false;
+    if (!$url_col_checked) {
+        $url_col_checked = true;
+        try {
+            $r = $con->query("SHOW COLUMNS FROM historial LIKE 'url'");
+            if ($r && $r->num_rows === 0) {
+                $con->query("ALTER TABLE historial ADD COLUMN url VARCHAR(500) DEFAULT NULL AFTER ip_address");
+            }
+        } catch (\Throwable $e) {}
+    }
+
     // Backward compat: write to activity_log
     $stmt = $con->prepare("INSERT INTO activity_log (user_id, action, details, ip_address) VALUES (?, ?, ?, ?)");
     if ($stmt) {
@@ -166,10 +181,11 @@ function log_activity($user_id, $action, $details = null, $tipo_accion = null, $
 
     // Write to unified historial table
     $usuario = $_SESSION['usuario'] ?? 'Sistema';
-    $stmt2 = $con->prepare("INSERT INTO historial (id_usuario, usuario, accion, tipo_accion, modulo, descripcion, ip_address, fecha) VALUES (?, ?, ?, ?, ?, ?, ?, NOW())");
+    $url = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
+    $stmt2 = $con->prepare("INSERT INTO historial (id_usuario, usuario, accion, tipo_accion, modulo, descripcion, ip_address, url, fecha) VALUES (?, ?, ?, ?, ?, ?, ?, ?, NOW())");
     if ($stmt2) {
         $desc = $details ?? $action;
-        $stmt2->bind_param("issssss", $user_id, $usuario, $action, $tipo_accion, $modulo, $desc, $ip);
+        $stmt2->bind_param("isssssss", $user_id, $usuario, $action, $tipo_accion, $modulo, $desc, $ip, $url);
         $stmt2->execute();
         $stmt2->close();
     }
@@ -199,4 +215,108 @@ function get_system_config($key, $default = null) {
     }
     $stmt->close();
     return $val;
+}
+
+/* =============================================
+   SEGURIDAD — POLÍTICA DE CONTRASEÑAS
+   ============================================= */
+
+function validar_politica_pass($password) {
+    $errors = [];
+    if (strlen($password) < 8)
+        $errors[] = 'Mínimo 8 caracteres';
+    if (!preg_match('/[A-Z]/', $password))
+        $errors[] = 'Debe contener al menos una mayúscula';
+    if (!preg_match('/[a-z]/', $password))
+        $errors[] = 'Debe contener al menos una minúscula';
+    if (!preg_match('/[0-9]/', $password))
+        $errors[] = 'Debe contener al menos un número';
+    if (!preg_match('/[^A-Za-z0-9]/', $password))
+        $errors[] = 'Debe contener al menos un carácter especial';
+    return $errors;
+}
+
+/* =============================================
+   SEGURIDAD — BLOQUEO POR FUERZA BRUTA
+   ============================================= */
+
+function crear_tabla_login_attempts() {
+    global $con;
+    if (!$con) return;
+    $con->query("CREATE TABLE IF NOT EXISTS login_attempts (
+        id INT AUTO_INCREMENT PRIMARY KEY,
+        username VARCHAR(100) NOT NULL,
+        ip_address VARCHAR(45) NOT NULL,
+        user_agent TEXT,
+        success TINYINT(1) DEFAULT 0,
+        attempted_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+        INDEX idx_lookup (username, ip_address, attempted_at),
+        INDEX idx_cleanup (attempted_at)
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8");
+}
+
+function registrar_intento_login($username, $success) {
+    global $con;
+    if (!$con) return;
+    $ip = $_SERVER['REMOTE_ADDR'] ?? '127.0.0.1';
+    $ua = $_SERVER['HTTP_USER_AGENT'] ?? '';
+    $stmt = $con->prepare("INSERT INTO login_attempts (username, ip_address, user_agent, success) VALUES (?, ?, ?, ?)");
+    if ($stmt) {
+        $s = $success ? 1 : 0;
+        $stmt->bind_param("sssi", $username, $ip, $ua, $s);
+        $stmt->execute();
+        $stmt->close();
+    }
+}
+
+function check_login_lockout($username) {
+    global $con;
+    if (!$con) return false;
+    crear_tabla_login_attempts();
+    $ip = $_SERVER['REMOTE_ADDR'] ?? '127.0.0.1';
+    $window = date('Y-m-d H:i:s', strtotime('-15 minutes'));
+    $max_attempts = 5;
+    $stmt = $con->prepare("SELECT COUNT(*) as c FROM login_attempts WHERE (username = ? OR ip_address = ?) AND attempted_at > ? AND success = 0");
+    if (!$stmt) return false;
+    $stmt->bind_param("sss", $username, $ip, $window);
+    $stmt->execute();
+    $row = $stmt->get_result()->fetch_assoc();
+    $stmt->close();
+    return ($row['c'] ?? 0) >= $max_attempts;
+}
+
+/* =============================================
+   SEGURIDAD — TIEMPO DE SESIÓN
+   ============================================= */
+
+function verificar_tiempo_sesion() {
+    $timeout = 1800;
+    if (isset($_SESSION['last_activity']) && (time() - $_SESSION['last_activity']) > $timeout) {
+        $_SESSION = [];
+        session_destroy();
+        setcookie(session_name(), '', time() - 3600, '/');
+        redirigir('login');
+    }
+    $_SESSION['last_activity'] = time();
+}
+
+/* =============================================
+   SEGURIDAD — LIMPIEZA PROGRAMADA
+   ============================================= */
+
+function limpiar_sesiones_expiradas() {
+    global $con;
+    if (!$con) return;
+    $stmt = $con->prepare("DELETE FROM user_sessions WHERE is_current = 0 AND last_activity < DATE_SUB(NOW(), INTERVAL 24 HOUR)");
+    if ($stmt) {
+        $stmt->execute();
+        $stmt->close();
+        $stmt2 = $con->prepare("UPDATE system_config SET config_value = NOW() WHERE config_key = 'last_session_cleanup'");
+        if ($stmt2) {
+            $stmt2->execute();
+            $stmt2->close();
+        }
+    }
+    // Clean old login attempts (>7 days)
+    $con->query("DELETE FROM login_attempts WHERE attempted_at < DATE_SUB(NOW(), INTERVAL 7 DAY)");
 }

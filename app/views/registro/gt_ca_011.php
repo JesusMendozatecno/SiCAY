@@ -87,7 +87,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <textarea name="detalles" placeholder="Escriba hallazgos relevantes..."></textarea>
 
             <button type="submit" class="btn"><i class="fas fa-save"></i> Guardar Inspección</button>
-            <a href="index.php?route=registros" class="back">← Volver a Registros</a>
+            <a href="index.php?route=registros" class="back">← Volver</a>
         </form>
     </div>
     <script src="assets/js/registro/gt_ca_011.js"></script>

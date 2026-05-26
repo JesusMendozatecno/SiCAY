@@ -76,7 +76,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <label>Presión de Salida (PSI):</label>
             <input type="number" step="0.1" name="presion" required placeholder="0.0">
             <button type="submit" class="btn"><i class="fas fa-save"></i> Guardar Reporte</button>
-            <a href="index.php?route=registros" class="back">← Volver a Registros</a>
+            <a href="index.php?route=registros" class="back">← Volver</a>
         </form>
     </div>
     <script src="assets/js/registro/gt_ca_008.js"></script>

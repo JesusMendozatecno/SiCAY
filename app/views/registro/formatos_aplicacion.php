@@ -106,7 +106,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <textarea name="observacion" placeholder="Observaciones sobre la dosis o ajustes..."></textarea>
 
             <button type="submit" class="btn"><i class="fas fa-save"></i> Guardar Ajustes</button>
-            <a href="index.php?route=registros" class="back">← Volver a Registros</a>
+            <a href="index.php?route=registros" class="back">← Volver</a>
         </form>
     </div>
 

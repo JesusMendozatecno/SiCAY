@@ -77,7 +77,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 <option value="Retiro Externo">Retiro Externo (Camión)</option>
             </select>
             <button type="submit" class="btn"><i class="fas fa-save"></i> Guardar Registro</button>
-            <a href="index.php?route=registros" class="back">← Volver a Registros</a>
+            <a href="index.php?route=registros" class="back">← Volver</a>
         </form>
     </div>
     <script src="assets/js/registro/gt_ca_010.js"></script>

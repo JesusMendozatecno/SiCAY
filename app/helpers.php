@@ -139,6 +139,35 @@ function __($key, $lang = null) {
     return $translations[$lang][$key] ?? $key;
 }
 
+function route_label($route) {
+    $labels = [
+        'dashboard'             => ['Vió el panel principal', 'Dashboard'],
+        'registros'             => ['Vió registros del sistema', 'Registros'],
+        'tablas_maestras'       => ['Vió tablas maestras', 'Gestión'],
+        'reportes'              => ['Vió la página de reportes', 'Reportes'],
+        'historial'             => ['Consultó el historial del sistema', 'Historial'],
+        'inventario'            => ['Vió el inventario', 'Inventario'],
+        'soporte'               => ['Vió la página de soporte', 'Soporte'],
+        'ajustes'               => ['Vió ajustes del sistema', 'Soporte'],
+        'seguridad'             => ['Vió configuración de seguridad', 'Seguridad'],
+        'seguridad_documentacion' => ['Vió documentación de seguridad', 'Seguridad'],
+        'gestion_usuarios'      => ['Vió gestión de usuarios', 'Gestión'],
+        'gestion_sustancias'    => ['Vió gestión de sustancias', 'Gestión'],
+        'gestion_parametros'    => ['Vió gestión de parámetros', 'Gestión'],
+        'gestion_plantas'       => ['Vió gestión de plantas', 'Gestión'],
+        'respaldo'              => ['Vió página de respaldo', 'Seguridad'],
+        'solicitud_sq'          => ['Vió solicitud SQ', 'Registros'],
+        'resultados_laboratorio'=> ['Vió resultados de laboratorio', 'Registros'],
+        'formatos_aplicacion'   => ['Vió formatos de aplicación', 'Registros'],
+        'mantenimiento'         => ['Vió página de mantenimiento', 'Sistema'],
+    ];
+    foreach (range(1, 19) as $n) {
+        $key = 'gt_ca_' . str_pad($n, 3, '0', STR_PAD_LEFT);
+        $labels[$key] = ['Vió el registro ' . $key, 'Registros'];
+    }
+    return $labels[$route] ?? ['Visitó la página: ' . $route, 'Sistema'];
+}
+
 function log_activity($user_id, $action, $details = null, $tipo_accion = null, $modulo = null) {
     global $con;
     if (!$con) return false;

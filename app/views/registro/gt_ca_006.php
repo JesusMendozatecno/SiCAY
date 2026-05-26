@@ -88,7 +88,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <input type="number" name="duracion" required placeholder="Ej: 15">
 
             <button type="submit" class="btn"><i class="fas fa-save"></i> Registrar Lavado</button>
-            <a href="index.php?route=registros" class="back">← Volver a Registros</a>
+            <a href="index.php?route=registros" class="back">← Volver</a>
         </form>
     </div>
 

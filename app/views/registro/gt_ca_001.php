@@ -78,7 +78,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <input type="number" step="0.01" name="ph" required placeholder="Ej: 7.0">
 
             <button type="submit" class="btn"><i class="fas fa-save"></i> Guardar Registro</button>
-            <a href="index.php?route=registros" class="back">← Volver a Registros</a>
+            <a href="index.php?route=registros" class="back">← Volver</a>
         </form>
     </div>
     <script src="assets/js/registro/gt_ca_001.js"></script>

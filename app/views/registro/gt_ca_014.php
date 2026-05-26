@@ -88,7 +88,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <textarea name="pendientes" style="margin-top:10px" placeholder="Tareas para el relevo..."></textarea>
             
             <button type="submit" class="btn"><i class="fas fa-save"></i> Registrar Relevo</button>
-            <a href="index.php?route=registros" class="back">← Volver a Registros</a>
+            <a href="index.php?route=registros" class="back">← Volver</a>
         </form>
     </div>
 

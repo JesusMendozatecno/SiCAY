@@ -72,7 +72,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <label>Caudal de Salida (Lps):</label>
             <input type="number" step="0.1" name="caudal_salida" required placeholder="0.0">
             <button type="submit" class="btn"><i class="fas fa-save"></i> Guardar Medición</button>
-            <a href="index.php?route=registros" class="back">← Volver a Registros</a>
+            <a href="index.php?route=registros" class="back">← Volver</a>
         </form>
     </div>
     <script src="assets/js/registro/gt_ca_009.js"></script>

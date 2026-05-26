@@ -1,6 +1,6 @@
 :root {
     --primary: #123C69;
-    --secondary: #1F6AE1;
+    --secondary: var(--profile-accent, #1F6AE1);
     --dark: #0B1C2D;
     --light-blue: #D0E1F9; 
     --card-bg: #E3EBF7;
@@ -96,7 +96,7 @@ body {
     border: 1px solid rgba(255,255,255,0.2);
 }
 
-.btn-volver:hover { background: var(--secondary); }
+.btn-volver:hover { background: var(--profile-accent, var(--secondary)); }
 
 .main-content {
     flex: 1;
@@ -115,7 +115,7 @@ body {
     padding: 28px 30px;
     border-radius: 18px;
     box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
-    border-bottom: 5px solid var(--secondary);
+    border-bottom: 5px solid var(--profile-accent, var(--secondary));
     animation: slideIn 0.6s ease-out;
 }
 
@@ -170,7 +170,7 @@ body {
     justify-content: center;
 }
 
-.toggle-pass:hover { color: var(--secondary); background: #eef3fc; }
+.toggle-pass:hover { color: var(--profile-accent, var(--secondary)); background: #eef3fc; }
 
 .pass-requirements {
     list-style: none;
@@ -281,7 +281,7 @@ body {
 }
 
 .form-group input:focus {
-    border-color: var(--secondary);
+    border-color: var(--profile-accent, var(--secondary));
     background: white;
     box-shadow: 0 0 0 3px rgba(31, 106, 225, 0.1);
 }
@@ -291,7 +291,7 @@ body {
     padding: 12px;
     border: none;
     border-radius: 10px;
-    background: var(--primary);
+    background: var(--profile-accent, var(--primary));
     color: white;
     font-weight: 600;
     font-size: 0.9rem;
@@ -301,7 +301,8 @@ body {
 }
 
 .btn-submit:hover {
-    background: var(--secondary);
+    background: var(--profile-accent, var(--secondary));
+    filter: brightness(1.15);
     transform: translateY(-2px);
 }
 
@@ -312,7 +313,7 @@ body {
 }
 
 .login-link a {
-    color: var(--secondary);
+    color: var(--profile-accent, var(--secondary));
     text-decoration: none;
     font-weight: 600;
 }

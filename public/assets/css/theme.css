@@ -1432,6 +1432,16 @@ body.admin-page:not(.dark-mode) .btn-primary {
 body.admin-page:not(.dark-mode) .btn-secondary {
     color: white !important;
 }
+body.admin-page:not(.dark-mode) #btnEditProfile {
+    background: var(--accent) !important;
+    color: #000 !important;
+    border-color: var(--accent) !important;
+}
+body.admin-page:not(.dark-mode) #btnEditProfile:hover {
+    filter: brightness(1.1) !important;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2) !important;
+}
 body.admin-page:not(.dark-mode) .btn-outline-danger:hover {
     color: white !important;
 }

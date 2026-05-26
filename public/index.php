@@ -78,6 +78,15 @@ if (isset($routes[$route])) {
 
 $html = ob_get_clean();
 
+// Auto-log page views for authenticated users
+if (isset($_SESSION['id_usuario'])) {
+    $skip_routes = ['index', 'login', 'registro', 'olvide_pass', 'forgot_password', 'reset_password', 'enviar_reset', 'salir', 'iniciar', 'registrar'];
+    if (!in_array($route, $skip_routes)) {
+        list($accion, $modulo) = route_label($route);
+        log_activity($_SESSION['id_usuario'], $accion, null, 'view', $modulo);
+    }
+}
+
 $v = '?v=' . date('YmdHi');
 
 $viewport = '<meta name="viewport" content="width=device-width, initial-scale=1.0">';
@@ -85,13 +94,14 @@ $favicon = "\n" . '    <link rel="icon" href="assets/img/EUhOGzfWAAAHZC4-removeb
 $favicon .= "\n" . '    <link rel="shortcut icon" href="assets/img/EUhOGzfWAAAHZC4-removebg-preview.png" type="image/png">';
 $favicon .= "\n" . '    <link rel="apple-touch-icon" href="assets/img/EUhOGzfWAAAHZC4-removebg-preview.png">';
 
-$responsive_link = '<link rel="stylesheet" href="assets/css/responsive.css' . $v . '">';
-
-$inject = "\n    " . $favicon . "\n    " . $responsive_link . "\n";
+$inject = "\n    " . $favicon . "\n";
 
 if (strpos($html, 'name="viewport"') === false && strpos($html, "name='viewport'") === false) {
-    $inject = "\n    " . $viewport . "\n    " . $responsive_link . "\n";
+    $inject .= "\n    " . $viewport . "\n";
 }
+
+$responsive_link = '<link rel="stylesheet" href="assets/css/responsive.css' . $v . '">';
+$inject .= "\n    " . $responsive_link . "\n";
 
 $html = str_replace('</head>', $inject . '</head>', $html);
 
@@ -101,6 +111,7 @@ $html = str_replace('</head>', "\n    " . $loading_link . "\n" . '</head>', $htm
 // Theme and accent color injection
 $theme_class = '';
 $user_tema = 'claro';
+$accent_color = '#123C69';
 if (isset($_SESSION['usuario'])) {
     $r = $con->query("SELECT tema, accent_color FROM usuario WHERE id = " . intval($_SESSION['id_usuario']));
     if ($r && $f = $r->fetch_assoc()) {
@@ -110,9 +121,9 @@ if (isset($_SESSION['usuario'])) {
             $theme_class = ' dark-mode';
         }
     }
-    $accent_style = '<style>:root { --profile-accent: ' . $accent_color . '; }</style>';
-    $html = str_replace('</head>', "\n" . $accent_style . "\n" . '</head>', $html);
 }
+$accent_style = '<style>:root { --profile-accent: ' . $accent_color . '; }</style>';
+$html = str_replace('</head>', "\n" . $accent_style . "\n" . '</head>', $html);
 $theme_link = "\n" . '    <link rel="stylesheet" href="assets/css/theme.css' . $v . '">';
 $html = str_replace('</head>', $theme_link . "\n" . '</head>', $html);
 

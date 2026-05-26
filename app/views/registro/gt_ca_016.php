@@ -98,7 +98,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <input type="text" name="responsable" placeholder="Nombre del trabajador" required>
 
             <button type="submit" class="btn"><i class="fas fa-save"></i> Registrar Movimiento</button>
-            <a href="index.php?route=registros" class="back">← Volver a Registros</a>
+            <a href="index.php?route=registros" class="back">← Volver</a>
         </form>
     </div>
 

@@ -1,9 +1,6 @@
 <?php
 verificar_sesion();
 $rol = $_SESSION['rol'] ?? 'Operador';
-// Track page view with full URL
-$current_url = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
-log_activity($_SESSION['id_usuario'], 'Consultó el historial del sistema', "URL: $current_url", 'view', 'Historial');
 ?>
 <!DOCTYPE html>
 <html lang="es">

@@ -83,7 +83,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <input type="text" name="novedad" placeholder="Opcional...">
             
             <button type="submit" class="btn"><i class="fas fa-save"></i> Guardar Reporte</button>
-            <a href="index.php?route=registros" class="back">← Volver a Registros</a>
+            <a href="index.php?route=registros" class="back">← Volver</a>
         </form>
     </div>
     <script src="assets/js/registro/gt_ca_012.js"></script>

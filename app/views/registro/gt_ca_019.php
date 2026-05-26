@@ -102,7 +102,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <textarea name="observacion" placeholder="Notas sobre la entrega o estado..."></textarea>
 
             <button type="submit" class="btn"><i class="fas fa-save"></i> Guardar Registro EPP</button>
-            <a href="index.php?route=registros" class="back">← Volver a Registros</a>
+            <a href="index.php?route=registros" class="back">← Volver</a>
         </form>
     </div>
 

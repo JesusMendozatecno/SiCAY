@@ -64,7 +64,7 @@ if (!$error_token && $_SERVER['REQUEST_METHOD'] === 'POST') {
     <div class="nav-container">
         <div class="nav-brand">
             <img src="assets/img/EUhOGzfWAAAHZC4-removebg-preview.png" alt="Logo" class="logo-img">
-            <span class="brand-text">Hidroven Yaracuy</span>
+            <span class="brand-text">Aguas de Yaracuy</span>
         </div>
         <a href="index.php?route=login" class="btn-volver"><i class="fas fa-arrow-left"></i> Volver</a>
     </div>
@@ -131,7 +131,7 @@ if (!$error_token && $_SERVER['REQUEST_METHOD'] === 'POST') {
 </main>
 
 <footer>
-    &copy; 2026 Hidroven Yaracuy - Gestión Integral de Calidad
+    &copy; 2026 Aguas de Yaracuy - Gestión Integral de Calidad
 </footer>
 
 <script>

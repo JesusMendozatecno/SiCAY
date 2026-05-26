@@ -134,7 +134,7 @@ $totalHistorial = ($resHist) ? mysqli_fetch_assoc($resHist)['total'] : 0;
     </div>
 
     <footer>
-        &copy; <?php echo date("Y"); ?> Hidroven Yaracuy
+        &copy; <?php echo date("Y"); ?> Aguas de Yaracuy
     </footer>
 </main>
 

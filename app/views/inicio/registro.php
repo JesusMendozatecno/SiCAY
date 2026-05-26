@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registro - Hidroven Yaracuy</title>
+    <title>Registro - Aguas de Yaracuy</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="assets/fontawesome/css/all.min.css">
     
@@ -17,7 +17,7 @@
     <div class="nav-container">
         <div class="nav-brand">
             <img src="assets/img/EUhOGzfWAAAHZC4-removebg-preview.png" alt="Logo" class="logo-img">
-            <span class="brand-text">Hidroven Yaracuy</span>
+            <span class="brand-text">Aguas de Yaracuy</span>
         </div>
         <a href="index.php?route=index" class="btn-volver"><i class="fas fa-arrow-left"></i> Volver</a>
     </div>
@@ -79,7 +79,7 @@
 </main>
 
 <footer>
-    &copy; 2026 Hidroven Yaracuy - Gestión Integral de Calidad
+    &copy; 2026 Aguas de Yaracuy - Gestión Integral de Calidad
 </footer>
 
 <script>

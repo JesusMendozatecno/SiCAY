@@ -33,7 +33,7 @@
     <div id="bg-slide" class="slide-overlay"></div>
     <div class="hero-content">
         <div class="hero-card">
-            <h1>Sistema Integral del Departamento de Calidad de Agua</h1>
+            <h1>Sistema Integral Web del Departamento de Calidad de Agua</h1>
             <p>Monitoreo avanzado y control de potabilización para el estado Yaracuy.</p>
             <a href="index.php?route=login" class="nav-btn register" style="padding: 15px 35px; font-size: 1.1rem; display: inline-block; text-decoration: none;">Empezar ahora</a>
         </div>

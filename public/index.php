@@ -5,6 +5,7 @@ define('BASE_URL', 'index.php');
 
 include BASE_PATH . 'config/database.php';
 include BASE_PATH . 'app/helpers.php';
+require BASE_PATH . 'vendor/autoload.php';
 
 session_init();
 

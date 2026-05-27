@@ -549,7 +549,6 @@ body.dark-mode .act-date,
 body.dark-mode .act-details,
 body.dark-mode .profile-nav-section-label,
 body.dark-mode .stat-card-mini p,
-body.dark-mode .notif-item-msg,
 body.dark-mode .notif-item-date,
 body.dark-mode .notif-empty,
 body.dark-mode .soporte-card p,
@@ -561,6 +560,9 @@ body.dark-mode label,
 body.dark-mode .action-btn,
 body.dark-mode .perfil-info h3 {
     color: var(--text-muted) !important;
+}
+body.dark-mode .notif-item-msg {
+    color: var(--text-light) !important;
 }
 
 /* Dark mode profile specific */

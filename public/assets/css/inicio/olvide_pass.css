@@ -1,6 +1,6 @@
 :root {
     --primary: #123C69;
-    --secondary: #1F6AE1;
+    --secondary: var(--profile-accent, #1F6AE1);
     --dark: #0B1C2D;
     --glass: rgba(18, 60, 105, 0.95);
 }
@@ -60,7 +60,7 @@ body {
     border: 1px solid rgba(255,255,255,0.2);
 }
 
-.btn-volver:hover { background: var(--secondary); }
+.btn-volver:hover { background: var(--profile-accent, var(--secondary)); }
 
 .main-content {
     flex: 1;
@@ -80,13 +80,13 @@ body {
     padding: 24px 28px;
     border-radius: 18px;
     box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
-    border-bottom: 5px solid var(--secondary);
+    border-bottom: 5px solid var(--profile-accent, var(--secondary));
     text-align: center;
 }
 
 .icon-header {
     font-size: 2rem;
-    color: var(--secondary);
+    color: var(--profile-accent, var(--secondary));
     margin-bottom: 6px;
 }
 
@@ -137,7 +137,7 @@ body {
     border-radius: 6px;
 }
 
-.debug-link a { color: var(--secondary); }
+.debug-link a { color: var(--profile-accent, var(--secondary)); }
 
 @keyframes fadeIn {
     from { opacity: 0; transform: translateY(-5px); }
@@ -169,7 +169,7 @@ body {
 }
 
 .form-group input:focus {
-    border-color: var(--secondary);
+    border-color: var(--profile-accent, var(--secondary));
     background: white;
     box-shadow: 0 0 0 3px rgba(31, 106, 225, 0.1);
 }
@@ -179,7 +179,7 @@ body {
     padding: 10px;
     border: none;
     border-radius: 8px;
-    background: var(--primary);
+    background: var(--profile-accent, var(--primary));
     color: white;
     font-weight: 600;
     font-size: 0.85rem;
@@ -189,7 +189,8 @@ body {
 }
 
 .btn-submit:hover {
-    background: var(--secondary);
+    background: var(--profile-accent, var(--secondary));
+    filter: brightness(1.15);
     transform: translateY(-2px);
 }
 
@@ -199,7 +200,7 @@ body {
 }
 
 .back-to-login a {
-    color: var(--secondary);
+    color: var(--profile-accent, var(--secondary));
     text-decoration: none;
     font-weight: 600;
 }
@@ -233,7 +234,7 @@ body {
     justify-content: center;
 }
 
-.toggle-pass:hover { color: var(--secondary); background: #eef3fc; }
+.toggle-pass:hover { color: var(--profile-accent, var(--secondary)); background: #eef3fc; }
 
 .pass-requirements {
     list-style: none;

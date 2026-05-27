@@ -16,7 +16,7 @@
     <div class="nav-container">
         <div class="nav-brand">
             <img src="assets/img/EUhOGzfWAAAHZC4-removebg-preview.png" alt="Logo" class="logo-img">
-            <span class="brand-text">Aguas decbin Yaracuy</span>
+            <span class="brand-text">Aguas de Yaracuy</span>
         </div>
         <a href="index.php?route=index" class="btn-volver"><i class="fas fa-arrow-left"></i> Volver</a>
     </div>

@@ -20,6 +20,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 title: 'Cuenta Bloqueada',
                 text: 'Demasiados intentos fallidos. Espera 15 minutos antes de intentar de nuevo.',
                 icon: 'warning',
+                background: '#ffffff',
+                color: '#000000',
+                backdrop: 'rgba(255,255,255,0.15)',
                 confirmButtonColor: '#e74c3c',
                 confirmButtonText: 'Entendido'
             }).then(() => { window.location.href = 'index.php?route=login'; });
@@ -91,11 +94,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     text: 'Iniciando sesión en SICAY...',
                     icon: 'success',
                     background: '#ffffff',
-                    color: '#123C69',
+                    color: '#000000',
+                    backdrop: 'rgba(255,255,255,0.15)',
                     showConfirmButton: false,
                     timer: 2000,
-                    timerProgressBar: true,
-                    didOpen: () => { Swal.showLoading() }
+                    timerProgressBar: true
                 }).then(() => {
                     window.location.href = 'index.php?route=dashboard';
                 });
@@ -107,7 +110,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     title: 'Error de Seguridad',
                     text: 'La contraseña ingresada es incorrecta.',
                     icon: 'error',
-                    confirmButtonColor: '#1F6AE1',
+                    background: '#ffffff',
+                    color: '#000000',
+                    backdrop: 'rgba(255,255,255,0.15)',
+                    confirmButtonColor: '#2ecc71',
                     confirmButtonText: 'Reintentar'
                 }).then(() => {
                     window.location.href = 'index.php?route=login';
@@ -121,7 +127,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 title: 'Usuario no encontrado',
                 text: 'El nombre de usuario no está registrado en el sistema.',
                 icon: 'warning',
-                confirmButtonColor: '#123C69',
+                background: '#ffffff',
+                color: '#000000',
+                backdrop: 'rgba(255,255,255,0.15)',
+                confirmButtonColor: '#2ecc71',
                 confirmButtonText: 'Regresar'
             }).then(() => {
                 window.location.href = 'index.php?route=login';
@@ -141,7 +150,10 @@ function mostrar_error($msg) {
             title: 'Error',
             text: " . json_encode($msg) . ",
             icon: 'error',
-            confirmButtonColor: '#1F6AE1',
+            background: '#ffffff',
+            color: '#000000',
+            backdrop: 'rgba(255,255,255,0.15)',
+            confirmButtonColor: '#2ecc71',
             confirmButtonText: 'Regresar'
         }).then(() => { window.location.href = 'index.php?route=login'; });
     </script></body></html>";

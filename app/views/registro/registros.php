@@ -90,6 +90,14 @@ verificar_sesion();
             </div>
         </a>
 
+        <a href="index.php?route=gestion_parametros" class="card-planilla" style="border-left-color: #fdcb6e;">
+            <div class="icon-box" style="color: #fdcb6e;"><i class="fas fa-vial"></i></div>
+            <div class="info-box">
+                <h3>Parámetros</h3>
+                <p>Configuración de estándares de calidad</p>
+            </div>
+        </a>
+
     </div>
 </div>
 

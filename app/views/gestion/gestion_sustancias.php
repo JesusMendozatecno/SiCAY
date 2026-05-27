@@ -70,7 +70,7 @@ $resultado = mysqli_query($con, "SELECT * FROM sustancia_quimica ORDER BY nombre
 
 <div class="container">
     <div class="page-header">
-        <a href="index.php?route=tablas_maestras" class="btn-back"><i class="fas fa-chevron-left"></i> Volver</a>
+        <a href="index.php?route=dashboard" class="btn-back"><i class="fas fa-chevron-left"></i> Volver</a>
         <h1 class="page-title"><i class="fa fa-flask"></i> Gestión de Sustancias Químicas</h1>
     </div>
 

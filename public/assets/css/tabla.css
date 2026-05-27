@@ -1,0 +1,377 @@
+:root {
+    --tbl-bg: rgba(255,255,255,0.05);
+    --tbl-border: rgba(255,255,255,0.1);
+    --tbl-accent: #00cec9;
+    --tbl-hover: rgba(255,255,255,0.08);
+    --tbl-header: rgba(0,206,201,0.15);
+    --tbl-text: #e0e0e0;
+    --tbl-text-muted: rgba(255,255,255,0.6);
+}
+
+/* ── Toolbar (buscador + filtro + botón) ── */
+.tabla-toolbar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 18px;
+}
+.tabla-toolbar-left {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    align-items: center;
+}
+.tabla-buscar {
+    position: relative;
+    min-width: 200px;
+    flex: 1;
+}
+.tabla-buscar i {
+    position: absolute;
+    left: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--tbl-text-muted);
+    font-size: 14px;
+    pointer-events: none;
+}
+.tabla-buscar input {
+    width: 100%;
+    padding: 10px 14px 10px 38px;
+    background: rgba(255,255,255,0.08);
+    border: 1px solid var(--tbl-border);
+    border-radius: 10px;
+    color: #fff;
+    font-size: 14px;
+    outline: none;
+    transition: border 0.3s;
+}
+.tabla-buscar input:focus {
+    border-color: var(--tbl-accent);
+    background: rgba(255,255,255,0.12);
+}
+.tabla-buscar input::placeholder {
+    color: var(--tbl-text-muted);
+}
+.tabla-filtro {
+    padding: 10px 14px;
+    background: rgba(255,255,255,0.08);
+    border: 1px solid var(--tbl-border);
+    border-radius: 10px;
+    color: #fff;
+    font-size: 14px;
+    outline: none;
+    cursor: pointer;
+    min-width: 140px;
+    transition: border 0.3s;
+}
+.tabla-filtro:focus {
+    border-color: var(--tbl-accent);
+}
+.tabla-filtro option {
+    background: #1a2d3e;
+    color: #fff;
+}
+.tabla-btn-agregar {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 22px;
+    background: var(--tbl-accent);
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s;
+    white-space: nowrap;
+}
+.tabla-btn-agregar:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 20px rgba(0,206,201,0.35);
+}
+
+/* ── Contenedor de tabla ── */
+.tabla-wrapper {
+    overflow-x: auto;
+    border-radius: 14px;
+    border: 1px solid var(--tbl-border);
+    background: var(--tbl-bg);
+}
+
+/* ── Tabla ── */
+.tabla {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+}
+.tabla thead th {
+    background: var(--tbl-header);
+    color: var(--tbl-accent);
+    padding: 14px 16px;
+    text-align: left;
+    font-weight: 600;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    white-space: nowrap;
+    border-bottom: 2px solid rgba(0,206,201,0.2);
+}
+.tabla tbody td {
+    padding: 13px 16px;
+    border-bottom: 1px solid var(--tbl-border);
+    color: var(--tbl-text);
+    vertical-align: middle;
+}
+.tabla tbody tr:last-child td {
+    border-bottom: none;
+}
+.tabla tbody tr:hover td {
+    background: var(--tbl-hover);
+}
+
+/* ── Acciones en tabla ── */
+.tabla-acciones {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+}
+.tabla-acciones .btn-editar {
+    color: #f1c40f;
+    cursor: pointer;
+    font-size: 17px;
+    border: none;
+    background: none;
+    transition: 0.3s;
+    padding: 4px;
+}
+.tabla-acciones .btn-editar:hover {
+    transform: scale(1.25);
+    color: #f9e154;
+}
+.tabla-acciones .btn-eliminar {
+    color: #ff6b6b;
+    cursor: pointer;
+    font-size: 17px;
+    border: none;
+    background: none;
+    transition: 0.3s;
+    padding: 4px;
+}
+.tabla-acciones .btn-eliminar:hover {
+    transform: scale(1.25);
+    color: #ff8e8e;
+}
+
+/* ── Paginación ── */
+.tabla-paginar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 6px;
+    padding: 18px 0 6px;
+    flex-wrap: wrap;
+}
+.pagina-btn {
+    min-width: 38px;
+    height: 38px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 10px;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid var(--tbl-border);
+    border-radius: 8px;
+    color: var(--tbl-text);
+    font-size: 14px;
+    cursor: pointer;
+    transition: 0.3s;
+    user-select: none;
+}
+.pagina-btn:hover {
+    background: rgba(0,206,201,0.15);
+    border-color: var(--tbl-accent);
+}
+.pagina-btn.activo {
+    background: var(--tbl-accent);
+    border-color: var(--tbl-accent);
+    color: #fff;
+    font-weight: 700;
+    box-shadow: 0 2px 10px rgba(0,206,201,0.3);
+}
+.pagina-btn:disabled {
+    opacity: 0.3;
+    cursor: default;
+    pointer-events: none;
+}
+.tabla-info {
+    text-align: center;
+    color: var(--tbl-text-muted);
+    font-size: 13px;
+    padding-top: 4px;
+}
+
+/* ── Modal ── */
+.modal-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.6);
+    backdrop-filter: blur(4px);
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+    animation: modalFadeIn 0.25s ease;
+}
+.modal-overlay.mostrar {
+    display: flex;
+}
+@keyframes modalFadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+.modal-contenido {
+    background: #1a2d3e;
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 20px;
+    padding: 0;
+    width: 90%;
+    max-width: 520px;
+    box-shadow: 0 25px 60px rgba(0,0,0,0.5);
+    animation: modalSlideIn 0.3s ease;
+    max-height: 90vh;
+    overflow-y: auto;
+}
+@keyframes modalSlideIn {
+    from { transform: translateY(-30px) scale(0.96); opacity: 0; }
+    to { transform: translateY(0) scale(1); opacity: 1; }
+}
+.modal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 24px 0;
+}
+.modal-header h3 {
+    color: #fff;
+    font-size: 18px;
+    font-weight: 600;
+    margin: 0;
+}
+.modal-header h3 i {
+    color: var(--tbl-accent);
+    margin-right: 10px;
+}
+.modal-cerrar {
+    background: none;
+    border: none;
+    color: var(--tbl-text-muted);
+    font-size: 22px;
+    cursor: pointer;
+    transition: 0.3s;
+    padding: 4px 8px;
+    border-radius: 8px;
+}
+.modal-cerrar:hover {
+    color: #fff;
+    background: rgba(255,255,255,0.1);
+}
+.modal-body {
+    padding: 20px 24px;
+}
+.modal-footer {
+    display: flex;
+    gap: 12px;
+    justify-content: flex-end;
+    padding: 0 24px 20px;
+}
+.modal-footer .btn-guardar {
+    padding: 11px 28px;
+    background: var(--tbl-accent);
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s;
+}
+.modal-footer .btn-guardar:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 20px rgba(0,206,201,0.35);
+}
+.modal-footer .btn-cancelar-modal {
+    padding: 11px 22px;
+    background: rgba(255,255,255,0.08);
+    color: var(--tbl-text);
+    border: 1px solid var(--tbl-border);
+    border-radius: 10px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+.modal-footer .btn-cancelar-modal:hover {
+    background: rgba(255,255,255,0.15);
+}
+
+/* ── Campos de formulario en modal ── */
+.modal-campo {
+    margin-bottom: 18px;
+}
+.modal-campo:last-child {
+    margin-bottom: 0;
+}
+.modal-campo label {
+    display: block;
+    font-size: 13px;
+    color: var(--tbl-text-muted);
+    margin-bottom: 6px;
+    font-weight: 500;
+}
+.modal-campo input,
+.modal-campo select,
+.modal-campo textarea {
+    width: 100%;
+    padding: 11px 14px;
+    background: rgba(255,255,255,0.07);
+    border: 1px solid var(--tbl-border);
+    border-radius: 10px;
+    color: #fff;
+    font-size: 14px;
+    outline: none;
+    transition: border 0.3s;
+}
+.modal-campo input:focus,
+.modal-campo select:focus {
+    border-color: var(--tbl-accent);
+    background: rgba(255,255,255,0.1);
+}
+.modal-campo input::placeholder {
+    color: var(--tbl-text-muted);
+}
+
+/* ── Responsive ── */
+@media (max-width: 600px) {
+    .tabla-toolbar {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    .tabla-toolbar-left {
+        flex-direction: column;
+    }
+    .tabla-buscar {
+        min-width: 0;
+    }
+    .tabla-filtro {
+        min-width: 0;
+    }
+    .tabla-btn-agregar {
+        justify-content: center;
+    }
+    .modal-contenido {
+        width: 95%;
+    }
+}

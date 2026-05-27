@@ -25,9 +25,9 @@ $avatarUrl = $userAvatar ? 'assets/img/avatars/' . hsc($userAvatar) : null;
     <div class="header-inner">
         <div class="header-left">
             <div class="nav-brand">
-                <img src="assets/img/EUhOGzfWAAAHZC4-removebg-preview.png" alt="Hidroven Yaracuy" class="header-logo">
+                <img src="assets/img/EUhOGzfWAAAHZC4-removebg-preview.png" alt="Aguas de Yaracuy" class="header-logo">
                 <div class="brand-text">
-                    <span class="main-name">Hidroven Yaracuy</span>
+                    <span class="main-name">Aguas de Yaracuy</span>
                     <span class="sub-name">Departamento de Calidad</span>
                 </div>
             </div>

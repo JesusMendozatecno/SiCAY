@@ -1496,7 +1496,7 @@ body.admin-page:not(.dark-mode) .card-tabla:hover i {
 body.admin-page:not(.dark-mode) .card-planilla:hover .icon-box {
     color: white !important;
 }
-/*hola
+
 /* Fix table-container spacing */
 .table-container {
     margin-top: 20px !important;

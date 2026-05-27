@@ -74,6 +74,18 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
 }
 
+if (isset($_GET['eliminar_mov'])) {
+    $id_mov = intval($_GET['eliminar_mov']);
+    $stmt = $con->prepare("DELETE FROM inventario_movimiento WHERE id = ?");
+    $stmt->bind_param("i", $id_mov);
+    if ($stmt->execute()) {
+        $mensaje = 'mov_eliminado';
+    } else {
+        $mensaje = 'error_eliminar_mov';
+    }
+    $stmt->close();
+}
+
 if (isset($_GET['eliminar'])) {
     $id = intval($_GET['eliminar']);
     $stmt = $con->prepare("DELETE FROM sustancia_quimica WHERE id = ?");
@@ -170,6 +182,10 @@ $total_movimientos = mysqli_num_rows($movimientos);
                     <div class="alerta-error"><i class="fas fa-exclamation-triangle"></i> Ya existe un producto con ese nombre</div>
                 <?php elseif ($mensaje == 'nombre_invalido'): ?>
                     <div class="alerta-error"><i class="fas fa-exclamation-triangle"></i> El nombre solo puede contener letras</div>
+                <?php elseif ($mensaje == 'mov_eliminado'): ?>
+                    <div class="alerta-exito"><i class="fas fa-check-circle"></i> Movimiento eliminado correctamente</div>
+                <?php elseif ($mensaje == 'error_eliminar_mov'): ?>
+                    <div class="alerta-error"><i class="fas fa-exclamation-triangle"></i> Error al eliminar el movimiento</div>
                 <?php elseif ($mensaje == 'error_eliminar'): ?>
                     <div class="alerta-error"><i class="fas fa-exclamation-triangle"></i> No se puede eliminar: el producto tiene movimientos asociados</div>
                 <?php elseif ($mensaje == 'error'): ?>
@@ -241,6 +257,7 @@ $total_movimientos = mysqli_num_rows($movimientos);
                                 <th><i class="fas fa-exchange-alt"></i> Operación</th>
                                 <th><i class="fas fa-weight-hanging"></i> Cantidad</th>
                                 <th><i class="fas fa-hashtag"></i> Referencia / Guía</th>
+                                <th><i class="fas fa-cogs"></i> Acción</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -254,6 +271,11 @@ $total_movimientos = mysqli_num_rows($movimientos);
                                 <td><span class="badge <?php echo $clase; ?>"><?php echo hsc($row['tipo_movimiento']); ?></span></td>
                                 <td><?php echo hsc($row['cantidad']) . ' ' . hsc($row['unidad_medida']); ?></td>
                                 <td><?php echo $row['referencia_guia'] ? hsc($row['referencia_guia']) : '<span class="td-fecha">---</span>'; ?></td>
+                                <td>
+                                    <a href="index.php?route=inventario&eliminar_mov=<?php echo $row['id']; ?>" class="btn-accion btn-eliminar" title="Eliminar movimiento" onclick="return confirm('¿Estás seguro de eliminar este movimiento? Esto no afectará al producto.')">
+                                        <i class="fas fa-trash"></i>
+                                    </a>
+                                </td>
                             </tr>
                             <?php endwhile; ?>
                         </tbody>
@@ -335,5 +357,15 @@ $total_movimientos = mysqli_num_rows($movimientos);
 </div>
 
 <script src="assets/js/inventario/inventario.js"></script>
+<script>
+setTimeout(function(){
+    var alerts = document.querySelectorAll('.alerta-exito, .alerta-error');
+    alerts.forEach(function(el){
+        el.style.transition = 'opacity 0.5s';
+        el.style.opacity = '0';
+        setTimeout(function(){ el.style.display = 'none'; }, 500);
+    });
+}, 3000);
+</script>
 </body>
 </html>

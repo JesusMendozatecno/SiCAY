@@ -17,6 +17,7 @@ return [
     'soporte'               => 'app/views/soporte/soporte.php',
     'ajustes'               => 'app/views/soporte/ajustes.php',
     'respaldo'              => 'app/views/seguridad/respaldo.php',
+    'sistemas'              => 'app/views/gestion/sistemas.php',
     'solicitud_sq'          => 'app/views/registro/solicitud_sq.php',
     'resultados_laboratorio'=> 'app/views/registro/resultados_laboratorio.php',
     'formatos_aplicacion'   => 'app/views/registro/formatos_aplicacion.php',

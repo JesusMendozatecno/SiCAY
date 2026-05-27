@@ -68,7 +68,11 @@ $total_activities = $stats['c']; $stmt2->close();
                     <i class="fas fa-shield-alt"></i> Documentación de Seguridad
                 </a>
                 <?php endif; ?>
-               
+
+                <a href="index.php?route=sistemas" class="profile-nav-item" style="text-decoration:none;display:flex;">
+                    <i class="fas fa-sitemap"></i> Sistemas
+                </a>
+                
                 <div class="profile-nav-divider"></div>
                 <a href="index.php?route=salir" class="profile-nav-item" style="color:#dc2626;text-decoration:none;display:flex;">
                     <i class="fas fa-sign-out-alt"></i> <?php echo __('close_session'); ?>

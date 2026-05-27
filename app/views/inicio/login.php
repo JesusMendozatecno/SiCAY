@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+s<!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
@@ -22,7 +22,7 @@
         <a href="index.php?route=index" class="btn-volver"><i class="fas fa-arrow-left"></i> Volver</a>
     </div>
 </nav>
-// LOGO DE LA EMPRESA
+
 <main class="main-content">
     <div class="login-card">
         <div class="logo-circular">

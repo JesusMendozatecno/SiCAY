@@ -1,4 +1,3 @@
-// ── Bubbles ──
 (function () {
     var c = document.getElementById('bubbles');
     for (var i = 0; i < 15; i++) {
@@ -14,7 +13,6 @@
     }
 })();
 
-// ── Tab switching ──
 var tabLinks = document.querySelectorAll('.tab-link');
 tabLinks.forEach(function (btn) {
     btn.addEventListener('click', function () {
@@ -27,7 +25,6 @@ tabLinks.forEach(function (btn) {
     });
 });
 
-// ── Filtro Almacén ──
 function cambiarFiltroAlmacen() {
     var val = document.getElementById('filtroAlmacen').value;
     document.getElementById('grupoLetras').style.display = val === 'letras' ? 'flex' : 'none';
@@ -37,9 +34,6 @@ function cambiarFiltroAlmacen() {
         aplicarFiltrosAlmacen();
     }
 }
-
-// Store original table rows order on first call
-var filasOrdenOriginal = null;
 
 function getFilas() {
     var tbody = document.getElementById('tbodyAlmacen');
@@ -52,7 +46,6 @@ function aplicarFiltrosAlmacen() {
     var filas = Array.from(tbody.querySelectorAll('tr'));
 
     if (filtro === 'todo') {
-        // Show all in alphabetical order
         filas.sort(function (a, b) {
             var na = a.getAttribute('data-nombre') || '';
             var nb = b.getAttribute('data-nombre') || '';
@@ -61,7 +54,6 @@ function aplicarFiltrosAlmacen() {
         filas.forEach(function (f) { f.style.display = ''; });
     } else if (filtro === 'letras') {
         var query = document.getElementById('busquedaLetras').value.toLowerCase();
-        // Show matching, keep alphabetical
         filas.sort(function (a, b) {
             var na = a.getAttribute('data-nombre') || '';
             var nb = b.getAttribute('data-nombre') || '';
@@ -81,11 +73,9 @@ function aplicarFiltrosAlmacen() {
         filas.forEach(function (f) { f.style.display = ''; });
     }
 
-    // Re-append in order
     filas.forEach(function (f) { tbody.appendChild(f); });
 }
 
-// ── Filtro Movimientos ──
 function filtrarMovimientos() {
     var input = document.getElementById('busquedaMov');
     var filter = input.value.toLowerCase();
@@ -95,3 +85,24 @@ function filtrarMovimientos() {
         tr[i].style.display = tr[i].textContent.toLowerCase().indexOf(filter) > -1 ? '' : 'none';
     }
 }
+
+function abrirModalAgregar() {
+    document.getElementById('modalAgregar').style.display = 'flex';
+}
+
+function abrirModalEditar(id, nombre, maxActual) {
+    document.getElementById('editId').value = id;
+    document.getElementById('editNombre').textContent = nombre;
+    document.getElementById('editMaxActual').textContent = maxActual;
+    document.getElementById('modalEditar').style.display = 'flex';
+}
+
+function cerrarModal(id) {
+    document.getElementById(id).style.display = 'none';
+}
+
+window.addEventListener('click', function (e) {
+    if (e.target.classList.contains('modal-overlay')) {
+        e.target.style.display = 'none';
+    }
+});

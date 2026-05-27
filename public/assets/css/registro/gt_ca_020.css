@@ -1,0 +1,69 @@
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+    background: linear-gradient(rgba(11, 28, 45, 0.9), rgba(11, 28, 45, 0.9)), url('../../img/Aguas_de_Yaracuy_fachada.png');
+    background-size: cover; background-attachment: fixed;
+    min-height: 100vh; display: flex; align-items: flex-start; justify-content: center;
+    font-family: 'Poppins', sans-serif; padding: 30px 20px;
+}
+.contenedor {
+    background: rgba(255,255,255,0.08); backdrop-filter: blur(15px);
+    border-radius: 20px; border: 1px solid rgba(255,255,255,0.12);
+    padding: 25px; width: 100%; max-width: 1100px; color: white;
+}
+.header-bar { display: flex; align-items: center; justify-content: space-between; margin-bottom: 18px; padding-bottom: 12px; border-bottom: 1px solid rgba(255,255,255,0.06); }
+.header-bar h2 { font-size: 1.05rem; font-weight: 600; }
+.btn-agregar {
+    background: #00cec9; color: white; border: none; padding: 9px 18px; border-radius: 10px;
+    cursor: pointer; font-weight: 600; font-size: 0.82rem; font-family: 'Poppins', sans-serif;
+    display: inline-flex; align-items: center; gap: 7px; transition: 0.2s; text-decoration: none;
+}
+.btn-agregar:hover { background: #00b3b0; transform: scale(1.02); }
+.table-wrapper { overflow-x: auto; margin: 0 -5px; padding: 0 5px; }
+table { width: 100%; border-collapse: collapse; font-size: 0.78rem; }
+th { background: rgba(0,0,0,0.25); color: #00cec9; padding: 9px 10px; text-align: left; text-transform: uppercase; font-size: 0.6rem; letter-spacing: 0.5px; border-bottom: 2px solid rgba(255,255,255,0.06); white-space: nowrap; }
+td { padding: 9px 10px; border-bottom: 1px solid rgba(255,255,255,0.04); color: rgba(255,255,255,0.8); }
+td strong { color: white; }
+td.num { color: rgba(255,255,255,0.4); }
+.badge-estado { display: inline-block; padding: 2px 10px; border-radius: 20px; font-size: 0.6rem; font-weight: 600; }
+.badge-activo { background: rgba(46,204,113,0.15); color: #2ecc71; }
+.badge-inactivo { background: rgba(255,118,117,0.15); color: #ff7675; }
+.acciones { display: flex; gap: 5px; }
+.acciones button, .acciones a { width: 28px; height: 28px; border-radius: 6px; border: none; cursor: pointer; font-size: 0.7rem; display: inline-flex; align-items: center; justify-content: center; text-decoration: none; transition: 0.2s; }
+.btn-edit { background: rgba(0,206,201,0.15); color: #00cec9; }
+.btn-edit:hover { background: rgba(0,206,201,0.3); }
+.btn-del { background: rgba(255,118,117,0.15); color: #ff7675; }
+.btn-del:hover { background: rgba(255,118,117,0.3); }
+.alerta { padding: 8px 12px; border-radius: 10px; margin-bottom: 15px; font-size: 0.8rem; animation: fadeIn 0.3s ease; }
+.alerta-exito { background: rgba(46,204,113,0.12); border: 1px solid rgba(46,204,113,0.2); color: #2ecc71; }
+.alerta-error { background: rgba(255,118,117,0.12); border: 1px solid rgba(255,118,117,0.2); color: #ff7675; }
+.alerta-duplicado { background: rgba(241,196,15,0.12); border: 1px solid rgba(241,196,15,0.2); color: #f1c40f; }
+.alerta-info { background: rgba(52,152,219,0.12); border: 1px solid rgba(52,152,219,0.2); color: #3498db; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(-8px); } to { opacity: 1; transform: translateY(0); } }
+.modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.6); backdrop-filter: blur(4px); z-index: 1000; align-items: center; justify-content: center; }
+.modal-overlay.mostrar { display: flex; }
+.modal { background: rgba(20,40,60,0.97); backdrop-filter: blur(15px); border: 1px solid rgba(255,255,255,0.12); border-radius: 20px; padding: 28px; width: 90%; max-width: 520px; color: white; max-height: 90vh; overflow-y: auto; }
+.modal h3 { font-size: 1rem; margin-bottom: 18px; }
+.modal .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px 16px; }
+.modal label { font-size: 0.72rem; opacity: 0.8; display: block; margin-bottom: 2px; }
+.modal select, .modal input { width: 100%; padding: 8px 10px; background: rgba(255,255,255,0.9); border: none; border-radius: 10px; color: #333; outline: none; font-size: 0.82rem; font-family: 'Poppins', sans-serif; }
+.modal-actions { display: flex; gap: 10px; margin-top: 18px; justify-content: flex-end; }
+.modal-actions .btn { padding: 9px 20px; border-radius: 10px; border: none; cursor: pointer; font-weight: 600; font-size: 0.82rem; font-family: 'Poppins', sans-serif; }
+.modal-actions .btn-primary { background: #00cec9; color: white; }
+.modal-actions .btn-primary:hover { background: #00b3b0; }
+.modal-actions .btn-cancel { background: rgba(255,255,255,0.1); color: rgba(255,255,255,0.7); }
+.modal-actions .btn-cancel:hover { background: rgba(255,255,255,0.2); }
+.bubble { position: fixed; bottom: -80px; background: rgba(255,255,255,0.06); border-radius: 50%; animation: moveUp 10s linear infinite; z-index: -1; }
+@keyframes moveUp { 0% { transform: translateY(0); opacity: 0; } 10% { opacity: 0.3; } 100% { transform: translateY(-110vh); opacity: 0; } }
+.vacio { text-align: center; padding: 30px; color: rgba(255,255,255,0.4); font-size: 0.85rem; }
+
+@media (max-width: 768px) {
+    body { padding: 15px 10px; }
+    .contenedor { padding: 18px; }
+    .header-bar { flex-direction: column; gap: 10px; align-items: stretch; }
+    .btn-agregar { justify-content: center; }
+}
+@media (max-width: 400px) {
+    .contenedor { padding: 12px 8px; }
+    .modal { padding: 20px; }
+    .modal .form-grid { grid-template-columns: 1fr; }
+}

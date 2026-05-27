@@ -45,6 +45,7 @@ return [
     'gt_ca_017' => 'app/views/registro/gt_ca_017.php',
     'gt_ca_018' => 'app/views/registro/gt_ca_018.php',
     'gt_ca_019' => 'app/views/registro/gt_ca_019.php',
+    'instalaciones' => 'app/views/registro/gt_ca_020.php',
 
     'mantenimiento'         => 'app/views/inicio/mantenimiento.php',
 

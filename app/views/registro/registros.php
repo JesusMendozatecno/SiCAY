@@ -82,6 +82,14 @@ verificar_sesion();
             </div>
         </a>
 
+        <a href="index.php?route=instalaciones" class="card-planilla" style="border-left-color: #00cec9;">
+            <div class="icon-box" style="color: #00cec9;"><i class="fas fa-industry"></i></div>
+            <div class="info-box">
+                <h3>Instalaciones</h3>
+                <p>Registro de Instalaciones de Agua</p>
+            </div>
+        </a>
+
     </div>
 </div>
 

@@ -280,3 +280,221 @@ body {
 /* Black text on colored badges */
 #tablaAlmacen .badge { color: #000 !important; font-weight: 700; }
 #tablaMovimientos .badge { color: #000 !important; font-weight: 700; }
+
+/* ── Botón Agregar ── */
+.btn-agregar {
+    background: var(--accent);
+    color: #000;
+    border: none;
+    padding: 10px 18px;
+    border-radius: 10px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.25s ease;
+    font-family: inherit;
+}
+.btn-agregar:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 15px rgba(0,206,201,0.3);
+}
+
+/* ── Acciones tabla ── */
+.acciones-container {
+    display: flex;
+    gap: 6px;
+}
+.btn-accion {
+    width: 32px;
+    height: 32px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.85rem;
+    transition: all 0.2s ease;
+    text-decoration: none;
+}
+.btn-editar {
+    background: rgba(0,206,201,0.15);
+    color: var(--accent);
+}
+.btn-editar:hover {
+    background: rgba(0,206,201,0.25);
+    transform: scale(1.1);
+}
+.btn-eliminar {
+    background: rgba(255,118,117,0.15);
+    color: var(--danger);
+}
+.btn-eliminar:hover {
+    background: rgba(255,118,117,0.25);
+    transform: scale(1.1);
+}
+
+/* ── Modal ── */
+.modal-overlay {
+    display: none;
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0,0,0,0.65);
+    backdrop-filter: blur(4px);
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+}
+.modal-contenido {
+    background: #1a2a3a;
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 18px;
+    width: 420px;
+    max-width: 90vw;
+    max-height: 90vh;
+    overflow-y: auto;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+}
+.modal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 18px 22px;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+.modal-header h3 {
+    color: white;
+    font-size: 1rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 0;
+}
+.modal-header h3 i { color: var(--accent); }
+.modal-cerrar {
+    background: transparent;
+    border: none;
+    color: rgba(255,255,255,0.4);
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: 0.2s;
+    line-height: 1;
+}
+.modal-cerrar:hover { color: white; }
+.modal-body {
+    padding: 20px 22px;
+}
+.modal-body label {
+    display: block;
+    color: rgba(255,255,255,0.7);
+    font-size: 0.8rem;
+    margin-bottom: 5px;
+    margin-top: 14px;
+}
+.modal-body label:first-child { margin-top: 0; }
+.modal-body input[type="text"],
+.modal-body input[type="number"],
+.modal-body select {
+    width: 100%;
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.1);
+    color: white;
+    padding: 10px 14px;
+    border-radius: 10px;
+    font-size: 0.85rem;
+    font-family: inherit;
+    outline: none;
+    transition: 0.2s;
+}
+.modal-body select option {
+    background: #1a2a3a;
+    color: white;
+}
+.modal-body input:focus,
+.modal-body select:focus {
+    border-color: var(--accent);
+    background: rgba(255,255,255,0.12);
+}
+.modal-info {
+    color: rgba(255,255,255,0.7);
+    font-size: 0.85rem;
+    margin-bottom: 6px;
+}
+.modal-info strong { color: white; }
+.modal-nota {
+    color: rgba(255,255,255,0.4);
+    font-size: 0.75rem;
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+.modal-nota i { color: var(--accent); }
+.modal-footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    padding: 16px 22px;
+    border-top: 1px solid rgba(255,255,255,0.06);
+}
+.btn-cancelar {
+    background: rgba(255,255,255,0.06);
+    color: rgba(255,255,255,0.6);
+    border: none;
+    padding: 9px 20px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 0.8rem;
+    font-family: inherit;
+    transition: 0.2s;
+}
+.btn-cancelar:hover { background: rgba(255,255,255,0.1); color: white; }
+.btn-guardar {
+    background: var(--accent);
+    color: #000;
+    border: none;
+    padding: 9px 20px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 0.8rem;
+    font-weight: 600;
+    font-family: inherit;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: 0.2s;
+}
+.btn-guardar:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 15px rgba(0,206,201,0.3);
+}
+
+/* ── Alertas ── */
+.alerta-exito {
+    background: rgba(46,204,113,0.12);
+    border: 1px solid rgba(46,204,113,0.2);
+    color: #2ecc71;
+    padding: 12px 16px;
+    border-radius: 12px;
+    margin-bottom: 16px;
+    font-size: 0.82rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.alerta-error {
+    background: rgba(255,118,117,0.12);
+    border: 1px solid rgba(255,118,117,0.2);
+    color: #ff7675;
+    padding: 12px 16px;
+    border-radius: 12px;
+    margin-bottom: 16px;
+    font-size: 0.82rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}

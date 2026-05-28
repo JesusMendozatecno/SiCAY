@@ -318,13 +318,17 @@ function check_login_lockout($username) {
    ============================================= */
 
 function verificar_tiempo_sesion() {
-    $timeout = 1800;
+    $timeout = 70;
     if (isset($_SESSION['last_activity']) && (time() - $_SESSION['last_activity']) > $timeout) {
         $_SESSION = [];
         session_destroy();
         setcookie(session_name(), '', time() - 3600, '/');
         redirigir('login');
     }
+    $_SESSION['last_activity'] = time();
+}
+
+function actualizar_sesion() {
     $_SESSION['last_activity'] = time();
 }
 

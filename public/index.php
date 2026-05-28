@@ -10,7 +10,8 @@ require BASE_PATH . 'vendor/autoload.php';
 session_init();
 
 // Security Headers
-header('X-Frame-Options: DENY');
+header('Content-Security-Policy: frame-ancestors \'self\'');
+header('X-Frame-Options: SAMEORIGIN');
 header('X-Content-Type-Options: nosniff');
 header('X-XSS-Protection: 1; mode=block');
 header('Referrer-Policy: strict-origin-when-cross-origin');
@@ -78,6 +79,12 @@ if (isset($routes[$route])) {
 }
 
 $html = ob_get_clean();
+
+// Embed mode: return raw page content without headers/themes/overlay
+if (isset($_GET['embed'])) {
+    echo $html;
+    exit;
+}
 
 // Auto-log page views for authenticated users
 if (isset($_SESSION['id_usuario'])) {
@@ -160,7 +167,8 @@ $overlay_html = '
     </div>
 </div>';
 
-$body_end = $flash_js . "\n" . '<script src="assets/js/loading.js' . $v . '"></script>' . $header_js_link . "\n" . $overlay_html . "\n";
+$heartbeat_js = isset($_SESSION['usuario']) ? '<script src="assets/js/heartbeat.js' . $v . '"></script>' . "\n" : '';
+$body_end = $flash_js . "\n" . $heartbeat_js . '<script src="assets/js/loading.js' . $v . '"></script>' . $header_js_link . "\n" . $overlay_html . "\n";
 
 $html = str_replace('</body>', $body_end . '</body>', $html);
 

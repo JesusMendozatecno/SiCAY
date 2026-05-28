@@ -75,7 +75,6 @@ sort($unidades);
 
 <div class="container">
     <div class="page-header">
-        <a href="index.php?route=registros" class="btn-back"><i class="fas fa-chevron-left"></i> Volver</a>
         <h1 class="page-title"><i class="fa fa-vial"></i> Gestión de Parámetros</h1>
     </div>
 

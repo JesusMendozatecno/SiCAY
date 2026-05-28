@@ -1,3 +1,4 @@
+<?php if (isset($_SESSION['usuario'])) { redirigir('dashboard'); exit; } ?>
 <!DOCTYPE html>
 <html lang="es">
 <head>

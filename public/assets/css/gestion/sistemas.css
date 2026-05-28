@@ -1,0 +1,243 @@
+/*
+ * sistemas.css — Estilos para la página "Sistema de Archivos" (SICAY)
+ *
+ * Esta hoja de estilos define la apariencia de la página de documentación
+ * técnica del sistema. La página tiene un diseño de dos columnas:
+ *   - Sidebar fijo a la izquierda con botones de navegación
+ *   - Área de contenido a la derecha que muestra paneles con información
+ *
+ * Cada módulo del dashboard tiene su propio panel (tab-panel).
+ * El sidebar usa un degradado oscuro y el contenido usa fondo oscuro
+ * con tarjetas semitransparentes para mantener la línea visual del sistema.
+ */
+
+/* === Reset y base === */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', system-ui, sans-serif;
+    background: #0f1923;
+    color: #e0e0e0;
+    min-height: 100vh;
+    display: flex; /* Layout de dos columnas: sidebar + contenido */
+}
+
+/* === Sidebar === */
+.sys-sidebar {
+    width: 220px;
+    background: rgba(11, 28, 45, 0.92);
+    backdrop-filter: blur(12px);
+    border-right: 1px solid rgba(255, 255, 255, 0.06);
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+    height: 100vh;        /* Ocupa todo el alto de la ventana */
+    position: sticky;     /* Se mantiene fijo al hacer scroll */
+    top: 0;
+}
+
+/* Cabecera del sidebar: título "Sistemas" y botón Volver */
+.sys-sidebar-header {
+    padding: 20px 16px 14px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.sys-sidebar-header h2 {
+    font-size: 1rem;
+    color: #00cec9;       /* Color acento del sistema */
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.sys-sidebar-header .back {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: rgba(255, 255, 255, 0.5);
+    text-decoration: none;
+    font-size: 0.8rem;
+    margin-top: 8px;
+    transition: color 0.2s;
+}
+
+.sys-sidebar-header .back:hover {
+    color: white;
+}
+
+/* Navegación del sidebar: lista de botones verticales */
+.sys-nav {
+    flex: 1;
+    padding: 10px 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    overflow-y: auto;     /* Scroll si hay muchos botones */
+}
+
+/* Cada botón del menú lateral */
+.sys-nav-btn {
+    background: transparent;
+    border: none;
+    color: rgba(255, 255, 255, 0.55);
+    padding: 10px 12px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 0.8rem;
+    font-family: inherit;
+    text-align: left;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: all 0.2s ease;
+}
+
+/* Icono dentro del botón */
+.sys-nav-btn i {
+    width: 18px;
+    text-align: center;
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.3);
+    transition: color 0.2s;
+}
+
+/* Hover: ilumina el botón y su icono */
+.sys-nav-btn:hover {
+    background: rgba(255, 255, 255, 0.06);
+    color: white;
+}
+
+.sys-nav-btn:hover i {
+    color: #00cec9;
+}
+
+/* Botón activo: resaltado con color acento */
+.sys-nav-btn.active {
+    background: rgba(0, 206, 201, 0.12);
+    color: #00cec9;
+    font-weight: 500;
+}
+
+.sys-nav-btn.active i {
+    color: #00cec9;
+}
+
+/* Divisor visual entre grupos de botones */
+.sys-nav-divider {
+    border: none;
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+    margin: 6px 0;
+}
+
+/* === Área de contenido === */
+.sys-content {
+    flex: 1;              /* Ocupa el espacio restante después del sidebar */
+    padding: 30px 35px;
+    min-width: 0;         /* Previene desbordamiento en flexbox */
+    overflow-y: auto;
+    max-height: 100vh;
+}
+
+/* Título principal de la página */
+.sys-content h1 {
+    color: #00cec9;
+    font-size: 1.5rem;
+    margin-bottom: 4px;
+}
+
+/* Subtítulo debajo del título */
+.sys-content .subtitle {
+    color: rgba(255, 255, 255, 0.5);
+    margin-bottom: 28px;
+    font-size: 0.85rem;
+}
+
+/* === Paneles de pestañas === */
+.tab-panel {
+    display: none;        /* Ocultos por defecto */
+}
+
+.tab-panel.active {
+    display: block;       /* Solo el panel activo se muestra */
+}
+
+/* === Tarjetas de módulo === */
+.module {
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 14px;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.module:last-child {
+    margin-bottom: 0;
+}
+
+/* Título del módulo con badge */
+.module h2 {
+    color: white;
+    font-size: 1.1rem;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* Badge pequeño (etiqueta de categoría) */
+.module h2 .badge {
+    font-size: 0.6rem;
+    background: #00cec9;
+    color: #000;
+    padding: 2px 10px;
+    border-radius: 20px;
+    font-weight: 700;
+}
+
+/* Párrafos descriptivos */
+.module p {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.85rem;
+    line-height: 1.6;
+    margin-bottom: 10px;
+}
+
+/* Lista de archivos */
+.files {
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+    padding: 12px 16px;
+    margin: 8px 0;
+}
+
+.files li {
+    list-style: none;
+    padding: 4px 0;
+    font-size: 0.82rem;
+    color: rgba(255, 255, 255, 0.75);
+}
+
+/* Código (ruta de archivo) dentro de los items */
+.files li code {
+    color: #00cec9;
+    background: rgba(0, 206, 201, 0.1);
+    padding: 1px 6px;
+    border-radius: 4px;
+    font-size: 0.78rem;
+}
+
+/* Flecha separadora entre archivo y descripción */
+.files li .arrow {
+    color: rgba(255, 255, 255, 0.3);
+    margin: 0 6px;
+}
+
+/* Línea de información de base de datos (color amarillo) */
+.db {
+    color: #fdcb6e;
+    font-size: 0.78rem;
+}

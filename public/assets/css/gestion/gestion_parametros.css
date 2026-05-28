@@ -46,45 +46,12 @@ body {
     to { opacity: 1; transform: translateY(0); }
 }
 
-h2 { color: #fff; margin-bottom: 10px; font-weight: 600; }
-.btn-volver { text-decoration: none; color: rgba(255,255,255,0.7); font-size: 14px; transition: 0.3s; display: inline-block; margin-bottom: 15px; }
-.btn-volver:hover { color: var(--accent); }
-
-.form-add { 
-    display: flex; gap: 15px; margin: 25px 0; 
-    background: rgba(255, 255, 255, 0.05); padding: 20px; 
-    border-radius: 15px; align-items: flex-end; flex-wrap: wrap;
-}
-.form-group { flex: 1; min-width: 200px; }
-.form-group label { display: block; font-size: 13px; margin-bottom: 8px; opacity: 0.9; }
-input { 
-    width: 100%; padding: 12px; background: rgba(255,255,255,0.9); 
-    border: none; border-radius: 10px; color: #333; outline: none; font-size: 14px;
-}
-
-.btn-add { 
-    background: var(--success); color: white; border: none; padding: 0 25px; 
-    border-radius: 10px; cursor: pointer; font-weight: 600; height: 45px; 
-    transition: 0.3s;
-}
-.btn-add:hover { transform: translateY(-2px); box-shadow: 0 5px 15px rgba(40, 167, 69, 0.3); }
-
-.btn-cancelar { 
-    background: rgba(255,255,255,0.2); color: white; text-decoration: none; 
-    padding: 10px 20px; border-radius: 10px; font-size: 13px; display: none; 
-    height: 45px; line-height: 25px; transition: 0.3s;
-}
-
-.table-container { overflow-x: auto; margin-top: 20px; }
-table { width: 100%; border-collapse: collapse; }
-th { background: rgba(255,255,255,0.1); color: var(--accent); padding: 15px; text-align: left; font-size: 14px; }
-td { padding: 15px; border-bottom: 1px solid rgba(255,255,255,0.1); vertical-align: middle; font-size: 14px; }
-tr:hover td { background: rgba(255,255,255,0.05); }
-
-.badge-param { 
-    background: #6f42c1; color: white; padding: 5px 15px; border-radius: 20px; 
+.badge-param {
+    background: #6f42c1; color: white; padding: 5px 15px; border-radius: 20px;
     font-size: 11px; font-weight: 600; display: inline-block;
 }
 
-.btn-accion { cursor: pointer; font-size: 18px; border: none; background: none; transition: 0.3s; }
-.btn-accion:hover { transform: scale(1.2); }
+.page-header { margin-bottom: 10px; }
+.page-title { color: #fff; font-weight: 600; font-size: 22px; }
+.btn-back { text-decoration: none; color: rgba(255,255,255,0.7); font-size: 14px; transition: 0.3s; display: inline-block; margin-bottom: 10px; }
+.btn-back:hover { color: var(--accent); }

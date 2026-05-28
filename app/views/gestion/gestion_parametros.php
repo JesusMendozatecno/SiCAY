@@ -47,7 +47,17 @@ if (isset($_POST['guardar'])) {
     redirigir("gestion_parametros");
 }
 
-$resultado = mysqli_query($con, "SELECT * FROM parametro ORDER BY id DESC");
+$resultado = mysqli_query($con, "SELECT id, nombre, unidad_medida FROM parametro ORDER BY id DESC");
+
+$parametros = [];
+$unidades = [];
+while ($row = mysqli_fetch_assoc($resultado)) {
+    $parametros[] = $row;
+    if (!in_array($row['unidad_medida'], $unidades)) {
+        $unidades[] = $row['unidad_medida'];
+    }
+}
+sort($unidades);
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -56,6 +66,7 @@ $resultado = mysqli_query($con, "SELECT * FROM parametro ORDER BY id DESC");
     <title>Gestión de Parámetros - SICAY</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="assets/fontawesome/css/all.min.css">
+    <link rel="stylesheet" href="assets/css/tabla.css">
     <link rel="stylesheet" href="assets/css/gestion/gestion_parametros.css">
 </head>
 <body>
@@ -64,79 +75,120 @@ $resultado = mysqli_query($con, "SELECT * FROM parametro ORDER BY id DESC");
 
 <div class="container">
     <div class="page-header">
-        <a href="index.php?route=tablas_maestras" class="btn-back"><i class="fas fa-chevron-left"></i> Volver</a>
-        <h1 class="page-title" id="titulo_display"><i class="fa fa-vial"></i> Gestión de Parámetros</h1>
+        <a href="index.php?route=registros" class="btn-back"><i class="fas fa-chevron-left"></i> Volver</a>
+        <h1 class="page-title"><i class="fa fa-vial"></i> Gestión de Parámetros</h1>
     </div>
 
-    <?php if(isset($_SESSION['msg'])): ?>
+    <?php if (isset($_SESSION['msg'])): ?>
         <div class="alerta-exito">
             <i class="fas fa-check-circle"></i> 
-            <?php 
-                if($_SESSION['msg'] == "agregado") echo "¡Parámetro agregado con éxito!";
-                if($_SESSION['msg'] == "eliminado") echo "¡Parámetro eliminado con éxito!";
-                if($_SESSION['msg'] == "editado") echo "¡Se guardaron los cambios correctamente!";
-                unset($_SESSION['msg']); 
+            <?php
+                if ($_SESSION['msg'] == "agregado") echo "¡Parámetro agregado con éxito!";
+                if ($_SESSION['msg'] == "eliminado") echo "¡Parámetro eliminado con éxito!";
+                if ($_SESSION['msg'] == "editado") echo "¡Se guardaron los cambios correctamente!";
+                unset($_SESSION['msg']);
             ?>
         </div>
     <?php endif; ?>
 
-    <?php if(isset($_SESSION['error_msg'])): ?>
+    <?php if (isset($_SESSION['error_msg'])): ?>
         <div class="alerta-error">
             <i class="fas fa-exclamation-triangle"></i> <?php echo hsc($_SESSION['error_msg']); unset($_SESSION['error_msg']); ?>
         </div>
     <?php endif; ?>
 
-    <form class="form-add" method="POST" id="form_param">
-        <?php echo csrf_field(); ?>
-        <input type="hidden" name="id_editar" id="id_editar">
-        <div class="form-group">
-            <label>Nombre del Parámetro:</label>
-            <input type="text" name="nombre" id="nombre" placeholder="Ej: Cloro Residual" required>
+    <!-- Toolbar -->
+    <div class="tabla-toolbar">
+        <div class="tabla-toolbar-left">
+            <div class="tabla-buscar">
+                <i class="fas fa-search"></i>
+                <input type="text" id="buscarParam" placeholder="Buscar parámetro..." autocomplete="off">
+            </div>
+            <select id="filtroUnidad" class="tabla-filtro">
+                <option value="">Todas las unidades</option>
+                <?php foreach ($unidades as $u): ?>
+                    <option value="<?php echo hsc($u); ?>"><?php echo hsc($u); ?></option>
+                <?php endforeach; ?>
+            </select>
         </div>
-        <div class="form-group">
-            <label>Unidad de Medida:</label>
-            <input type="text" name="unidad" id="unidad" placeholder="Ej: mg/L" required>
-        </div>
-        <button type="submit" name="guardar" class="btn-add" id="btn_principal">Agregar</button>
-        <a href="index.php?route=gestion_parametros" class="btn-cancelar" id="btn_cancelar">Cancelar</a>
-    </form>
+        <button class="tabla-btn-agregar" id="btnAgregar">
+            <i class="fas fa-plus"></i> Agregar Parámetro
+        </button>
+    </div>
 
-    <div class="table-container">
-        <table>
+    <!-- Tabla -->
+    <div class="tabla-wrapper">
+        <table class="tabla" id="tablaParametros">
             <thead>
                 <tr>
                     <th>#</th>
                     <th>Parámetro</th>
                     <th>Unidad</th>
-                    <th>Acciones</th>
+                    <th style="width:110px;">Acciones</th>
                 </tr>
             </thead>
-            <tbody>
-                <?php 
-                $n = 1; 
-                while($row = mysqli_fetch_assoc($resultado)) { 
-                ?>
-                <tr>
-                    <td><?php echo $n++; ?></td>
-                    <td><strong><?php echo hsc($row['nombre']); ?></strong></td>
-                    <td><span class="badge-param"><?php echo hsc($row['unidad_medida']); ?></span></td>
+            <tbody id="tablaBody">
+                <?php foreach ($parametros as $i => $p): ?>
+                <tr data-id="<?php echo $p['id']; ?>"
+                    data-nombre="<?php echo hsc($p['nombre']); ?>"
+                    data-unidad="<?php echo hsc($p['unidad_medida']); ?>">
+                    <td class="col-num"><?php echo $i + 1; ?></td>
+                    <td><strong><?php echo hsc($p['nombre']); ?></strong></td>
+                    <td><span class="badge-param"><?php echo hsc($p['unidad_medida']); ?></span></td>
                     <td>
-                        <button onclick="editarRegistro(<?php echo $row['id']; ?>, <?php echo json_encode($row['nombre'], JSON_HEX_TAG|JSON_HEX_AMP); ?>, <?php echo json_encode($row['unidad_medida'], JSON_HEX_TAG|JSON_HEX_AMP); ?>)" class="btn-accion" style="color:#f1c40f;" title="Editar">
-                            <i class="fa fa-edit"></i>
-                        </button>
-                        
-                        <a href="index.php?route=gestion_parametros&eliminar=<?php echo $row['id']; ?>" onclick="return confirm('¿Estás seguro de eliminar este parámetro?')" class="btn-accion" style="color:#ff6b6b; margin-left:15px;" title="Eliminar">
-                            <i class="fa fa-trash"></i>
-                        </a>
+                        <div class="tabla-acciones">
+                            <button class="btn-editar" title="Editar" data-id="<?php echo $p['id']; ?>">
+                                <i class="fa fa-edit"></i>
+                            </button>
+                            <a href="index.php?route=gestion_parametros&eliminar=<?php echo $p['id']; ?>"
+                               class="btn-eliminar" title="Eliminar"
+                               onclick="return confirm('¿Estás seguro de eliminar este parámetro?')">
+                                <i class="fa fa-trash"></i>
+                            </a>
+                        </div>
                     </td>
                 </tr>
-                <?php } ?>
+                <?php endforeach; ?>
             </tbody>
         </table>
+    </div>
+
+    <!-- Info + Paginación -->
+    <div class="tabla-info" id="tablaInfo">Mostrando 0 de 0 registros</div>
+    <div class="tabla-paginar" id="tablaPaginar"></div>
+</div>
+
+<!-- Modal -->
+<div class="modal-overlay" id="modalParam">
+    <div class="modal-contenido">
+        <form method="POST">
+            <?php echo csrf_field(); ?>
+            <input type="hidden" name="id_editar" id="id_editar" value="">
+
+            <div class="modal-header">
+                <h3 id="modalTitulo"><i class="fa fa-plus-circle"></i> <span id="modalTituloText">Agregar Parámetro</span></h3>
+                <button type="button" class="modal-cerrar" id="btnCerrarModal">&times;</button>
+            </div>
+
+            <div class="modal-body">
+                <div class="modal-campo">
+                    <label for="nombre">Nombre del Parámetro</label>
+                    <input type="text" name="nombre" id="nombre" placeholder="Ej: Cloro Residual" required>
+                </div>
+                <div class="modal-campo">
+                    <label for="unidad">Unidad de Medida</label>
+                    <input type="text" name="unidad" id="unidad" placeholder="Ej: mg/L" required>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn-cancelar-modal" id="btnCancelarModal">Cancelar</button>
+                <button type="submit" name="guardar" class="btn-guardar" id="btnGuardar">Guardar</button>
+            </div>
+        </form>
     </div>
 </div>
 
 <script src="assets/js/gestion/gestion_parametros.js"></script>
-
 </body>
 </html>

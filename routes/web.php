@@ -11,7 +11,6 @@ return [
     'seguridad_documentacion' => 'app/views/seguridad/documentacion_seguridad.php',
     'historial'             => 'app/views/reportes/historial.php',
     'registros'             => 'app/views/registro/registros.php',
-    'tablas_maestras'       => 'app/views/gestion/tablas_maestras.php',
     'reportes'              => 'app/views/reportes/reportes.php',
     'inventario'            => 'app/views/inventario/inventario.php',
     'soporte'               => 'app/views/soporte/soporte.php',

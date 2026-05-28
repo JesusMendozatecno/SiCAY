@@ -46,7 +46,6 @@ $totalHistorial = ($resHist) ? mysqli_fetch_assoc($resHist)['total'] : 0;
 
     <nav class="menu-nav">
         <button onclick="location.href='index.php?route=registros'"><i class="fas fa-file-signature"></i> Registros</button>
-        <button onclick="location.href='index.php?route=tablas_maestras'"><i class="fas fa-table"></i> Tablas Maestras</button>
         <button onclick="location.href='index.php?route=reportes'"><i class="fas fa-chart-bar"></i> Reportes</button>
         <button onclick="location.href='index.php?route=inventario'"><i class="fas fa-boxes"></i> Inventario</button>
         <button onclick="location.href='index.php?route=soporte'"><i class="fas fa-headset"></i> Soporte</button>

@@ -143,7 +143,6 @@ function route_label($route) {
     $labels = [
         'dashboard'             => ['Vió el panel principal', 'Dashboard'],
         'registros'             => ['Vió registros del sistema', 'Registros'],
-        'tablas_maestras'       => ['Vió tablas maestras', 'Gestión'],
         'reportes'              => ['Vió la página de reportes', 'Reportes'],
         'historial'             => ['Consultó el historial del sistema', 'Historial'],
         'inventario'            => ['Vió el inventario', 'Inventario'],

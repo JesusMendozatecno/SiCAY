@@ -88,7 +88,7 @@ $resultado = mysqli_query($con, "SELECT * FROM instalacion WHERE estado = 'Activ
 
 <div class="container">
     <div class="page-header">
-        <a href="index.php?route=tablas_maestras" class="btn-back"><i class="fas fa-chevron-left"></i> Volver</a>
+        <a href="index.php?route=dashboard" class="btn-back"><i class="fas fa-chevron-left"></i> Volver</a>
         <h1 class="page-title"><i class="fa fa-industry"></i> Gestión de Plantas e Instalaciones</h1>
     </div>
 

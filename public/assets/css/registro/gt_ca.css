@@ -1,0 +1,85 @@
+:root {
+    --gt-primary: #123C69;
+    --gt-secondary: #1F6AE1;
+    --gt-accent: #00cec9;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+
+body {
+    background: linear-gradient(rgba(11, 28, 45, 0.92), rgba(11, 28, 45, 0.92)), url('../../img/Aguas_de_Yaracuy_fachada.png');
+    background-size: cover; background-attachment: fixed;
+    min-height: 100vh; color: #fff;
+}
+
+.contenedor {
+    max-width: 1000px; margin: 30px auto; padding: 30px 40px 40px;
+    background: rgba(255,255,255,0.06); backdrop-filter: blur(12px);
+    border-radius: 20px; border: 1px solid rgba(255,255,255,0.12);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+}
+
+.page-hdr {
+    display: flex; flex-wrap: wrap; align-items: center; gap: 14px;
+    margin-bottom: 24px;
+}
+.page-hdr h2 {
+    font-size: 22px; font-weight: 600; color: #fff; margin: 0;
+}
+.page-hdr h2 i { color: var(--gt-accent); margin-right: 10px; }
+.page-hdr .subtitle {
+    width: 100%; font-size: 13px; color: rgba(255,255,255,0.6);
+    margin: -8px 0 0;
+}
+.page-foot {
+    margin-top: 24px; text-align: center;
+}
+
+.badge-gt {
+    display: inline-block; font-size: 11px; font-weight: 600;
+    background: rgba(0,206,201,0.15); color: var(--gt-accent);
+    padding: 3px 10px; border-radius: 20px;
+    vertical-align: middle; margin-left: 8px;
+    border: 1px solid rgba(0,206,201,0.3);
+}
+
+.back-btn {
+    display: inline-flex; align-items: center; gap: 6px;
+    color: rgba(255,255,255,0.7); text-decoration: none;
+    font-size: 13px; transition: 0.3s;
+    padding: 6px 14px; border-radius: 8px;
+    background: rgba(255,255,255,0.06);
+}
+.back-btn:hover { color: #fff; background: rgba(255,255,255,0.12); }
+
+.alerta-exito, .alerta-error {
+    padding: 12px 18px; border-radius: 12px; margin-bottom: 20px;
+    font-size: 14px; font-weight: 500; text-align: center;
+}
+.alerta-exito { background: rgba(46,204,113,0.15); border: 1px solid #2ecc71; color: #2ecc71; }
+.alerta-error { background: rgba(231,76,60,0.15); border: 1px solid #e74c3c; color: #e74c3c; }
+
+/* ── Burbujas ── */
+.bubble {
+    position: fixed; bottom: -100px;
+    background: rgba(255,255,255,0.06); border-radius: 50%;
+    animation: moveUp 10s linear infinite; z-index: -1;
+    pointer-events: none;
+}
+@keyframes moveUp {
+    0% { transform: translateY(0); opacity: 0; }
+    8% { opacity: 0.25; }
+    100% { transform: translateY(-110vh); opacity: 0; }
+}
+
+/* ── Campos en grid ── */
+.modal-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
+}
+.modal-grid .modal-campo { margin-bottom: 0; }
+.modal-grid .full-w { grid-column: 1 / -1; }
+
+@media (max-width: 700px) {
+    .contenedor { padding: 20px; margin: 10px; }
+    .modal-grid { grid-template-columns: 1fr; }
+}

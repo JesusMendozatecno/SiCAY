@@ -109,7 +109,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <input type="text" name="analista" required placeholder="Quien certifica el análisis">
 
             <button type="submit" class="btn"><i class="fas fa-vial"></i> Registrar Certificación</button>
-            <a href="index.php?route=registros" class="back">← Volver</a>
         </form>
     </div>
 

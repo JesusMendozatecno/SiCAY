@@ -104,7 +104,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             </div>
 
             <button type="submit" class="btn"><i class="fas fa-paper-plane"></i> Enviar Solicitud SQ</button>
-            <a href="index.php?route=registros" class="back">← Volver</a>
         </form>
     </div>
 

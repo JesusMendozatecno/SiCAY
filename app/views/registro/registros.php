@@ -1,7 +1,69 @@
 <?php
 verificar_sesion();
-?>
 
+$grupos = [
+    [
+        'titulo' => 'Calidad del Agua',
+        'icono' => 'fa-tint',
+        'items' => [
+            ['n' => 'GT-CA-001', 'r' => 'gt_ca_001', 'd' => 'Cloro y pH'],
+            ['n' => 'GT-CA-002', 'r' => 'gt_ca_002', 'd' => 'Inventario Químico'],
+            ['n' => 'GT-CA-003', 'r' => 'gt_ca_003', 'd' => 'Calidad del Agua'],
+            ['n' => 'GT-CA-004', 'r' => 'gt_ca_004', 'd' => 'Consumo Químico'],
+        ]
+    ],
+    [
+        'titulo' => 'Operación de Planta',
+        'icono' => 'fa-cogs',
+        'items' => [
+            ['n' => 'GT-CA-005', 'r' => 'gt_ca_005', 'd' => 'Cilindros Cloro'],
+            ['n' => 'GT-CA-006', 'r' => 'gt_ca_006', 'd' => 'Lavado Filtros'],
+            ['n' => 'GT-CA-007', 'r' => 'gt_ca_007', 'd' => 'Equipos y Bombas'],
+            ['n' => 'GT-CA-008', 'r' => 'gt_ca_008', 'd' => 'Niveles de Agua'],
+        ]
+    ],
+    [
+        'titulo' => 'Monitoreo Técnico',
+        'icono' => 'fa-chart-line',
+        'items' => [
+            ['n' => 'GT-CA-009', 'r' => 'gt_ca_009', 'd' => 'Medición Caudales'],
+            ['n' => 'GT-CA-010', 'r' => 'gt_ca_010', 'd' => 'Gestión Lodos'],
+            ['n' => 'GT-CA-011', 'r' => 'gt_ca_011', 'd' => 'Inspección Planta'],
+            ['n' => 'GT-CA-012', 'r' => 'gt_ca_012', 'd' => 'Grupo Electrógeno'],
+            ['n' => 'GT-CA-013', 'r' => 'gt_ca_013', 'd' => 'Calibración Equipos'],
+        ]
+    ],
+    [
+        'titulo' => 'Seguridad y Personal',
+        'icono' => 'fa-shield-alt',
+        'items' => [
+            ['n' => 'GT-CA-014', 'r' => 'gt_ca_014', 'd' => 'Entrega Guardia'],
+            ['n' => 'GT-CA-015', 'r' => 'gt_ca_015', 'd' => 'Control Acceso'],
+            ['n' => 'GT-CA-016', 'r' => 'gt_ca_016', 'd' => 'Herramientas'],
+            ['n' => 'GT-CA-017', 'r' => 'gt_ca_017', 'd' => 'Consumo Eléctrico'],
+        ]
+    ],
+    [
+        'titulo' => 'Equipos de Emergencia',
+        'icono' => 'fa-fire-extinguisher',
+        'items' => [
+            ['n' => 'GT-CA-018', 'r' => 'gt_ca_018', 'd' => 'Extintores'],
+            ['n' => 'GT-CA-019', 'r' => 'gt_ca_019', 'd' => 'Equipos Protección'],
+        ]
+    ],
+    [
+        'titulo' => 'Gestión General',
+        'icono' => 'fa-folder-open',
+        'items' => [
+            ['n' => 'Solicitud SQ', 'r' => 'solicitud_sq', 'd' => 'Formato de Solicitud Químicos'],
+            ['n' => 'Laboratorio', 'r' => 'resultados_laboratorio', 'd' => 'Resultados de Análisis'],
+            ['n' => 'Aplicación', 'r' => 'formatos_aplicacion', 'd' => 'Formatos de Aplicación Técnica'],
+            ['n' => 'Instalaciones', 'r' => 'instalaciones', 'd' => 'Registro de Instalaciones de Agua'],
+            ['n' => 'Parámetros', 'r' => 'gestion_parametros', 'd' => 'Configuración de estándares de calidad'],
+        ]
+    ]
+];
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -10,98 +72,84 @@ verificar_sesion();
     <title>SICAY - Gestión de Registros</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="assets/fontawesome/css/all.min.css">
-    
     <link rel="stylesheet" href="assets/css/registro/registros.css">
 </head>
 <body>
 
 <div id="bubble-container"></div>
 
-<div class="main-container">
-    <div class="page-header">
-        <a href="index.php?route=dashboard" class="btn-back"><i class="fas fa-chevron-left"></i> Volver</a>
-        <h1 class="page-title"><i class="fas fa-file-signature"></i> Gestión de Registros</h1>
-    </div>
-    <p class="page-subtitle">Seleccione el formato de calidad para ingresar nuevos datos al sistema SICAY.</p>
-
-    <div class="grid-planillas">
-        
-        <?php 
-        $iconos = [
-            1 => 'fa-tint', 2 => 'fa-boxes', 3 => 'fa-microscope',
-            4 => 'fa-weight-hanging', 5 => 'fa-gas-pump', 6 => 'fa-tools',
-            7 => 'fa-bolt', 8 => 'fa-water', 9 => 'fa-chart-line',
-            10 => 'fa-trash-alt', 11 => 'fa-eye', 12 => 'fa-plug',
-            13 => 'fa-sliders-h', 14 => 'fa-users', 15 => 'fa-id-card',
-            16 => 'fa-wrench', 17 => 'fa-chart-bar', 18 => 'fa-fire-extinguisher',
-            19 => 'fa-user-shield'
-        ];
-        $descripciones = [
-            1 => 'Cloro y pH', 2 => 'Inventario Qu&iacute;mico', 3 => 'Calidad del Agua',
-            4 => 'Consumo Qu&iacute;mico', 5 => 'Cilindros Cloro', 6 => 'Lavado Filtros',
-            7 => 'Equipos y Bombas', 8 => 'Niveles de Agua', 9 => 'Medici&oacute;n Caudales',
-            10 => 'Gesti&oacute;n Lodos', 11 => 'Inspecci&oacute;n Planta', 12 => 'Grupo Electr&oacute;geno',
-            13 => 'Calibraci&oacute;n Equipos', 14 => 'Entrega Guardia', 15 => 'Control Acceso',
-            16 => 'Herramientas', 17 => 'Consumo El&eacute;ctrico', 18 => 'Extintores',
-            19 => 'Equipos Protecci&oacute;n'
-        ];
-        for ($i = 1; $i <= 19; $i++) {
-            $num = str_pad($i, 3, "0", STR_PAD_LEFT);
-            echo '
-            <a href="index.php?route=gt_ca_'.$num.'" class="card-planilla">
-                <div class="icon-box"><i class="fas '.$iconos[$i].'"></i></div>
-                <div class="info-box">
-                    <h3>GT-CA-'.$num.'</h3>
-                    <p>'.$descripciones[$i].'</p>
+<div class="registros-layout">
+    <div class="reg-sidebar">
+        <div class="reg-sidebar-header">
+            <h2><i class="fas fa-file-signature"></i> Registros</h2>
+        </div>
+        <nav class="reg-sidebar-nav">
+            <button class="reg-nav-item reg-nav-home" id="btnHome">
+                <i class="fas fa-th-large"></i> Panel General
+            </button>
+            <?php foreach ($grupos as $g): ?>
+            <div class="reg-nav-grupo">
+                <button class="reg-nav-item reg-nav-head">
+                    <i class="fas <?php echo $g['icono']; ?>"></i>
+                    <span><?php echo $g['titulo']; ?></span>
+                    <i class="fas fa-chevron-down reg-nav-arrow"></i>
+                </button>
+                <div class="reg-nav-sub">
+                    <?php foreach ($g['items'] as $it): ?>
+                    <button class="reg-nav-subitem" data-route="<?php echo $it['r']; ?>">
+                        <span class="sub-num"><?php echo $it['n']; ?></span>
+                        <span class="sub-desc"><?php echo $it['d']; ?></span>
+                    </button>
+                    <?php endforeach; ?>
                 </div>
-            </a>';
-        }
-        ?>
-
-        <a href="index.php?route=solicitud_sq" class="card-planilla" style="border-left-color: #fab1a0;">
-            <div class="icon-box" style="color: #fab1a0;"><i class="fas fa-paper-plane"></i></div>
-            <div class="info-box">
-                <h3>Solicitud SQ</h3>
-                <p>Formato de Solicitud Químicos</p>
             </div>
-        </a>
+            <?php endforeach; ?>
+        </nav>
+        <a href="index.php?route=dashboard" class="reg-sidebar-back"><i class="fas fa-chevron-left"></i> Volver al Dashboard</a>
+    </div>
 
-        <a href="index.php?route=resultados_laboratorio" class="card-planilla" style="border-left-color: #55efc4;">
-            <div class="icon-box" style="color: #55efc4;"><i class="fas fa-flask"></i></div>
-            <div class="info-box">
-                <h3>Laboratorio</h3>
-                <p>Resultados de Análisis</p>
+    <div class="reg-content" id="regContent">
+        <div class="reg-dashboard" id="regDashboard">
+            <div class="reg-dash-header">
+                <h1><i class="fas fa-file-signature"></i> Gestión de Registros</h1>
+                <p>Seleccione un formato del menú lateral para comenzar a registrar datos en el sistema SICAY. Cada formulario corresponde a un aspecto específico del control de calidad y operación.</p>
             </div>
-        </a>
-
-        <a href="index.php?route=formatos_aplicacion" class="card-planilla" style="border-left-color: #a29bfe;">
-            <div class="icon-box" style="color: #a29bfe;"><i class="fas fa-check-double"></i></div>
-            <div class="info-box">
-                <h3>Aplicación</h3>
-                <p>Formatos de Aplicación Técnica</p>
+            <div class="reg-dash-grid">
+                <?php foreach ($grupos as $g): ?>
+                <div class="reg-dash-card">
+                    <div class="reg-dash-card-icon"><i class="fas <?php echo $g['icono']; ?>"></i></div>
+                    <h3><?php echo $g['titulo']; ?></h3>
+                    <ul>
+                        <?php foreach ($g['items'] as $it): ?>
+                        <li><strong><?php echo $it['n']; ?>:</strong> <?php echo $it['d']; ?></li>
+                        <?php endforeach; ?>
+                    </ul>
+                </div>
+                <?php endforeach; ?>
             </div>
-        </a>
-
-        <a href="index.php?route=instalaciones" class="card-planilla" style="border-left-color: #00cec9;">
-            <div class="icon-box" style="color: #00cec9;"><i class="fas fa-industry"></i></div>
-            <div class="info-box">
-                <h3>Instalaciones</h3>
-                <p>Registro de Instalaciones de Agua</p>
+            <div class="reg-dash-footer">
+                <i class="fas fa-info-circle"></i> Total de formatos disponibles: <strong>24</strong>
             </div>
-        </a>
+        </div>
+        <div class="reg-loaded" id="regLoaded">
+            <div class="reg-loading" id="regLoading"><i class="fas fa-spinner fa-spin"></i> Cargando...</div>
+        </div>
+    </div>
+</div>
 
-        <a href="index.php?route=gestion_parametros" class="card-planilla" style="border-left-color: #fdcb6e;">
-            <div class="icon-box" style="color: #fdcb6e;"><i class="fas fa-vial"></i></div>
-            <div class="info-box">
-                <h3>Parámetros</h3>
-                <p>Configuración de estándares de calidad</p>
-            </div>
-        </a>
-
+<div class="modal-overlay" id="modalVer">
+    <div class="modal-contenido modal-ver">
+        <div class="modal-header">
+            <h3><i class="fas fa-eye"></i> Detalle del Registro</h3>
+            <button type="button" class="modal-cerrar" data-modal-close>&times;</button>
+        </div>
+        <div class="modal-body" id="modalVerBody"></div>
+        <div class="modal-footer">
+            <button type="button" class="btn-cancelar-modal" data-modal-close>Cerrar</button>
+        </div>
     </div>
 </div>
 
 <script src="assets/js/registro/registros.js"></script>
-
 </body>
 </html>

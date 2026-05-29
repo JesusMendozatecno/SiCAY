@@ -24,6 +24,23 @@ if (mt_rand(1, 100) === 1) {
     limpiar_sesiones_expiradas();
 }
 
+// Periodic automated backup check (0.5% chance per request)
+if (mt_rand(1, 200) === 1) {
+    $bk_enabled = get_system_config('backup_enabled', '0');
+    if ($bk_enabled === '1') {
+        $bk_next = get_system_config('backup_next_run', '');
+        if ($bk_next && $bk_next !== 'No programado' && strtotime($bk_next) <= time()) {
+            $_local_get = $_GET;
+            $_GET['action'] = 'run';
+            $_POST = [];
+            ob_start();
+            include BASE_PATH . 'app/Controllers/backup_auto.php';
+            ob_end_clean();
+            $_GET = $_local_get;
+        }
+    }
+}
+
 $routes = include BASE_PATH . 'routes/web.php';
 
 $route = $_GET['route'] ?? 'index';

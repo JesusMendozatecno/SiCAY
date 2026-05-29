@@ -192,6 +192,10 @@ $total_movimientos = mysqli_num_rows($movimientos);
                     <div class="alerta-error"><i class="fas fa-exclamation-triangle"></i> Error al procesar la solicitud<?php echo $error_db ? ': ' . hsc($error_db) : ''; ?></div>
                 <?php endif; ?>
 
+                <div class="search-box" style="margin-bottom:12px;">
+                    <i class="fas fa-search"></i>
+                    <input type="text" id="buscarAlmacen" placeholder="Buscar producto..." autocomplete="off">
+                </div>
                 <div class="table-wrap">
                     <table class="reportes-table" id="tablaAlmacen">
                         <thead>
@@ -230,6 +234,8 @@ $total_movimientos = mysqli_num_rows($movimientos);
                         </tbody>
                     </table>
                 </div>
+                <div id="infoAlmacen" style="text-align:center;color:rgba(255,255,255,0.5);font-size:13px;padding:8px 0 2px;"></div>
+                <div id="paginarAlmacen" style="display:flex;justify-content:center;align-items:center;gap:6px;padding:10px 0 4px;flex-wrap:wrap;"></div>
             </div>
 
         </div>

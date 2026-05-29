@@ -59,4 +59,5 @@ return [
     'api_notifications'     => 'app/Controllers/api_notifications.php',
     'api_heartbeat'         => 'app/Controllers/api_heartbeat.php',
     'api_historial'         => 'app/Controllers/api_historial.php',
+    'backup_auto'           => 'app/Controllers/backup_auto.php',
 ];

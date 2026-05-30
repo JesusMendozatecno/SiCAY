@@ -82,6 +82,9 @@ $grupos = [
     <div class="reg-sidebar">
         <div class="reg-sidebar-header">
             <h2><i class="fas fa-file-signature"></i> Registros</h2>
+            <button class="theme-toggle" id="themeToggle" title="Cambiar tema">
+                <i class="fas fa-moon"></i>
+            </button>
         </div>
         <nav class="reg-sidebar-nav">
             <button class="reg-nav-item reg-nav-home" id="btnHome">

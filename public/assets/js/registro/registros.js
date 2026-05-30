@@ -25,6 +25,34 @@
         setInterval(create, 1200);
     })();
 
+    // ── Tema claro/oscuro (usa clase dark-mode de theme.css) ──
+    (function () {
+        var toggle = document.getElementById('themeToggle');
+        var icon = toggle ? toggle.querySelector('i') : null;
+
+        function setTheme(mode) {
+            if (mode === 'light') {
+                document.body.classList.remove('dark-mode');
+                if (icon) { icon.className = 'fas fa-moon'; }
+            } else {
+                document.body.classList.add('dark-mode');
+                if (icon) { icon.className = 'fas fa-sun'; }
+            }
+            try { localStorage.setItem('registros-theme', mode); } catch (e) {}
+        }
+
+        var saved = 'dark';
+        try { saved = localStorage.getItem('registros-theme') || 'dark'; } catch (e) {}
+        setTheme(saved);
+
+        if (toggle) {
+            toggle.addEventListener('click', function () {
+                var isDark = document.body.classList.contains('dark-mode');
+                setTheme(isDark ? 'light' : 'dark');
+            });
+        }
+    })();
+
     // ── Toggle grupos ──
     sidebarNav.addEventListener('click', function (e) {
         var head = e.target.closest('.reg-nav-head');

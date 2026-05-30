@@ -64,13 +64,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         if (verificar_pass($passInput, $user['contraseña'])) {
             registrar_intento_login($userInput, true);
-            if (strlen($user['contraseña']) === 32 && ctype_xdigit($user['contraseña'])) {
-                $nuevo_hash = hash_pass($passInput);
-                $upd = $conexion->prepare("UPDATE usuario SET contraseña = ? WHERE id = ?");
-                $upd->bind_param("si", $nuevo_hash, $user['id']);
-                $upd->execute();
-                $upd->close();
-            }
 
             session_regenerate_id(true);
             $_SESSION['nombre'] = $user['nombre'];

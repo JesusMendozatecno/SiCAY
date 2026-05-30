@@ -5,7 +5,12 @@ verificar_sesion_json();
 
 $action = $_GET['action'] ?? '';
 $uid = intval($_SESSION['id_usuario']);
-$rol = $_SESSION['rol'] ?? 'Operador';
+$rStmt = $con->prepare("SELECT rol FROM usuario WHERE id = ?");
+$rStmt->bind_param("i", $uid);
+$rStmt->execute();
+$rRow = $rStmt->get_result()->fetch_assoc();
+$rStmt->close();
+$rol = $rRow['rol'] ?? 'Operador';
 
 // --- Auto-migration (runs once) ---
 $GLOBALS['_historial_migrated'] = $GLOBALS['_historial_migrated'] ?? false;

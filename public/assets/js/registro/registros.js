@@ -66,7 +66,7 @@
     function pad2(n) { return n < 10 ? '0' + n : n; }
     (function () {
         var d = new Date();
-        window.__cssV = 'v=' + d.getFullYear() + pad2(d.getMonth()+1) + pad2(d.getDate()) + pad2(d.getHours()) + pad2(d.getMinutes());
+        window.__cssV = 'v=' + d.getFullYear() + pad2(d.getMonth()+1) + pad2(d.getDate()) + pad2(d.getHours()) + pad2(d.getMinutes()) + pad2(d.getSeconds());
     })();
 
     // ── Inyectar CSS desde el documento cargado ──
@@ -158,6 +158,7 @@
     document.addEventListener('submit', function (e) {
         var form = e.target;
         if (!form.closest('#regLoaded')) return;
+        if (form.hasAttribute('data-route')) return;
         e.preventDefault();
 
         var data = new FormData(form);
@@ -231,4 +232,12 @@
 
         loadRoute(route);
     });
+
+    // ── Recargar ruta actual (expuesto para formularios AJAX) ──
+    window.reloadRegRoute = function () {
+        var route = activeRoute;
+        if (!route) return;
+        activeRoute = null;
+        loadRoute(route);
+    };
 })();

@@ -43,6 +43,13 @@ function csrf_field() {
 
 function verificar_csrf($token) {
     if (!isset($_SESSION['csrf_token']) || !hash_equals($_SESSION['csrf_token'], $token ?? '')) {
+        $is_ajax = isset($_GET['embed']) || (!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest');
+        if ($is_ajax) {
+            header('Content-Type: application/json');
+            http_response_code(403);
+            echo json_encode(['status' => 'error', 'message' => 'Error de validación CSRF. Intenta recargar la página.']);
+            exit;
+        }
         http_response_code(403);
         die('Error de validación CSRF. Intenta recargar la página.');
     }
@@ -74,11 +81,6 @@ function hash_pass($password) {
 }
 
 function verificar_pass($password, $hash) {
-    if (strlen($hash) === 32 && ctype_xdigit($hash)) {
-        if (md5($password) === $hash) {
-            return true;
-        }
-    }
     return password_verify($password, $hash);
 }
 
@@ -108,6 +110,13 @@ function session_init() {
 
 function verificar_sesion() {
     if (!isset($_SESSION['usuario'])) {
+        $is_ajax = isset($_GET['embed']) || (!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest');
+        if ($is_ajax) {
+            header('Content-Type: application/json');
+            http_response_code(401);
+            echo json_encode(['status' => 'error', 'message' => 'Sesión expirada. Recarga la página.']);
+            exit;
+        }
         redirigir('login');
     }
     verificar_tiempo_sesion();
@@ -119,6 +128,14 @@ function verificar_sesion_json() {
         echo json_encode(['ok' => false, 'error' => 'Sesión no iniciada']);
         exit;
     }
+}
+
+function json_response($data, $code = 200) {
+    if (ob_get_level()) ob_clean();
+    http_response_code($code);
+    header('Content-Type: application/json; charset=utf-8');
+    echo json_encode($data, JSON_UNESCAPED_UNICODE);
+    exit;
 }
 
 function __($key, $lang = null) {
@@ -318,11 +335,18 @@ function check_login_lockout($username) {
    ============================================= */
 
 function verificar_tiempo_sesion() {
-    $timeout = 70;
+    $timeout = 1800;
     if (isset($_SESSION['last_activity']) && (time() - $_SESSION['last_activity']) > $timeout) {
         $_SESSION = [];
         session_destroy();
         setcookie(session_name(), '', time() - 3600, '/');
+        $is_ajax = isset($_GET['embed']) || (!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest');
+        if ($is_ajax) {
+            header('Content-Type: application/json');
+            http_response_code(401);
+            echo json_encode(['status' => 'error', 'message' => 'Sesión expirada. Recarga la página.']);
+            exit;
+        }
         redirigir('login');
     }
     $_SESSION['last_activity'] = time();

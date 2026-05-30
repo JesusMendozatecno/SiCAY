@@ -31,7 +31,7 @@ $upd->bind_param("sss", $token, $expira, $email);
 $upd->execute();
 $upd->close();
 
-$enlace = "http://" . $_SERVER['HTTP_HOST'] . "/aguas/public/index.php?route=reset_password&token=" . $token;
+$enlace = "https://" . $_SERVER['HTTP_HOST'] . "/aguas/public/index.php?route=reset_password&token=" . $token;
 
 $enviado = false;
 $mail = new PHPMailer(true);

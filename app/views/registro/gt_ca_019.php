@@ -11,7 +11,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $trabajador = trim($_POST['nombre_trabajador']); $tipo_epp = $_POST['tipo_epp'];
         $entrega = intval($_POST['entrega']); $estado = intval($_POST['estado']);
         $observacion = trim($_POST['observacion'] ?? '');
-        $id_user = isset($_SESSION['id_usuario']) ? $_SESSION['id_usuario'] : 1;
+        $id_user = (int) $_SESSION['id_usuario'];
         $fecha = date('Y-m-d'); $hora = date('H:i:s');
         $epp_validos = ['Botas de Seguridad', 'Casco e Iluminación', 'Guantes de Nitrilo/Químicos', 'Máscara de Gas Cloro'];
         if (!in_array($tipo_epp, $epp_validos) || !in_array($entrega, [0, 1]) || !in_array($estado, [0, 1])) { $mensaje = "error"; }
@@ -39,8 +39,8 @@ $registros = mysqli_query($con, "
            m1.valor_medido as entrega, m2.valor_medido as estado_epp
     FROM registro_diario rd
     JOIN instalacion i ON rd.id_instalacion = i.id
-    LEFT JOIN medicion_horaria m1 ON m1.id_registro_diario = rd.id AND m1.id_parametro = 36
-    LEFT JOIN medicion_horaria m2 ON m2.id_registro_diario = rd.id AND m2.id_parametro = 37
+    JOIN medicion_horaria m1 ON m1.id_registro_diario = rd.id AND m1.id_parametro = 36
+    JOIN medicion_horaria m2 ON m2.id_registro_diario = rd.id AND m2.id_parametro = 37
     ORDER BY rd.fecha DESC, rd.id DESC
 ");
 ?>

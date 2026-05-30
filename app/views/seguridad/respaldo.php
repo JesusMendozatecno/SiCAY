@@ -1,6 +1,15 @@
 <?php
 verificar_sesion();
 
+$stmt = $con->prepare("SELECT rol FROM usuario WHERE id = ?");
+$stmt->bind_param("i", $_SESSION['id_usuario']);
+$stmt->execute();
+$userData = $stmt->get_result()->fetch_assoc();
+$stmt->close();
+if (($userData['rol'] ?? '') !== 'Admin') {
+    redirigir('dashboard');
+}
+
 $host = "localhost";
 $user = "root";
 $pass = "";

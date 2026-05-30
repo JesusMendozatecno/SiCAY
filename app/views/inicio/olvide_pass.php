@@ -33,9 +33,6 @@
                 <i class="fas <?php echo $_SESSION['reset_msg']['tipo'] === 'exito' ? 'fa-check-circle' : 'fa-exclamation-triangle'; ?>"></i>
                 <?php echo hsc($_SESSION['reset_msg']['texto']); ?>
             </div>
-            <?php if (!empty($_SESSION['reset_msg']['link'])): ?>
-                <div class="debug-link"><?php echo $_SESSION['reset_msg']['link']; ?></div>
-            <?php endif; ?>
             <?php unset($_SESSION['reset_msg']); ?>
         <?php endif; ?>
 

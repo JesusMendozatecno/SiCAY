@@ -11,7 +11,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $herramienta = trim($_POST['herramienta']); $cantidad = $_POST['cantidad'];
         $estado = intval($_POST['estado'] ?? 0); $responsable = trim($_POST['responsable']);
         $accion = $_POST['accion'];
-        $id_user = isset($_SESSION['id_usuario']) ? $_SESSION['id_usuario'] : 1;
+        $id_user = (int) $_SESSION['id_usuario'];
         $fecha = date('Y-m-d'); $hora = date('H:i:s');
         $acciones_validas = ['Préstamo / Salida', 'Devolución / Entrada'];
         if (!in_array($accion, $acciones_validas) || !in_array($estado, [0, 1]) || !validar_numeric($cantidad, 0)) { $mensaje = "error"; }
@@ -39,8 +39,8 @@ $registros = mysqli_query($con, "
            m1.valor_medido as estado_eq, m2.valor_medido as cantidad
     FROM registro_diario rd
     JOIN instalacion i ON rd.id_instalacion = i.id
-    LEFT JOIN medicion_horaria m1 ON m1.id_registro_diario = rd.id AND m1.id_parametro = 30
-    LEFT JOIN medicion_horaria m2 ON m2.id_registro_diario = rd.id AND m2.id_parametro = 31
+    JOIN medicion_horaria m1 ON m1.id_registro_diario = rd.id AND m1.id_parametro = 30
+    JOIN medicion_horaria m2 ON m2.id_registro_diario = rd.id AND m2.id_parametro = 31
     ORDER BY rd.fecha DESC, rd.id DESC
 ");
 ?>
@@ -96,7 +96,7 @@ $registros = mysqli_query($con, "
                         <td><?php echo date('d/m/Y', strtotime($r['fecha'])); ?></td>
                         <td><strong><?php echo hsc($r['planta']); ?></strong></td>
                         <td><span style="color:<?php echo strpos($accion,'Salida')!==false?'#e74c3c':'#2ecc71'; ?>"><?php echo hsc($accion); ?></span><br><small><?php echo hsc($equipo); ?></small></td>
-                        <td><?php echo number_format($r['cantidad'], 0); ?></td>
+                        <td><?php echo number_format((float)($r['cantidad'] ?? 0), 0); ?></td>
                         <td style="color:<?php echo $r['estado_eq']?'#2ecc71':'#e74c3c'; ?>"><?php echo $r['estado_eq']?'✅ Operativo':'❌ Dañado'; ?></td>
                         <td><?php echo hsc($responsable); ?></td>
                     </tr>

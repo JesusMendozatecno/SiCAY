@@ -48,28 +48,15 @@ if ($pass !== $pass2) {
     redirigir("registro");
 }
 
-$errores_dup = [];
-
-$stmt_u = $conexion->prepare("SELECT id FROM usuario WHERE usuario = ?");
-$stmt_u->bind_param("s", $usuario);
-$stmt_u->execute();
-if ($stmt_u->get_result()->num_rows > 0) {
-    $errores_dup[] = 'El usuario "' . hsc($usuario) . '" ya está en uso.';
-}
-$stmt_u->close();
-
-$stmt_c = $conexion->prepare("SELECT id FROM usuario WHERE correo = ?");
-$stmt_c->bind_param("s", $correo);
-$stmt_c->execute();
-if ($stmt_c->get_result()->num_rows > 0) {
-    $errores_dup[] = 'El correo "' . hsc($correo) . '" ya está registrado.';
-}
-$stmt_c->close();
-
-if (!empty($errores_dup)) {
-    $_SESSION['registro_errores'] = $errores_dup;
+$stmt_dup = $conexion->prepare("SELECT id FROM usuario WHERE usuario = ? OR correo = ?");
+$stmt_dup->bind_param("ss", $usuario, $correo);
+$stmt_dup->execute();
+if ($stmt_dup->get_result()->num_rows > 0) {
+    $_SESSION['registro_errores'] = ['El usuario o correo ya están registrados en el sistema.'];
+    $stmt_dup->close();
     redirigir("registro");
 }
+$stmt_dup->close();
 
 $clave = hash_pass($pass);
 $rol = "Operador";

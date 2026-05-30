@@ -26,7 +26,7 @@ if ($result->num_rows > 0) {
     $stmt->bind_param("sss", $token, $expira, $email);
     $stmt->execute();
 
-    $link = "http://" . $_SERVER['HTTP_HOST'] . "/aguas/public/index.php?route=reset_password&token=" . $token;
+    $link = "https://" . $_SERVER['HTTP_HOST'] . "/aguas/public/index.php?route=reset_password&token=" . $token;
 
     try {
         $mail = new PHPMailer(true);

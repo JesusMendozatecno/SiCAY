@@ -9,7 +9,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     else {
         $id_inst = intval($_POST['planta']); $lectura = $_POST['lectura'];
         $factor = $_POST['factor']; $serial_medidor = trim($_POST['serial']);
-        $id_user = isset($_SESSION['id_usuario']) ? $_SESSION['id_usuario'] : 1;
+        $id_user = (int) $_SESSION['id_usuario'];
         $fecha = date('Y-m-d'); $hora = date('H:i:s');
         if (!validar_numeric($lectura, 0) || !validar_numeric($factor, 0)) { $mensaje = "error"; }
         else {
@@ -36,8 +36,8 @@ $registros = mysqli_query($con, "
            m1.valor_medido as lectura, m2.valor_medido as factor
     FROM registro_diario rd
     JOIN instalacion i ON rd.id_instalacion = i.id
-    LEFT JOIN medicion_horaria m1 ON m1.id_registro_diario = rd.id AND m1.id_parametro = 32
-    LEFT JOIN medicion_horaria m2 ON m2.id_registro_diario = rd.id AND m2.id_parametro = 33
+    JOIN medicion_horaria m1 ON m1.id_registro_diario = rd.id AND m1.id_parametro = 32
+    JOIN medicion_horaria m2 ON m2.id_registro_diario = rd.id AND m2.id_parametro = 33
     ORDER BY rd.fecha DESC, rd.id DESC
 ");
 ?>
@@ -86,8 +86,8 @@ $registros = mysqli_query($con, "
                         <td><?php echo date('d/m/Y', strtotime($r['fecha'])); ?></td>
                         <td><strong><?php echo hsc($r['planta']); ?></strong></td>
                         <td style="font-size:13px;"><?php echo hsc($r['observaciones_generales']); ?></td>
-                        <td><?php echo number_format($r['lectura'], 1); ?></td>
-                        <td><?php echo number_format($r['factor'], 2); ?></td>
+                        <td><?php echo number_format((float)($r['lectura'] ?? 0), 1); ?></td>
+                        <td><?php echo number_format((float)($r['factor'] ?? 0), 2); ?></td>
                     </tr>
                     <?php endwhile; ?>
                 </tbody>

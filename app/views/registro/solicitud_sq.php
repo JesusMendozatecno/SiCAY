@@ -16,7 +16,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $hipo = $_POST['cant_hipo'];
         $prioridad = $_POST['prioridad'];
         
-        $id_user = isset($_SESSION['id_usuario']) ? $_SESSION['id_usuario'] : 1;
+        $id_user = (int) $_SESSION['id_usuario'];
         $fecha = date('Y-m-d');
         $hora = date('H:i:s');
         $prioridades_validas = ['Normal', 'Urgente', 'Emergencia'];

@@ -11,7 +11,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $ubicacion = trim($_POST['ubicacion_exacta']); $id_extintor = trim($_POST['id_extintor']);
         $presion = intval($_POST['presion']); $precinto = intval($_POST['precinto']);
         $vencimiento = trim($_POST['vencimiento']);
-        $id_user = isset($_SESSION['id_usuario']) ? $_SESSION['id_usuario'] : 1;
+        $id_user = (int) $_SESSION['id_usuario'];
         $fecha = date('Y-m-d'); $hora = date('H:i:s');
         if (!in_array($presion, [0, 1]) || !in_array($precinto, [0, 1])) { $mensaje = "error"; }
         else {
@@ -38,8 +38,8 @@ $registros = mysqli_query($con, "
            m1.valor_medido as presion, m2.valor_medido as precinto
     FROM registro_diario rd
     JOIN instalacion i ON rd.id_instalacion = i.id
-    LEFT JOIN medicion_horaria m1 ON m1.id_registro_diario = rd.id AND m1.id_parametro = 34
-    LEFT JOIN medicion_horaria m2 ON m2.id_registro_diario = rd.id AND m2.id_parametro = 35
+    JOIN medicion_horaria m1 ON m1.id_registro_diario = rd.id AND m1.id_parametro = 34
+    JOIN medicion_horaria m2 ON m2.id_registro_diario = rd.id AND m2.id_parametro = 35
     ORDER BY rd.fecha DESC, rd.id DESC
 ");
 ?>

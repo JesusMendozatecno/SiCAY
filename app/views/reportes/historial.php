@@ -1,6 +1,11 @@
 <?php
 verificar_sesion();
-$rol = $_SESSION['rol'] ?? 'Operador';
+$rStmt = $con->prepare("SELECT rol FROM usuario WHERE id = ?");
+$rStmt->bind_param("i", $_SESSION['id_usuario']);
+$rStmt->execute();
+$rRow = $rStmt->get_result()->fetch_assoc();
+$rStmt->close();
+$rol = $rRow['rol'] ?? 'Operador';
 ?>
 <!DOCTYPE html>
 <html lang="es">

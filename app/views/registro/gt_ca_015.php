@@ -11,7 +11,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $visitante = trim($_POST['nombre_visitante']); $cedula = trim($_POST['cedula']);
         $motivo = trim($_POST['motivo']); $autoriza = trim($_POST['quien_autoriza']);
         $estado_acceso = intval($_POST['estado_acceso']);
-        $id_user = isset($_SESSION['id_usuario']) ? $_SESSION['id_usuario'] : 1;
+        $id_user = (int) $_SESSION['id_usuario'];
         $fecha = date('Y-m-d'); $hora_ingreso = date('H:i:s');
         if (!in_array($estado_acceso, [0, 1])) { $mensaje = "error"; }
         else {
@@ -36,7 +36,7 @@ $registros = mysqli_query($con, "
            m1.valor_medido as estado_acceso
     FROM registro_diario rd
     JOIN instalacion i ON rd.id_instalacion = i.id
-    LEFT JOIN medicion_horaria m1 ON m1.id_registro_diario = rd.id AND m1.id_parametro = 29
+    JOIN medicion_horaria m1 ON m1.id_registro_diario = rd.id AND m1.id_parametro = 29
     ORDER BY rd.fecha DESC, rd.id DESC
 ");
 ?>

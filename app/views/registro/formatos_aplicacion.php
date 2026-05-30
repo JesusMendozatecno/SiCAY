@@ -17,7 +17,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $punto = trim($_POST['punto_aplicacion']);
         $observacion = trim($_POST['observacion'] ?? '');
         
-        $id_user = isset($_SESSION['id_usuario']) ? $_SESSION['id_usuario'] : 1;
+        $id_user = (int) $_SESSION['id_usuario'];
         $fecha = date('Y-m-d');
         $hora = date('H:i:s');
         $quimicos_validos = ['Cloro Gas', 'Sulfato de Aluminio', 'Policloruro de Aluminio (PAC)'];

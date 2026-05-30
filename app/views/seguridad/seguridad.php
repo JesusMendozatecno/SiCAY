@@ -10,26 +10,29 @@ if (isset($_POST['cambiar_clave'])) {
 
     if ($actual === '' || $nueva === '') {
         echo "<script>alert('Por favor completa ambos campos');</script>";
-    } elseif (strlen($nueva) < 6) {
-        echo "<script>alert('La nueva contraseña debe tener al menos 6 caracteres');</script>";
     } else {
-        $stmt = $con->prepare("SELECT id, contraseña FROM usuario WHERE usuario = ?");
-        $stmt->bind_param("s", $mi_usuario);
-        $stmt->execute();
-        $res = $stmt->get_result();
-        $user = $res->fetch_assoc();
-        $stmt->close();
-
-        if ($user && verificar_pass($actual, $user['contraseña'])) {
-            $hash = hash_pass($nueva);
-            $upd = $con->prepare("UPDATE usuario SET contraseña = ? WHERE id = ?");
-            $upd->bind_param("si", $hash, $user['id']);
-            if ($upd->execute()) {
-                echo "<script>alert('Contraseña actualizada con éxito'); window.location='index.php?route=seguridad';</script>";
-            }
-            $upd->close();
+        $passErrors = validar_politica_pass($nueva);
+        if (!empty($passErrors)) {
+            echo "<script>alert('" . implode("\\n", $passErrors) . "');</script>";
         } else {
-            echo "<script>alert('La contraseña actual es incorrecta');</script>";
+            $stmt = $con->prepare("SELECT id, contraseña FROM usuario WHERE usuario = ?");
+            $stmt->bind_param("s", $mi_usuario);
+            $stmt->execute();
+            $res = $stmt->get_result();
+            $user = $res->fetch_assoc();
+            $stmt->close();
+
+            if ($user && verificar_pass($actual, $user['contraseña'])) {
+                $hash = hash_pass($nueva);
+                $upd = $con->prepare("UPDATE usuario SET contraseña = ? WHERE id = ?");
+                $upd->bind_param("si", $hash, $user['id']);
+                if ($upd->execute()) {
+                    echo "<script>alert('Contraseña actualizada con éxito'); window.location='index.php?route=seguridad';</script>";
+                }
+                $upd->close();
+            } else {
+                echo "<script>alert('La contraseña actual es incorrecta');</script>";
+            }
         }
     }
 }

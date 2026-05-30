@@ -23,6 +23,7 @@ if (empty($token)) {
 }
 
 if (!$error_token && $_SERVER['REQUEST_METHOD'] === 'POST') {
+    verificar_csrf($_POST['csrf_token'] ?? '');
     $pass = $_POST['pass'] ?? '';
     $pass2 = $_POST['pass2'] ?? '';
 
@@ -100,6 +101,7 @@ if (!$error_token && $_SERVER['REQUEST_METHOD'] === 'POST') {
             <?php endif; ?>
 
             <form method="POST">
+                <?php echo csrf_field(); ?>
                 <div class="form-group">
                     <label><i class="fas fa-lock"></i> Nueva Contraseña</label>
                     <div class="input-group">

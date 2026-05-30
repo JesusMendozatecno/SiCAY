@@ -10,7 +10,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $id_inst = intval($_POST['planta']); $equipo = $_POST['equipo'];
         $val4 = $_POST['val4']; $val7 = $_POST['val7']; $valTurb = $_POST['valTurb'];
         $estado = $_POST['estado'];
-        $id_user = isset($_SESSION['id_usuario']) ? $_SESSION['id_usuario'] : 1;
+        $id_user = (int) $_SESSION['id_usuario'];
         $fecha = date('Y-m-d'); $hora = date('H:i:s');
         $equipos_validos = ['pH-metro Portátil', 'Turbidímetro de Mesa', 'Colorímetro'];
         $estados_validos = ['Calibrado', 'Descalibrado', 'Falla'];
@@ -42,9 +42,9 @@ $registros = mysqli_query($con, "
            m1.valor_medido as val4, m2.valor_medido as val7, m3.valor_medido as valTurb
     FROM registro_diario rd
     JOIN instalacion i ON rd.id_instalacion = i.id
-    LEFT JOIN medicion_horaria m1 ON m1.id_registro_diario = rd.id AND m1.id_parametro = 25
-    LEFT JOIN medicion_horaria m2 ON m2.id_registro_diario = rd.id AND m2.id_parametro = 26
-    LEFT JOIN medicion_horaria m3 ON m3.id_registro_diario = rd.id AND m3.id_parametro = 27
+    JOIN medicion_horaria m1 ON m1.id_registro_diario = rd.id AND m1.id_parametro = 25
+    JOIN medicion_horaria m2 ON m2.id_registro_diario = rd.id AND m2.id_parametro = 26
+    JOIN medicion_horaria m3 ON m3.id_registro_diario = rd.id AND m3.id_parametro = 27
     ORDER BY rd.fecha DESC, rd.id DESC
 ");
 ?>
@@ -93,9 +93,9 @@ $registros = mysqli_query($con, "
                         <td><?php echo date('d/m/Y', strtotime($r['fecha'])); ?></td>
                         <td><strong><?php echo hsc($r['planta']); ?></strong></td>
                         <td style="font-size:13px;"><?php echo hsc($r['observaciones_generales']); ?></td>
-                        <td><?php echo number_format($r['val4'], 2); ?></td>
-                        <td><?php echo number_format($r['val7'], 2); ?></td>
-                        <td><?php echo number_format($r['valTurb'], 2); ?></td>
+                        <td><?php echo number_format((float)($r['val4'] ?? 0), 2); ?></td>
+                        <td><?php echo number_format((float)($r['val7'] ?? 0), 2); ?></td>
+                        <td><?php echo number_format((float)($r['valTurb'] ?? 0), 2); ?></td>
                     </tr>
                     <?php endwhile; ?>
                 </tbody>

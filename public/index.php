@@ -112,7 +112,7 @@ if (isset($_SESSION['id_usuario'])) {
     }
 }
 
-$v = '?v=' . date('YmdHi');
+$v = '?v=' . date('YmdHis');
 
 $viewport = '<meta name="viewport" content="width=device-width, initial-scale=1.0">';
 $favicon = "\n" . '    <link rel="icon" href="assets/img/EUhOGzfWAAAHZC4-removebg-preview.png" type="image/png">';

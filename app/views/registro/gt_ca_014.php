@@ -10,7 +10,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $id_inst = intval($_POST['planta']); $turno = $_POST['turno'];
         $entrega = intval($_POST['entrega']);
         $novedades = trim($_POST['novedades'] ?? ''); $pendientes = trim($_POST['pendientes'] ?? '');
-        $id_user = isset($_SESSION['id_usuario']) ? $_SESSION['id_usuario'] : 1;
+        $id_user = (int) $_SESSION['id_usuario'];
         $fecha = date('Y-m-d'); $hora = date('H:i:s');
         $turnos_validos = ['Mañana (07:00 - 15:00)', 'Tarde (15:00 - 23:00)', 'Noche (23:00 - 07:00)'];
         if (!in_array($turno, $turnos_validos) || !in_array($entrega, [0, 1])) { $mensaje = "error"; }
@@ -36,7 +36,7 @@ $registros = mysqli_query($con, "
            m1.valor_medido as estado_entrega
     FROM registro_diario rd
     JOIN instalacion i ON rd.id_instalacion = i.id
-    LEFT JOIN medicion_horaria m1 ON m1.id_registro_diario = rd.id AND m1.id_parametro = 28
+    JOIN medicion_horaria m1 ON m1.id_registro_diario = rd.id AND m1.id_parametro = 28
     ORDER BY rd.fecha DESC, rd.id DESC
 ");
 ?>

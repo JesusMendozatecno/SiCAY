@@ -382,7 +382,7 @@
 }
 
 /* ── Light mode overrides ── */
-body:not(.dark-mode) {
+body.admin-page:not(.dark-mode) {
     --tbl-bg: rgba(0,0,0,0.02);
     --tbl-border: rgba(0,0,0,0.1);
     --tbl-hover: rgba(0,0,0,0.04);
@@ -390,65 +390,65 @@ body:not(.dark-mode) {
     --tbl-text: #1a1a1a;
     --tbl-text-muted: rgba(0,0,0,0.45);
 }
-body:not(.dark-mode) .modal-contenido {
+body.admin-page:not(.dark-mode) .modal-contenido {
     background: #ffffff;
     border-color: rgba(0,0,0,0.12);
     box-shadow: 0 25px 60px rgba(0,0,0,0.2);
 }
-body:not(.dark-mode) .modal-cerrar {
+body.admin-page:not(.dark-mode) .modal-cerrar {
     color: rgba(0,0,0,0.4);
 }
-body:not(.dark-mode) .modal-cerrar:hover {
+body.admin-page:not(.dark-mode) .modal-cerrar:hover {
     color: #000;
     background: rgba(0,0,0,0.06);
 }
-body:not(.dark-mode) .modal-campo input,
-body:not(.dark-mode) .modal-campo select,
-body:not(.dark-mode) .modal-campo textarea {
-    background: #f5f7fa;
-    border-color: rgba(0,0,0,0.12);
-    color: #1a1a1a;
+body.admin-page:not(.dark-mode) .modal-campo input,
+body.admin-page:not(.dark-mode) .modal-campo select,
+body.admin-page:not(.dark-mode) .modal-campo textarea {
+    background: #f5f7fa !important;
+    border-color: rgba(0,0,0,0.12) !important;
+    color: #1a1a1a !important;
 }
-body:not(.dark-mode) .modal-campo input:focus,
-body:not(.dark-mode) .modal-campo select:focus {
-    border-color: var(--tbl-accent, #00cec9);
-    background: #fff;
+body.admin-page:not(.dark-mode) .modal-campo input:focus,
+body.admin-page:not(.dark-mode) .modal-campo select:focus {
+    border-color: var(--tbl-accent, #00cec9) !important;
+    background: #fff !important;
 }
-body:not(.dark-mode) .tabla-buscar input {
-    background: rgba(255,255,255,0.85);
-    border-color: rgba(0,0,0,0.1);
-    color: #1a1a1a;
+body.admin-page:not(.dark-mode) .tabla-buscar input {
+    background: rgba(255,255,255,0.85) !important;
+    border-color: rgba(0,0,0,0.1) !important;
+    color: #1a1a1a !important;
 }
-body:not(.dark-mode) .tabla-buscar input::placeholder {
-    color: rgba(0,0,0,0.35);
+body.admin-page:not(.dark-mode) .tabla-buscar input::placeholder {
+    color: rgba(0,0,0,0.35) !important;
 }
-body:not(.dark-mode) .tabla-buscar input:focus {
-    background: #fff;
-    border-color: var(--tbl-accent, #00cec9);
+body.admin-page:not(.dark-mode) .tabla-buscar input:focus {
+    background: #fff !important;
+    border-color: var(--tbl-accent, #00cec9) !important;
 }
-body:not(.dark-mode) .tabla-filtro {
-    background: rgba(255,255,255,0.85);
-    border-color: rgba(0,0,0,0.1);
-    color: #1a1a1a;
+body.admin-page:not(.dark-mode) .tabla-filtro {
+    background: rgba(255,255,255,0.85) !important;
+    border-color: rgba(0,0,0,0.1) !important;
+    color: #1a1a1a !important;
 }
-body:not(.dark-mode) .tabla-filtro option,
-body:not(.dark-mode) .modal-campo select option {
-    background: #fff;
-    color: #1a1a1a;
+body.admin-page:not(.dark-mode) .tabla-filtro option,
+body.admin-page:not(.dark-mode) .modal-campo select option {
+    background: #fff !important;
+    color: #1a1a1a !important;
 }
-body:not(.dark-mode) .modal-footer .btn-cancelar-modal {
+body.admin-page:not(.dark-mode) .modal-footer .btn-cancelar-modal {
     background: rgba(0,0,0,0.05);
     color: #1a1a1a;
     border-color: rgba(0,0,0,0.1);
 }
-body:not(.dark-mode) .modal-footer .btn-cancelar-modal:hover {
+body.admin-page:not(.dark-mode) .modal-footer .btn-cancelar-modal:hover {
     background: rgba(0,0,0,0.1);
 }
-body:not(.dark-mode) .pagina-btn {
+body.admin-page:not(.dark-mode) .pagina-btn {
     background: rgba(0,0,0,0.03);
     color: #1a1a1a;
 }
-body:not(.dark-mode) .pagina-btn:hover {
+body.admin-page:not(.dark-mode) .pagina-btn:hover {
     background: rgba(0,206,201,0.1);
     border-color: var(--tbl-accent, #00cec9);
 }

@@ -62,6 +62,13 @@
         }
     });
 
+    // ── Versión para cache-busting de CSS inyectado ──
+    function pad2(n) { return n < 10 ? '0' + n : n; }
+    (function () {
+        var d = new Date();
+        window.__cssV = 'v=' + d.getFullYear() + pad2(d.getMonth()+1) + pad2(d.getDate()) + pad2(d.getHours()) + pad2(d.getMinutes());
+    })();
+
     // ── Inyectar CSS desde el documento cargado ──
     function injectStyles(doc) {
         var links = doc.querySelectorAll('link[rel="stylesheet"]');
@@ -71,7 +78,7 @@
             loadedStyles.add(href);
             var newLink = document.createElement('link');
             newLink.rel = 'stylesheet';
-            newLink.href = href;
+            newLink.href = href + (href.indexOf('?') >= 0 ? '&' : '?') + window.__cssV;
             document.head.appendChild(newLink);
         });
     }
